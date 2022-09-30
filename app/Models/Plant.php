@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Emisi extends Model
+class Plant extends Model
 {
     use HasFactory;
     
     public function product(){
-        return $this->belongsTo(Product::class,'id_emisi');
+        return $this->belongsTo(Product::class,'id_plant');
     }
 }
