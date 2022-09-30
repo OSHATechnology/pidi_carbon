@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{asset('assets')}}/css/app-light.css" id="lightTheme" disabled>
     <link rel="stylesheet" href="{{asset('assets')}}/css/app-dark.css" id="darkTheme">
   </head>
-  <body class="vertical dark">
+  <body class="vertical dark collapsed">
     <div class="wrapper">
 
         @include('components.navbar')
