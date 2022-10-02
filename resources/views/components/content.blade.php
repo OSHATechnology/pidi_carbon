@@ -16,8 +16,8 @@
                             </div>
                             <div class="col pr-0">
                             <p class="small text-muted mb-0">Welding</p>
-                            <span class="h3 mb-0 text-white">$1250</span>
-                            <span class="small text-muted">+5.5%</span>
+                            <span class="h3 mb-0 text-white result-welding">$1250</span>
+                            <span class="small text-muted">Ton</span>
                             </div>
                         </div>
                         </div>
@@ -34,8 +34,8 @@
                             </div>
                             <div class="col pr-0">
                             <p class="small text-muted mb-0">Painting</p>
-                            <span class="h3 mb-0">1,869</span>
-                            <span class="small text-success">+16.5%</span>
+                            <span class="h3 mb-0 result-painting">1,869</span>
+                            <span class="small text-muted">Ton</span>
                             </div>
                         </div>
                         </div>
@@ -54,12 +54,14 @@
                             <p class="small text-muted mb-0">Assy</p>
                             <div class="row align-items-center no-gutters">
                                 <div class="col-auto">
-                                <span class="h3 mr-2 mb-0"> 86.6% </span>
+                                <span class="h3 mr-2 mb-0 result-assy"> 86.6% </span>
+                                <span class="small text-muted">Ton</span>
+
                                 </div>
                                 <div class="col-md-12 col-lg">
-                                <div class="progress progress-sm mt-2" style="height:3px">
+                                <!-- <div class="progress progress-sm mt-2" style="height:3px">
                                     <div class="progress-bar bg-success" role="progressbar" style="width: 87%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                                </div> -->
                                 </div>
                             </div>
                             </div>
@@ -78,7 +80,9 @@
                             </div>
                             <div class="col">
                             <p class="small text-muted mb-0">Press</p>
-                            <span class="h3 mb-0">$80</span>
+                            <span class="h3 mb-0 result-press">$80</span>
+                            <span class="small text-muted">Ton</span>
+
                             </div>
                         </div>
                         </div>
@@ -125,11 +129,11 @@
                             <div class="col-md-12">
                             <div class="row align-items-center my-3">
                                 <div class="col">
-                                <strong>Cloud Server</strong>
-                                <div class="my-0 text-muted small">Global, Services</div>
+                                <strong>Welding</strong>
+                                <!-- <div class="my-0 text-muted small">Global, Services</div> -->
                                 </div>
                                 <div class="col-auto">
-                                <strong>+85%</strong>
+                                <strong>+62%</strong>
                                 </div>
                                 <div class="col-3">
                                 <div class="progress" style="height: 4px;">
@@ -139,11 +143,11 @@
                             </div>
                             <div class="row align-items-center my-3">
                                 <div class="col">
-                                <strong>CDN</strong>
-                                <div class="my-0 text-muted small">Global, Services</div>
+                                <strong>Painting</strong>
+                                <!-- <div class="my-0 text-muted small">Global, Services</div> -->
                                 </div>
                                 <div class="col-auto">
-                                <strong>+75%</strong>
+                                <strong>+62%</strong>
                                 </div>
                                 <div class="col-3">
                                 <div class="progress" style="height: 4px;">
@@ -153,8 +157,21 @@
                             </div>
                             <div class="row align-items-center my-3">
                                 <div class="col">
-                                <strong>Databases</strong>
-                                <div class="my-0 text-muted small">Local, DC</div>
+                                <strong>Assy</strong>
+                                <!-- <div class="my-0 text-muted small">Local, DC</div> -->
+                                </div>
+                                <div class="col-auto">
+                                <strong>+62%</strong>
+                                </div>
+                                <div class="col-3">
+                                <div class="progress" style="height: 4px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 62%" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-center my-3">
+                                <div class="col">
+                                    <strong>Press</strong>
                                 </div>
                                 <div class="col-auto">
                                 <strong>+62%</strong>
@@ -181,49 +198,24 @@
                         <div class="row">
                             <div class="col-6 text-center">
                             <p class="text-muted mb-0">Yesterday</p>
-                            <h4 class="mb-1">126</h4>
-                            <p class="text-muted mb-2">+5.5%</p>
+                            <h4 class="mb-1 text-yesterday">126</h4>
+                            <!-- <p class="text-muted mb-2 text-persent-yesterday">+5.5%</p> -->
                             </div>
                             <div class="col-6 text-center">
                             <p class="text-muted mb-0">Today</p>
-                            <h4 class="mb-1">86</h4>
-                            <p class="text-muted mb-2">-5.5%</p>
+                            <h4 class="mb-1 text-today">86</h4>
+                            <p class="text-muted mb-2 text-percent-today">-5.5%</p>
                             </div>
                         </div>
                         </div> <!-- .card-body -->
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card shadow mb-4">
-                        <div class="card-body">
-                        <div class="chart-widget mb-2">
-                            <div id="radialbar"></div>
-                        </div>
-                        <div class="row items-align-center">
-                            <div class="col-4 text-center">
-                            <p class="text-muted mb-1">Cost</p>
-                            <h6 class="mb-1">$1,823</h6>
-                            <p class="text-muted mb-0">+12%</p>
-                            </div>
-                            <div class="col-4 text-center">
-                            <p class="text-muted mb-1">Revenue</p>
-                            <h6 class="mb-1">$6,830</h6>
-                            <p class="text-muted mb-0">+8%</p>
-                            </div>
-                            <div class="col-4 text-center">
-                            <p class="text-muted mb-1">Earning</p>
-                            <h6 class="mb-1">$4,830</h6>
-                            <p class="text-muted mb-0">+8%</p>
-                            </div>
-                        </div>
-                        </div> <!-- .card-body -->
-                    </div>
-                </div>
-                <div class="col-md-4">
+            
+                <div class="col-md-8">
                     <div class="card shadow mb-4">
                         <div class="card-body">
                         <p class="mb-0"><strong class="mb-0 text-uppercase text-muted">Today</strong></p>
-                        <h3 class="mb-0">$2,562.30</h3>
+                        <h3 class="mb-4">$2,562.30</h3>
                         <p class="text-muted">+18.9% Last week</p>
                         <div class="chart-box mt-n5">
                             <div id="lineChartWidget"></div>
@@ -677,5 +669,11 @@
         </div>
     </div>
 </div>
+
+@section('javascript')
+
+<script src="{{asset('assets')}}/js_external/dashboard.js"></script>
+
+@endsection
 
 @endsection

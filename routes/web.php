@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/',[DashboardController::class,'index']);
+Route::get('/convertEnergy',[DashboardController::class,'countEmisi']);
