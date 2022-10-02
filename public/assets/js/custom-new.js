@@ -446,13 +446,13 @@ chart.render();
 var options = {
 series: [{
 name: 'Fuel',
-data: [44, 55, 41, 37, 22, 43, 21]
+data: [44, 55, 41, 37]
 }, {
 name: 'Gas',
-data: [53, 32, 33, 52, 13, 43, 32]
+data: [53, 32, 33, 52]
 }, {
 name: 'Electricity',
-data: [12, 17, 11, 9, 15, 11, 20]
+data: [12, 17, 11, 9]
 }],
 chart: {
 type: 'bar',
@@ -469,7 +469,7 @@ width: 1,
 colors: ['#fff']
 },
 xaxis: {
-categories: [2008, 2009, 2010, 2011, 2012, 2013, 2014],
+categories: ['PAINTING', 'WELDING', 'PRESS', 'ASSY'],
 labels: {
     formatter: function (val) {
     return val + "K"
@@ -494,10 +494,136 @@ opacity: 1
 legend: {
 position: 'bottom',
 horizontalAlign: 'center',
-offsetX: 40
 },
 color: ['#479e35','#479e35','#479e35']
 };
 
 var chart = new ApexCharts(document.querySelector("#chart6"), options);
 chart.render();
+
+// chart7
+var options = {
+series: [44, 55, 41],
+chart: {
+    height: 300,
+type: 'donut',
+},
+legend: {
+    position: 'bottom',
+
+},
+responsive: [{
+breakpoint: 480,
+options: {
+    chart: {
+    width: 200
+    },
+    legend: {
+    position: 'bottom'
+    }
+}
+}]
+};
+
+var chart = new ApexCharts(document.querySelector("#chart7"), options);
+chart.render();
+
+
+// chart 8
+var options = {
+    series: [{
+      name: "percentage",
+      data: [10, 41, 35, 51, 49, 62, 69, 91, 100]
+  }],
+    chart: {
+    height: 350,
+    type: 'line',
+    zoom: {
+      enabled: false
+    }
+  },
+  dataLabels: {
+    enabled: true
+  },
+  stroke: {
+    curve: 'straight'
+  },
+  grid: {
+    row: {
+      colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+      opacity: 0.5
+    },
+  },
+  xaxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  }
+  };
+
+  var chart = new ApexCharts(document.querySelector("#chart8"), options);
+  chart.render();
+
+// chart 9
+var options = {
+    series: [{
+      name: "percentage",
+      data: [10, 41, 35, 51, 49, 62, 69, 91, 100]
+  }],
+    chart: {
+    height: 350,
+    type: 'line',
+    zoom: {
+      enabled: false
+    }
+  },
+  dataLabels: {
+    enabled: true
+  },
+  stroke: {
+    curve: 'straight'
+  },
+  grid: {
+    row: {
+      colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+      opacity: 0.5
+    },
+  },
+  xaxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  }
+  };
+
+  var chart = new ApexCharts(document.querySelector("#chart9"), options);
+  chart.render();
+
+  // chart 10
+var options = {
+    series: [{
+      name: "percentage",
+      data: [10, 41, 35, 51, 49, 62, 69, 91, 100]
+  }],
+    chart: {
+    height: 350,
+    type: 'line',
+    zoom: {
+      enabled: false
+    }
+  },
+  dataLabels: {
+    enabled: true
+  },
+  stroke: {
+    curve: 'straight'
+  },
+  grid: {
+    row: {
+      colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+      opacity: 0.5
+    },
+  },
+  xaxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  }
+  };
+
+  var chart = new ApexCharts(document.querySelector("#chart10"), options);
+  chart.render();

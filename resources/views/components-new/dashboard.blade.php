@@ -98,8 +98,8 @@
                 <div class="card with-border">
                     <div class="card-body">
                         <div class="card-title d-flex justify-content-between">
-                            <p class="small lighter">CO2 abc</p>
-                            <p class="small">Data per 1 October 2022</p>
+                            <p class="small normal lighter">CO2 abc</p>
+                            <p class="small normal">Data per 1 October 2022</p>
                         </div>
                         <div id="chart2"></div>
                     </div>
@@ -109,8 +109,8 @@
                 <div class="card with-border">
                     <div class="card-body">
                         <div class="card-title d-flex justify-content-between">
-                            <p class="small lighter">CO2 abc</p>
-                            <p class="small">Data per 1 October 2022</p>
+                            <p class="small normal lighter">CO2 abc</p>
+                            <p class="small normal">Data per 1 October 2022</p>
                         </div>
                         <div id="chart3"></div>
                     </div>
@@ -120,8 +120,8 @@
                 <div class="card with-border">
                     <div class="card-body">
                         <div class="card-title d-flex justify-content-between">
-                            <p class="small lighter">CO2 abc</p>
-                            <p class="small">Data per 1 October 2022</p>
+                            <p class="small normal lighter">CO2 abc</p>
+                            <p class="small normal">Data per 1 October 2022</p>
                         </div>
                         <div id="chart4"></div>
                     </div>
@@ -131,8 +131,8 @@
                 <div class="card with-border">
                     <div class="card-body">
                         <div class="card-title d-flex justify-content-between">
-                            <p class="small lighter">CO2 abc</p>
-                            <p class="small">Data per 1 October 2022</p>
+                            <p class="small normal lighter">CO2 abc</p>
+                            <p class="small normal">Data per 1 October 2022</p>
                         </div>
                         <div id="chart5"></div>
                     </div>
@@ -152,12 +152,14 @@
                 </div>
             </div>
             <div class="col">
-                <div class="row">
+                <div class="row h-100">
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Title</h5>
-                                This is some text within a card body.
+                                <div class="mt-5">
+                                    <div id="chart7"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -165,7 +167,44 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Title</h5>
-                                This is some text within a card body.
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>BREAKDOWN</th>
+                                            <th class="text-center">THIS PERIOD</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>PAINTING</td>
+                                            <td class="d-flex flex-column align-items-center">
+                                                <p class="text-danger">- 2%</p>
+                                                <p><small>16.200 TON</small></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>WELDING</td>
+                                            <td class="d-flex flex-column align-items-center">
+                                                <p class="text-success">+ 14%</p>
+                                                <p><small>16.200 TON</small></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>PRESS</td>
+                                            <td class="d-flex flex-column align-items-center">
+                                                <p class="text-danger">-3%</p>
+                                                <p><small>16.200 TON</small></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>ASSY</td>
+                                            <td class="d-flex flex-column align-items-center">
+                                                <p class="text-success">+ 20%</p>
+                                                <p><small>16.200 TON</small></p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -180,7 +219,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Title</h5>
-                        This is some text within a card body.
+                        <div id="chart8"></div>
                     </div>
                 </div>
             </div>
@@ -188,7 +227,17 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Title</h5>
-                        This is some text within a card body.
+                        <div id="chart9"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-12">
+                        <div id="chart10"></div>
                     </div>
                 </div>
             </div>
