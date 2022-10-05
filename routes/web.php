@@ -22,3 +22,7 @@ Route::get('/', [DashboardController::class, 'index']);
 Route::get('/the-dashboard', function () {
     return view('components-new.dashboard');
 });
+
+Route::get('/latest-dashboard', function () {
+    return view('components-latest.dashboard');
+});
