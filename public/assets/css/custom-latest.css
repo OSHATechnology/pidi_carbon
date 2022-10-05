@@ -40,6 +40,7 @@ p {
     height: 100%;
     border-radius: 10px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    /* background-color: #191c24; */
 }
 
 .card.with-border {
@@ -99,3 +100,17 @@ table th, table td {
     display: none;
 }
 
+#chart-wrap {
+    max-width: 650px;
+    position: relative;
+    margin: 35px auto;
+}
+
+.legend {
+    max-width: 650px;
+    left: 80px;
+    bottom: 20px;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+}
