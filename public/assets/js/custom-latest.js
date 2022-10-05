@@ -22,7 +22,7 @@ stroke: {
   width: [1, 1, 4]
 },
 xaxis: {
-  categories: [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  categories: ['apr','may','june','july','august','sept','oct','nov'],
 },
 yaxis: [
   {
@@ -88,16 +88,16 @@ chart.render();
 // chart2
 var options = {
   series: [{
-    name: 'Welding',
+    name: 'manufacturing',
     data: [44, 55, 41, 67, 22, 43]
   }, {
-    name: 'Painting',
+    name: 'building',
     data: [13, 23, 20, 8, 13, 27]
   }, {
-    name: 'Press',
+    name: 'utility',
     data: [11, 17, 15, 15, 21, 14]
   }, {
-    name: 'Assy',
+    name: 'vehicles',
     data: [21, 7, 25, 13, 22, 8]
   }],
   chart: {
@@ -140,7 +140,7 @@ chart.render();
 // chart3
 var options = {
   series: [44, 55, 41, 17, 15],
-  labels: ['Plant 1', 'Plant 2', 'Plant 3', 'Plant 4', 'Plant 5'],
+  labels: ['manufacturing','building','utility','vehicles'],
   chart: {
     type: 'donut',
   },
@@ -159,7 +159,7 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#chart3"), options);
 chart.render();
 
-// Chart4
+// Chart5
 var options = {
   series: [88, 32],
   chart: {
@@ -180,106 +180,8 @@ var options = {
   }]
 };
 
-var chart = new ApexCharts(document.querySelector("#chart4"), options);
+var chart = new ApexCharts(document.querySelector("#chart5"), options);
 chart.render();
-
-// Chart5
-var options = {
-  series: [{
-    data: generateDayWiseTimeSeries(new Date('11 Feb 2017').getTime(), 10, {
-      min: 10,
-      max: 60
-    })
-  }],
-  chart: {
-    id: 'fb',
-    group: 'social',
-    type: 'line',
-    height: 260
-  },
-  colors: ['#008FFB']
-};
-
-var chart = new ApexCharts(document.querySelector("#chart-line"), options);
-chart.render();
-
-var optionsLine2 = {
-  series: [{
-    data: generateDayWiseTimeSeries(new Date('11 Feb 2017').getTime(), 10, {
-      min: 10,
-      max: 60
-    })
-  }],
-  chart: {
-    id: 'tw',
-    group: 'social',
-    type: 'line',
-    height: 260
-  },
-  colors: ['#546E7A']
-};
-
-var chartLine2 = new ApexCharts(document.querySelector("#chart-line2"), optionsLine2);
-chartLine2.render();
-
-var optionsArea = {
-  series: [{
-    data: generateDayWiseTimeSeries(new Date('11 Feb 2017').getTime(), 10, {
-      min: 10,
-      max: 60
-    })
-  }],
-  chart: {
-    id: 'yt',
-    group: 'social',
-    type: 'area',
-    height: 260
-  },
-  colors: ['#00E396']
-};
-
-var chartArea = new ApexCharts(document.querySelector("#chart-area"), optionsArea);
-chartArea.render();
-
-var optionsSmall = {
-  series: [{
-    data: generateDayWiseTimeSeries(new Date('11 Feb 2017').getTime(), 10, {
-      min: 10,
-      max: 60
-    })
-  }],
-  chart: {
-    id: 'ig',
-    group: 'social',
-    type: 'area',
-    height: 260,
-  },
-  colors: ['#008FFB']
-};
-
-var chartSmall = new ApexCharts(document.querySelector("#chart-small"), optionsSmall);
-chartSmall.render();
-
-var optionsSmall2 = {
-  series: [{
-  data: generateDayWiseTimeSeries(new Date('11 Feb 2017').getTime(), 10, {
-    min: 10,
-    max: 60
-  })
-}],
-  chart: {
-  id: 'li',
-  group: 'social',
-  type: 'area',
-  height: 260,
-},
-colors: ['#546E7A']
-};
-
-var chartSmall2 = new ApexCharts(document.querySelector("#chart-small2"), optionsSmall2);
-chartSmall2.render();
-
-// Chart6
 
 
 //Define a method to simulate data, this is the method of ApexCharts official website 
@@ -291,8 +193,83 @@ function  generateDayWiseTimeSeries ( baseval , count , yrange )  {
     var y = Math.floor( Math.random()*(yrange.max-yrange.min+.1 ))+yrange.min;
 
     series.push([x,y]) ; 
-    baseval +=  86400000 ; 
+    baseval +=  12 ; 
     i++ ; 
   } 
   return series ; 
 }
+
+// Chart4
+function getNewSeries(baseval, yrange) {
+  var newDate = baseval + 86400000;
+  lastDate = newDate;
+  data1.push({
+    x: newDate,
+    y: Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
+  });
+  data2.push({
+    x: newDate,
+    y: Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
+  });
+}
+
+var options = {
+  series: [{
+    data: data.slice()
+  }],
+  chart: {
+    id: 'realtime',
+    height: 350,
+    type: 'line',
+    animations: {
+      enabled: true,
+      easing: 'linear',
+      dynamicAnimation: {
+        speed: 1000
+      }
+    },
+    toolbar: {
+      show: false
+    },
+    zoom: {
+      enabled: false
+    }
+  },
+  dataLabels: {
+    enabled: false
+  },
+  stroke: {
+    curve: 'smooth'
+  },
+  title: {
+    text: 'Dynamic Updating Chart',
+    align: 'left'
+  },
+  markers: {
+    size: 0
+  },
+  xaxis: {
+    type: 'datetime',
+    // range: XAXISRANGE,
+  },
+  yaxis: {
+    max: 100
+  },
+  legend: {
+    show: false
+  },
+};
+
+var chart = new ApexCharts(document.querySelector("#chart4"), options);
+chart.render();
+
+window.setInterval(function () {
+  getNewSeries(lastDate, {
+    min: 10,
+    max: 90
+  })
+  
+  chart.updateSeries([{
+    data: data
+  }])
+}, 1000)

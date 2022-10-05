@@ -1,52 +1,52 @@
-// OPTION 1
+// Chart1
 var options = {
-series: [76],
-chart: {
-type: 'radialBar',
-offsetY: -20,
-sparkline: {
-    enabled: true
-}
-},
-plotOptions: {
-radialBar: {
-    startAngle: -90,
-    endAngle: 90,
-    track: {
-    background: "#e7e7e7",
-    strokeWidth: '97%',
-    margin: 5, // margin is in pixels
-    dropShadow: {
-        enabled: true,
-        top: 2,
-        left: 0,
-        color: '#999',
-        opacity: 1,
-        blur: 2
+  series: [76],
+  chart: {
+    type: 'radialBar',
+    offsetY: -20,
+    sparkline: {
+      enabled: true
     }
-    },
-    dataLabels: {
-    name: {
-        show: false
-    },
-    value: {
-        offsetY: -2,
-        fontSize: '22px'
+  },
+  plotOptions: {
+    radialBar: {
+      startAngle: -90,
+      endAngle: 90,
+      track: {
+        background: "#e7e7e7",
+        strokeWidth: '97%',
+        margin: 5, // margin is in pixels
+        dropShadow: {
+            enabled: true,
+            top: 2,
+            left: 0,
+            color: '#999',
+            opacity: 1,
+            blur: 2
+        }
+      },
+      dataLabels: {
+        name: {
+          show: false
+        },
+        value: {
+          offsetY: -2,
+          fontSize: '22px'
+        }
+      }
     }
+  },
+  grid: {
+    padding: {
+      top: -10
     }
-}
-},
-grid: {
-padding: {
-    top: -10
-}
-},
-fill: {
+  },
+  fill: {
     colors: '#479e35',
     opacity: 0.9,
     type: 'solid',
-},
-labels: ['Average Results'],
+  },
+  labels: ['Average Results'],
 };
 
 var chart = new ApexCharts(document.querySelector("#chart1"), options);
