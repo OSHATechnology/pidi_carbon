@@ -1,3 +1,16 @@
+// Data 
+var emisi =['']
+var time =['00:00','01:00','02:00','03:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00',
+'13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00']
+var date =['2022-03-01','2022-02-01','2022-01-01','2021-12-01','2021-11-01','2021-10-01','2021-09-01','2021-08-01','2021-07-01',
+'2021-06-01','2021-05-01','2021-04-01','2021-03-01',]
+var electric =['7500','9400']
+var targetElectric = 7800
+var targetGas = 1600
+var targetFuel = 4000
+var manufacturing = []
+var plant = ['Karawang1','Karawang2','Karawang3','Sunter1','Sunter2',]
+
 // chart1
 var options = {
   series: [{
@@ -161,9 +174,10 @@ chart.render();
 
 // Chart5
 var options = {
-  series: [88, 32],
+  series: [188, 32],
   chart: {
     width: 380,
+    height: 450,
     type: 'pie',
   },
   labels: ['Total Emission', 'Target'],
@@ -171,7 +185,8 @@ var options = {
     breakpoint: 480,
     options: {
       chart: {
-        width: 200
+        width: 200,
+        height: 450,
       },
       legend: {
         position: 'bottom'
