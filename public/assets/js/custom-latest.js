@@ -9,7 +9,7 @@ var targetElectric = 7800
 var targetGas = 1600
 var targetFuel = 4000
 var manufacturing = []
-var plant = ['Karawang1','Karawang2','Karawang3','Sunter1','Sunter2',]
+var plant = ['Karawang1','Karawang2','Karawang3','Sunter1','Sunter2']
 
 // chart1
 var options = {
