@@ -1,15 +1,112 @@
 // Data 
-var emisi =['']
+var emisiYearly =['27741,33']
 var time =['00:00','01:00','02:00','03:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00',
 '13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00']
 var date =['2022-03-01','2022-02-01','2022-01-01','2021-12-01','2021-11-01','2021-10-01','2021-09-01','2021-08-01','2021-07-01',
-'2021-06-01','2021-05-01','2021-04-01','2021-03-01',]
+'2021-06-01','2021-05-01','2021-04-01']
 var electric =['7500','9400']
-var targetElectric = 7800
-var targetGas = 1600
-var targetFuel = 4000
-var manufacturing = []
-var plant = ['Karawang1','Karawang2','Karawang3','Sunter1','Sunter2',]
+var targetElectricHourly = 7800
+var targetGasHourly = 1600
+var targetFuelHourly = 4000
+var targetElectricDaily = 7800*24
+var targetGasDaily = 1600*24
+var targetFuelDaily = 4000*24
+var JenisEnergi = ['Electricity','LPG','Diesel Oil','Natural Gas']
+var area = ['manufacturing','building','utility','digital']
+var plant = ['Karawang1','Karawang2','Karawang3','Sunter1','Sunter2']
+var productionYearly = ['7709','6975','7709','7203','7546','7788','8158','8485','8516','9196','6048','7659']
+
+// Catatan KRW1
+// JenisEnergi yg ada Natgas, Electric dan Diesel Oil 
+// Area Manufacturing
+
+// Chart 7 
+// var options = {
+//   series: [{
+//     name: 'Bubble1',
+//     data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+//       min: 10,
+//       max: 60
+//     })
+//   },
+//   {
+//     name: 'Bubble2',
+//     data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+//       min: 10,
+//       max: 60
+//     })
+//   },
+//   {
+//     name: 'Bubble3',
+//     data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+//       min: 10,
+//       max: 60
+//     })
+//   },
+//   {
+//     name: 'Bubble4',
+//     data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+//       min: 10,
+//       max: 60
+//     })
+//   }],
+//     chart: {
+//       height: 350,
+//       type: 'bubble',
+//   },
+//   dataLabels: {
+//       enabled: false
+//   },
+//   fill: {
+//       opacity: 0.8
+//   },
+//   title: {
+//       text: 'Simple Bubble Chart'
+//   },
+//   xaxis: {
+//       tickAmount: 12,
+//       type: 'category',
+//   },
+//   yaxis: {
+//       max: 70
+//   }
+// };
+
+// var chart = new ApexCharts(document.querySelector("#chart7"), options);
+// chart.render();
+
+//Chart 6
+var options = {
+  series: [44, 55, 67, 83],
+  chart: {
+  height: 350,
+  type: 'radialBar',
+},
+plotOptions: {
+  radialBar: {
+    dataLabels: {
+      name: {
+        fontSize: '22px',
+      },
+      value: {
+        fontSize: '16px',
+      },
+      total: {
+        show: true,
+        label: 'Total',
+        formatter: function (w) {
+          // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+          return 249
+        }
+      }
+    }
+  }
+},
+labels: ['manufacturing','building','utility','digital'],
+};
+
+var chart = new ApexCharts(document.querySelector("#chart6"), options);
+chart.render();
 
 // chart1
 var options = {
@@ -110,7 +207,7 @@ var options = {
     name: 'utility',
     data: [11, 17, 15, 15, 21, 14]
   }, {
-    name: 'vehicles',
+    name: 'digital',
     data: [21, 7, 25, 13, 22, 8]
   }],
   chart: {
@@ -180,7 +277,10 @@ var options = {
     height: 450,
     type: 'pie',
   },
-  labels: ['Total Emission', 'Target'],
+  legend: {
+    position: 'bottom',
+  },
+  labels: ['Total Emission', 'Offset'],
   responsive: [{
     breakpoint: 480,
     options: {
@@ -288,3 +388,4 @@ window.setInterval(function () {
     data: data
   }])
 }, 1000)
+
