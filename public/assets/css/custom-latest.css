@@ -1,0 +1,116 @@
+body {
+    background: #ebebeb;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.w-60 {
+    width: 60%;
+}
+
+.w-70 {
+    width: 70%;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.content {
+    padding: 3vh 0;
+}
+
+.row.modification {
+    margin: inherit 0 !important;
+}
+
+.row.modification > * {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    /* background-color: #191c24; */
+}
+
+.card.with-border {
+    border-left:  10px solid #a1b300;
+}
+
+.card-title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+p.large {
+    font-size: 30px;
+}
+
+p.small {
+    font-size: 15px;
+}
+
+p.lighter {
+    opacity: 0.7;
+}
+
+p.normal {
+    font-weight: normal;
+}
+
+i.large {
+    font-size: 50px;
+}
+
+.icon-container {
+    background: #479e35;
+    color: #fbfbfb;
+    margin-top: 25px;
+    margin-right: 25px;
+    padding: 15px 30px;
+    border-radius: 50%;
+}
+
+.form-check-input:checked {
+    background-color: #147900;
+    color: #479e35;
+}
+
+table {
+    width: 100%;
+    height: 90%;
+}
+
+table th, table td {
+    padding: 5px;
+} 
+
+.zc-ref {
+    display: none;
+}
+
+#chart-wrap {
+    max-width: 650px;
+    position: relative;
+    margin: 35px auto;
+}
+
+.legend {
+    max-width: 650px;
+    left: 80px;
+    bottom: 20px;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+}
