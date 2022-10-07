@@ -35,22 +35,22 @@ $('#select-chart6').on('change', function() {
 })
 
 function callRandomData() {
-    dataDigital = randomData(n);
-    dataUtility = randomData(n);
-    dataBuilding = randomData(n);
-    dataManufacturing = randomData(n);
+  dataDigital = randomData(n);
+  dataUtility = randomData(n);
+  dataBuilding = randomData(n);
+  dataManufacturing = randomData(n);
 
-    datas = {
-        dataDigital: dataDigital,
-        dataUtility: dataUtility,
-        dataBuilding: dataBuilding,
-        dataManufacturing: dataManufacturing
-    }
+  datas = {
+    dataDigital: dataDigital,
+    dataUtility: dataUtility,
+    dataBuilding: dataBuilding,
+    dataManufacturing: dataManufacturing
+  }
 
-    $('#chart6').html('');
-    chart6(datas);
-    chart5(datas);
-    return datas
+  $('#chart6').html('');
+  chart6(datas);
+  chart5(datas);
+  return datas
 }
 
 function randomData(n = 30) {

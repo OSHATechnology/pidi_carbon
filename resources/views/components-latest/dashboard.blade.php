@@ -4,10 +4,6 @@
         <div class="dashboard-header">
             <h3 class="fw-bold ps-1 text-white">Dashboard</h3>
         </div>
-
-        {{-- ROW 1 --}}
-
-        {{--  --}}
         <div class="row my-3">
             <div class="col-3">
                 <div class="card">
@@ -80,7 +76,8 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="row my-3">
             <div class="col-3">
                 <div class="card">
                     <div class="card-body">
@@ -144,11 +141,5 @@
                 </div>
             </div>
         </div>
-
-        {{-- <div class="row my-3">
-
-
-
-        </div> --}}
     </div>
 @endsection
