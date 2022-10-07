@@ -55,7 +55,34 @@ window.Apex = {
     }
   },
 
-  // Responsive 0-3840
+  plotOptions: {
+    radialBar: {
+      dataLabels: {
+        name: {
+          fontSize: '40px',
+        },
+        value: {
+          color: '#fbfbfb',
+          fontSize: '40px',
+          formatter: function(val){
+              let label = (val/100)*total;
+            return label.toFixed(2) +" TonCO2"
+          }
+        },
+        total: {
+          color: '#fbfbfb',
+          fontSize: '40px',
+          show: true,
+          label: 'Total',
+          formatter: function (w) {
+            return total +" TonCO2"
+          }
+        }
+      }
+    }
+  },
+
+  // Responsive 0-3840 
   responsive: [{
     breakpoint: 3840,
       options: {
@@ -112,7 +139,7 @@ window.Apex = {
             fontSize: '13px',
             fontFamily: undefined
           }
-        }
+        },
       }
   }]
 }
@@ -145,11 +172,11 @@ let datass = callRandomData();
 $('#select-chart6').on('change', function() {
     var selectValue = $('#select-chart6').val()
     if(selectValue == 'monthly') {
-        n = 30;
+      n = 30;
     } else if(selectValue == 'yearly') {
-        n = 12;
+      n = 12;
     } else {
-        n = 7;
+      n = 7;
     }
     let dataRandom = callRandomData();
 })
@@ -181,7 +208,7 @@ function randomData(n = 30) {
     average = average.toFixed(2)
 
     for(let i = 0; i < n; i++) {
-        dataRandom[i] = Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
+      dataRandom[i] = Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
     }
 
     return dataRandom;
@@ -202,36 +229,67 @@ function chart6(data) {
 
     //Chart 6
     var options = {
-        series: [persentaeManufacturing.toFixed(2), persentaeBuilding.toFixed(2), persentaeUtility.toFixed(2), persentaeDigital.toFixed(2)],
-        chart: {
-        type: 'radialBar',
+    series: [persentaeManufacturing.toFixed(2), persentaeBuilding.toFixed(2), persentaeUtility.toFixed(2), persentaeDigital.toFixed(2)],
+    chart: {
+      type: 'radialBar',
     },
     plotOptions: {
-        radialBar: {
-          dataLabels: {
-            name: {
-              fontSize: '22px',
-            },
-            value: {
-              color: '#fbfbfb',
-              fontSize: '16px',
-              formatter: function(val){
-                  let label = (val/100)*total;
-                return label.toFixed(2) +" TonCO2"
-              }
-            },
-            total: {
-              color: '#fbfbfb',
-              show: true,
-              label: 'Total',
-              formatter: function (w) {
-                return total +" TonCO2"
+      radialBar: {
+        dataLabels: {
+          name: {
+            // fontSize: '22px',
+          },
+          value: {
+            // color: '#fbfbfb',
+            // fontSize: '16px',
+            formatter: function(val){
+                let label = (val/100)*total;
+              return label.toFixed(2) +" TonCO2"
+            }
+          },
+          total: {
+            // color: '#fbfbfb',
+            show: true,
+            label: 'Total',
+            formatter: function (w) {
+              return total +" TonCO2"
+            }
+          }
+        }
+      }
+    },
+    labels: ['manufacturing','building','utility','digital'],
+    responsive: [{
+      breakpoint: 3840,
+      options: {
+        plotOptions: {
+          radialBar: {
+            dataLabels: {
+              name: {
+                fontSize: '13px',
+              },
+              value: {
+                color: '#fbfbfb',
+                fontSize: '13px',
+                formatter: function(val){
+                    let label = (val/100)*total;
+                  return label.toFixed(2) +" TonCO2"
+                }
+              },
+              total: {
+                color: '#fbfbfb',
+                fontSize: '13px',
+                show: true,
+                label: 'Total',
+                formatter: function (w) {
+                  return total +" TonCO2"
+                }
               }
             }
           }
         }
-      },
-    labels: ['manufacturing','building','utility','digital'],
+      }
+    }]
     };
     
     var chart = new ApexCharts(document.querySelector("#chart6"), options);
@@ -239,42 +297,43 @@ function chart6(data) {
 }
 
 function chart5(data) {
-    var sumBuilding = data.dataBuilding.reduce((a, b) => a + b, 0)
-    var sumManufacturing = data.dataManufacturing.reduce((a, b) => a + b, 0)
-    var sumDigital = data.dataDigital.reduce((a, b) => a + b, 0)
-    var sumUtility = data.dataUtility.reduce((a, b) => a + b, 0)
-    var total = sumBuilding + sumDigital + sumManufacturing + sumUtility;
-    var target = total*0.98;
-    var result = total - target;
-    result = result
+  var sumBuilding = data.dataBuilding.reduce((a, b) => a + b, 0)
+  var sumManufacturing = data.dataManufacturing.reduce((a, b) => a + b, 0)
+  var sumDigital = data.dataDigital.reduce((a, b) => a + b, 0)
+  var sumUtility = data.dataUtility.reduce((a, b) => a + b, 0)
+  var total = sumBuilding + sumDigital + sumManufacturing + sumUtility;
+  var target = total*0.98;
+  var result = total - target;
+  result = result
 
-    // Chart5
-var options = {
-  series: [188, 32],
-  chart: {
-    type: 'pie',
-  },
-  legend: {
-    position: 'bottom',
-  },
-  labels: ['Total Emission', 'Offset'],
-  dataLabels: {
-    enabled: true,
-    formatter: function(val, series){
-      console.log(val, "value")
-      // console.log(series.w.config.series[0], 'series')
-      var data = series.w.config.series;
-      for(let i=0;i<data.length;i++){
-        console.log(data[i],"ini datanya");
-        // return data[i] + " TonCO2";
+  // Chart5
+  var options = {
+    series: [188, 32],
+    chart: {
+      type: 'pie',
+    },
+    legend: {
+      position: 'bottom',
+    },
+    labels: ['Total Emission', 'Offset'],
+    dataLabels: {
+      enabled: true,
+      formatter: function(val, series){
+        console.log(val, "value")
+        // console.log(series.w.config.series[0], 'series')
+        var data = series.w.config.series;
+        for(let i=0;i<data.length;i++){
+          console.log(data[i],"ini datanya");
+          // return data[i] + " TonCO2";
+        }
       }
-    }
-  },
-};
+    },
+  };
 
-var chart = new ApexCharts(document.querySelector("#chart5"), options);
-chart.render();
-    // Chart5
+  var chart = new ApexCharts(document.querySelector("#chart5"), options);
+  chart.render();
+
+// Chart5
 // var options = {
 //     series: [total, result],
 //     chart: {
@@ -302,6 +361,7 @@ chart.render();
   
 //   var chart = new ApexCharts(document.querySelector("#chart5"), options);
 //   chart.render();
+
 }
 
 // Catatan KRW1
@@ -309,40 +369,40 @@ chart.render();
 // Area Manufacturing
 
 //Chart 6
-var options = {
-  series: [44, 55, 67, 83],
-  chart: {
-    type: 'radialBar',
-  },
-  plotOptions: {
-    radialBar: {
-      dataLabels: {
-        name: {
-          fontSize: '22px',
-        },
-        value: {
-          color: '#fbfbfb',
-          fontSize: '16px',
-          formatter: function(val){
-            return val +" TonCO2"
-          }
-        },
-        total: {
-          color: '#fbfbfb',
-          show: true,
-          label: 'Total',
-          formatter: function (w) {
-            return 249 +" TonCO2"
-          }
-        }
-      }
-    }
-  },
-  labels: ['manufacturing','building','utility','digital'],
-};
+// var options = {
+//   series: [44, 55, 67, 83],
+//   chart: {
+//     type: 'radialBar',
+//   },
+//   plotOptions: {
+//     radialBar: {
+//       dataLabels: {
+//         name: {
+//           fontSize: '22px',
+//         },
+//         value: {
+//           color: '#fbfbfb',
+//           fontSize: '16px',
+//           formatter: function(val){
+//             return val +" TonCO2"
+//           }
+//         },
+//         total: {
+//           color: '#fbfbfb',
+//           show: true,
+//           label: 'Total',
+//           formatter: function (w) {
+//             return 249 +" TonCO2"
+//           }
+//         }
+//       }
+//     }
+//   },
+//   labels: ['manufacturing','building','utility','digital'],
+// };
 
 
-// chart1
+// chart Total Emission
 var options = {
   series: [{
     name: 'emission',
@@ -359,7 +419,7 @@ var options = {
     categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
   },
   yaxis: {
-    opposite: true
+    opposite: false
   },
   legend: {
     horizontalAlign: 'left'
@@ -369,33 +429,31 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#chart1"), options);
 chart.render();
 
-// chart2
+// chart Carbon Footprint
 var options = {
   series: [{
-    name: 'manufacturing',
+    name: 'Manufacturing',
     data: [44, 55, 41, 67, 22, 43]
   }, {
-    name: 'building',
+    name: 'Building',
     data: [13, 23, 20, 8, 13, 27]
   }, {
-    name: 'utility',
+    name: 'Utility',
     data: [11, 17, 15, 15, 21, 14]
   }, {
-    name: 'digital',
+    name: 'Digital',
     data: [21, 7, 25, 13, 22, 8]
   }],
   chart: {
     type: 'bar',
     stacked: true,
-    toolbar: {
-      show: true
-    },
     zoom: {
-      enabled: true
+      enabled: false
     },
     toolbar: {
       show: false,
-    }
+    },
+    height: '80%'
   },
   legend: {
     position: 'top'
@@ -403,7 +461,7 @@ var options = {
   plotOptions: {
     bar: {
       horizontal: false,
-      borderRadius: 10
+      borderRadius: 30
     },
   },
   xaxis: {
@@ -463,34 +521,96 @@ function  generateDayWiseTimeSeries ( baseval , count , yrange )  {
 // Chart4
 var options = {
   series: [{
-    name: 'Emission',
-    data: [31, 40, 28, 51, 42, 109, 100]
-  }, {
-    name: 'car production',
-    data: [11, 32, 45, 32, 34, 52, 41]
+    data: data.slice()
   }],
   chart: {
-    type: 'area'
+    id: 'realtime',
+    height: '80%',
+    type: 'area',
+    animations: {
+      enabled: true,
+      easing: 'linear',
+      dynamicAnimation: {
+        speed: 1000
+    }
   },
-  dataLabels: {
+  toolbar: {
+    show: false
+  },
+  zoom: {
     enabled: false
-  },
-  stroke: {
-    curve: 'smooth'
-  },
-  xaxis: {
-    type: 'datetime',
-    categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-  },
-  tooltip: {
-    x: {
-      format: 'dd/MM/yy HH:mm'
-    },
-  },
+  }
+},
+dataLabels: {
+  enabled: false
+},
+stroke: {
+  curve: 'smooth'
+},
+title: {
+  text: 'Dynamic Updating Chart',
+  align: 'left'
+},
+markers: {
+  size: 0
+},
+xaxis: {
+  type: 'datetime',
+  range: XAXISRANGE,
+},
+yaxis: {
+  max: 100
+},
+legend: {
+  show: false
+},
 };
 
 var chart = new ApexCharts(document.querySelector("#chart4"), options);
 chart.render();
+
+
+window.setInterval(function () {
+getNewSeries(lastDate, {
+  min: 10,
+  max: 90
+})
+
+chart.updateSeries([{
+  data: data
+}])
+}, 1000)
+
+// var options = {
+//   series: [{
+//     name: 'Emission',
+//     data: [31, 40, 28, 51, 42, 109, 100]
+//   }, {
+//     name: 'car production',
+//     data: [11, 32, 45, 32, 34, 52, 41]
+//   }],
+//   chart: {
+//     type: 'area'
+//   },
+//   dataLabels: {
+//     enabled: false
+//   },
+//   stroke: {
+//     curve: 'smooth'
+//   },
+//   xaxis: {
+//     type: 'datetime',
+//     categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+//   },
+//   tooltip: {
+//     x: {
+//       format: 'dd/MM/yy HH:mm'
+//     },
+//   },
+// };
+
+// var chart = new ApexCharts(document.querySelector("#chart4"), options);
+// chart.render();
 
 // function getNewSeries(baseval, yrange) {
 //   var newDate = baseval + 86400000;

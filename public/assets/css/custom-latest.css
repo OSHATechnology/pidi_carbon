@@ -125,18 +125,22 @@ p.normal {
     transform: translateX(30px);
 }
 
-/* #chart6 {
-    transform: translateX(-30px);
-}
-
-#chart6 .apexcharts-legend {
-    transform: translateX(30px);
-}
-*/
-
 .apexcharts-tooltip {
     transform: scale(0.4) translateX(-65%) translateY(-35%);
 } 
+
+.apexcharts-datalabel-value {
+    font-size: 13px;
+    transform: translateY(-13px);
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    margin: 30px 0;
+}
 
 @media only screen and (min-width: 3840px) {
     p.large {
@@ -152,8 +156,14 @@ p.normal {
     }
 
     .dashboard-title {
-        font-size: 60px;
-        margin-bottom: 30px;
+        font-size: 90px;
+        margin-left: 15px;
+        margin-bottom: 40px;
+    }
+
+    .apexcharts-datalabel-value {
+        font-size: 40px;
+        transform: translateY(30px);
     }
 
     .card-title-container {
@@ -167,6 +177,7 @@ p.normal {
 
     .form-select {
         font-size: 40px;
+        padding-right: 80px;
     }
 
     .form-select option {
@@ -196,14 +207,11 @@ p.normal {
 
     #chart1 {
         transform: translateX(0);
-    }
-    
-    #chart1 .apexcharts-legend {
-        transform: translateX(0);
+        margin-top: 80px !important;
     }
 
     #chart2 {
-        transform: translateX(0px);
+        transform: translateX(0);
     }
     
     #chart2 .apexcharts-legend {
@@ -214,23 +222,12 @@ p.normal {
         transform: translateX(0);
     }
 
-    /*
-    #chart6 {
-        transform: translateX(0);
-    }
-    
-    #chart6 .apexcharts-legend {
-        transform: translateX(0px);
-    }
-
-    .chart3-value {
-        font-size: 40px;
-        font-weight: 700;
-        margin: 5px 0;
-    }
-    */
-
     .apexcharts-tooltip {
         transform: scale(1) translateX(0%) translateY(0%);
     } 
+    
+    .footer p {
+        margin-top: 30px;
+        font-size: 40px;
+    }
 }   
