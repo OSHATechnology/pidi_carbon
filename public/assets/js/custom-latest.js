@@ -160,39 +160,6 @@ var options = {
 // JenisEnergi yg ada Natgas, Electric dan Diesel Oil 
 // Area Manufacturing
 
-<<<<<<< HEAD
-//Chart 6
-var options = {
-  series: [44, 55, 67, 83],
-  chart: {
-    height: 350,
-    type: 'radialBar',
-  },
-  plotOptions: {
-    radialBar: {
-      dataLabels: {
-        name: {
-          fontSize: '22px',
-        },
-        value: {
-          fontSize: '16px',
-          formatter: function(val){
-            return val +" TonCO2"
-          }
-        },
-        total: {
-          show: true,
-          label: 'Total',
-          formatter: function (w) {
-            return 249 +" TonCO2"
-          }
-        }
-      }
-    }
-  },
-  labels: ['manufacturing','building','utility','digital'],
-};
-=======
 // Chart 7 
 // var options = {
 //   series: [{
@@ -248,7 +215,6 @@ var options = {
 // var chart = new ApexCharts(document.querySelector("#chart7"), options);
 // chart.render();
 
->>>>>>> 8e614548571ff86010fd51c300341c817d0c638a
 
 
 // chart1
@@ -356,50 +322,6 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#chart3"), options);
 chart.render();
 
-<<<<<<< HEAD
-// Chart5
-var options = {
-  series: [188, 32],
-  chart: {
-    width: 380,
-    height: 450,
-    type: 'pie',
-  },
-  legend: {
-    position: 'bottom',
-  },
-  labels: ['Total Emission', 'Offset'],
-  responsive: [{
-    breakpoint: 480,
-    options: {
-      chart: {
-        width: 200,
-        height: 450,
-      },
-      legend: {
-        position: 'bottom'
-      }
-    }
-  }],
-  dataLabels: {
-    enabled: true,
-    formatter: function(val, series){
-      console.log(val, "value")
-      // console.log(series.w.config.series[0], 'series')
-      var data = series.w.config.series;
-      for(let i=0;i<data.length;i++){
-        console.log(data[i],"ini datanya");
-        // return data[i] + " TonCO2";
-      }
-    }
-  },
-};
-
-var chart = new ApexCharts(document.querySelector("#chart5"), options);
-chart.render();
-
-=======
->>>>>>> 8e614548571ff86010fd51c300341c817d0c638a
 
 //Define a method to simulate data, this is the method of ApexCharts official website 
 function  generateDayWiseTimeSeries ( baseval , count , yrange )  {  
