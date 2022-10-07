@@ -101,6 +101,14 @@ p.normal {
     height: 15px !important;
 }
 
+#chart1 {
+    transform: translateX(-30px);
+}
+
+#chart1 .apexcharts-legend {
+    transform: translateX(30px);
+}
+
 #chart2 {
     transform: translateX(-30px);
 }
@@ -111,23 +119,24 @@ p.normal {
 
 #chart4 {
     transform: translateX(-30px);
+} 
+
+#chart4 .apexcharts-legend {
+    transform: translateX(30px);
 }
 
-/* #chart4 .apexcharts-legend {
-    transform: translateX(30px);
-} */
-
-#chart6 {
+/* #chart6 {
     transform: translateX(-30px);
 }
 
 #chart6 .apexcharts-legend {
     transform: translateX(30px);
 }
+*/
 
 .apexcharts-tooltip {
     transform: scale(0.4) translateX(-65%) translateY(-35%);
-}
+} 
 
 @media only screen and (min-width: 3840px) {
     p.large {
@@ -185,6 +194,14 @@ p.normal {
         font-size: 30px !important;
     }
 
+    #chart1 {
+        transform: translateX(0);
+    }
+    
+    #chart1 .apexcharts-legend {
+        transform: translateX(0);
+    }
+
     #chart2 {
         transform: translateX(0px);
     }
@@ -197,6 +214,7 @@ p.normal {
         transform: translateX(0);
     }
 
+    /*
     #chart6 {
         transform: translateX(0);
     }
@@ -210,8 +228,9 @@ p.normal {
         font-weight: 700;
         margin: 5px 0;
     }
+    */
 
     .apexcharts-tooltip {
         transform: scale(1) translateX(0%) translateY(0%);
-    }
+    } 
 }   

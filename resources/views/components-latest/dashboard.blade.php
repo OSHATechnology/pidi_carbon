@@ -4,20 +4,14 @@
         <div class="dashboard-header">
             <h3 class="fw-bold ps-1 dashboard-title">Dashboard</h3>
         </div>
-
-        {{-- ROW 1 --}}
-
-        {{--  --}}
         <div class="row my-3">
-
-            {{-- Emission vs Target --}}
             <div class="col-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title mb-0">Emission Accumulation</h5>
                             <div>
-                                <select name="" id="select-chart6" class="form-select form-select-sm">
+                                <select name="" id="select-chart6" class="form-select bg-dark form-select-sm">
                                     <option value="daily">Daily</option>
                                     <option value="monthly">Monthly</option>
                                     <option value="yearly">Yearly</option>
@@ -28,31 +22,25 @@
                     </div>
                 </div>
             </div>
-
-            {{-- Carbon Footprint --}}
             <div class="col-6">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between card-title-container">
+                        <div class="d-flex justify-content-between">
                             <h5 class="card-title">Carbon Footprint</h5>
-                            <div>
-                                <select name="" id="" class="form-select form-select-sm">
+                            <div class="d-flex gap-1">
+                                <select name="" id="" class="form-select bg-dark form-select-sm">
                                     <option value="karawang1">Karawang1</option>
                                     <option value="karawang2">Karawang2</option>
                                     <option value="karawang3">Karawang3</option>
                                     <option value="sunter1">Sunter1</option>
                                     <option value="sunter2">Sunter2</option>
                                 </select>
-                            </div>
-                            <div>
-                                <select name="" id="" class="form-select form-select-sm">
+                                <select name="" id="" class="form-select bg-dark form-select-sm">
                                     <option value="daily">Daily</option>
                                     <option value="monthly">Monthly</option>
                                     <option value="yearly">Yearly</option>
                                 </select>
-                            </div>
-                            <div>
-                                <select name="" id="" class="form-select form-select-sm">
+                                <select name="" id="" class="form-select bg-dark form-select-sm">
                                     <option value="manufacturing">Manufacturing</option>
                                     <option value="building">Building</option>
                                     <option value="utility">Utility</option>
@@ -64,15 +52,13 @@
                     </div>
                 </div>
             </div>
-
-            {{-- Emissions by Category --}}
             <div class="col-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h5 class="card-title">Top Emmissions by Area</h5>
                             <div>
-                                <select name="" id="" class="form-select form-select-sm">
+                                <select name="" id="" class="form-select bg-dark form-select-sm">
                                     <option value="karawang1">Karawang1</option>
                                     <option value="karawang2">Karawang2</option>
                                     <option value="karawang3">Karawang3</option>
@@ -86,14 +72,15 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="row my-3">
             <div class="col-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title mb-0">Total Emission/Offset</h5>
                             <div>
-                                <select name="" id="" class="form-select form-select-sm">
+                                <select name="" id="" class="form-select bg-dark form-select-sm">
                                     <option value="karawang1">Karawang1</option>
                                     <option value="karawang2">Karawang2</option>
                                     <option value="karawang3">Karawang3</option>
@@ -111,17 +98,15 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title mb-0">Realtime Emission</h5>
-                            <div>
-                                <select name="" id="" class="form-select form-select-sm">
+                            <div class="d-flex gap-1">
+                                <select name="" id="" class="form-select bg-dark form-select-sm">
                                     <option value="karawang1">Karawang1</option>
                                     <option value="karawang2">Karawang2</option>
                                     <option value="karawang3">Karawang3</option>
                                     <option value="sunter1">Sunter1</option>
                                     <option value="sunter2">Sunter2</option>
                                 </select>
-                            </div>
-                            <div>
-                                <select name="" id="" class="form-select form-select-sm">
+                                <select name="" id="" class="form-select bg-dark form-select-sm">
                                     <option value="daily">Daily</option>
                                     <option value="monthly">Monthly</option>
                                     <option value="yearly">Yearly</option>
@@ -132,15 +117,13 @@
                     </div>
                 </div>
             </div>
-
-            {{-- CO2 Tax --}}
             <div class="col-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title mb-0">Total Emission</h5>
                             <div>
-                                <select name="" id="" class="form-select form-select-sm">
+                                <select name="" id="" class="form-select bg-dark form-select-sm">
                                     <option value="daily">Daily</option>
                                     <option value="monthly">Monthly</option>
                                     <option value="yearly">Yearly</option>
@@ -152,28 +135,5 @@
                 </div>
             </div>
         </div>
-
-        {{-- <div class="row my-3">
-
-
-
-        </div> --}}
     </div>
-
-    <script>
-        window.Promise ||
-            document.write(
-                '<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"><\/script>'
-            )
-        window.Promise ||
-            document.write(
-                '<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>'
-            )
-        window.Promise ||
-            document.write(
-                '<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>'
-            )
-    </script>
-
-    <script></script>
 @endsection
