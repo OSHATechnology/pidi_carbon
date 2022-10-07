@@ -1,5 +1,6 @@
 body {
-    background: #ebebeb;
+    background: #293145;
+    color: #ebebeb;
 }
 
 .w-30 {
@@ -23,7 +24,7 @@ p {
 }
 
 .content {
-    padding: 3vh 0;
+    padding: 1vh 0;
 }
 
 .row.modification {
@@ -38,18 +39,17 @@ p {
 .card {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
-    /* background-color: #191c24; */
+    background-color: #313a55;
+    color: #e2e8f0;
 }
 
-.card.with-border {
-    border-left:  10px solid #a1b300;
+.card-title-container {
+    padding: 5px 0;
 }
 
 .card-title {
-    text-align: center;
-    margin-bottom: 15px;
     font-weight: bold;
 }
 
@@ -69,48 +69,149 @@ p.normal {
     font-weight: normal;
 }
 
-i.large {
-    font-size: 50px;
+.form-select.bg-dark {
+    background-color: #293145 !important;
+    background-image: url('https://1773958502.rsc.cdn77.org/wp-content/uploads/revslider/slider-1/white-down-arrow-png-2.png');
+    background-size: 10px;
 }
 
-.icon-container {
-    background: #479e35;
-    color: #fbfbfb;
-    margin-top: 25px;
-    margin-right: 25px;
-    padding: 15px 30px;
-    border-radius: 50%;
+.form-select {
+    color: #ebebeb;
+    border: none;
 }
 
-.form-check-input:checked {
-    background-color: #147900;
-    color: #479e35;
+.apexcharts-text tspan {
+    font-size: 13px !important;
 }
 
-table {
-    width: 100%;
-    height: 90%;
+.apexcharts-tooltip {
+    color: #222;
+}
+  
+.apexcharts-tooltip .apexcharts-tooltip-series-group.active {
+    background: #ffffff;
 }
 
-table th, table td {
-    padding: 5px;
-} 
-
-.zc-ref {
-    display: none;
+.apexcharts-legend-series.custom .apexcharts-legend-text {
+    font-size: 15px !important;
 }
 
-#chart-wrap {
-    max-width: 650px;
-    position: relative;
-    margin: 35px auto;
+.apexcharts-legend-series.custom .apexcharts-legend-marker {
+    width: 15px !important;
+    height: 15px !important;
 }
 
-.legend {
-    max-width: 650px;
-    left: 80px;
-    bottom: 20px;
-    position: absolute;
-    text-align: center;
-    margin: 0 auto;
+#chart2 {
+    transform: translateX(-30px);
 }
+
+#chart2 .apexcharts-legend {
+    transform: translateX(30px);
+}
+
+#chart4 {
+    transform: translateX(-30px);
+}
+
+/* #chart4 .apexcharts-legend {
+    transform: translateX(30px);
+} */
+
+#chart6 {
+    transform: translateX(-30px);
+}
+
+#chart6 .apexcharts-legend {
+    transform: translateX(30px);
+}
+
+.apexcharts-tooltip {
+    transform: scale(0.4) translateX(-65%) translateY(-35%);
+}
+
+@media only screen and (min-width: 3840px) {
+    p.large {
+        font-size: 50px;
+    }
+
+    .form-select.bg-dark {
+        background-size: 25px;
+    }
+
+    .mt-large {
+        margin-top: 110px;
+    }
+
+    .dashboard-title {
+        font-size: 60px;
+        margin-bottom: 30px;
+    }
+
+    .card-title-container {
+        padding: 15px 10px;
+        margin-bottom: 30px;
+    }
+    
+    .card-title {
+        font-size: 50px;
+    }
+
+    .form-select {
+        font-size: 40px;
+    }
+
+    .form-select option {
+        font-size: 13px;
+    }
+
+    .custom-legend-1 {
+        margin: 15px 0;
+    }
+
+    .apexcharts-legend-series.custom .apexcharts-legend-text {
+        font-size: 40px !important;
+    }
+
+    .apexcharts-legend-series.custom .apexcharts-legend-marker {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .apexcharts-legend-series.custom p {
+        font-size: 40px;
+    }
+
+    .apexcharts-text tspan {
+        font-size: 30px !important;
+    }
+
+    #chart2 {
+        transform: translateX(0px);
+    }
+    
+    #chart2 .apexcharts-legend {
+        transform: translateX(0);
+    }
+
+    #chart4 {
+        transform: translateX(0);
+    }
+
+    #chart6 {
+        transform: translateX(0);
+    }
+    
+    #chart6 .apexcharts-legend {
+        transform: translateX(0px);
+    }
+
+    .chart3-value {
+        font-size: 40px;
+        font-weight: 700;
+        margin: 5px 0;
+    }
+
+    .apexcharts-tooltip {
+        transform: scale(1) translateX(0%) translateY(0%);
+    }
+}   

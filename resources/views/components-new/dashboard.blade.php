@@ -18,7 +18,7 @@
                                     <p class="large text-center">114,739.14</p>
                                     <p class="lighter text-center">kg CO2e</p>
                                 </div>
-                            </div>
+                            </div> |
                             <div class="w-60 d-flex justify-content-end">
                                 <div class="w-70 d-flex flex-column">
                                     <h5 class="card-title">Yesterday's Total Emission</h5>
