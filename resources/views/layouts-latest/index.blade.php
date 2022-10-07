@@ -26,6 +26,7 @@
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
     <script src="/assets/js/custom-latest.js"></script>
+    
 </body>
 
 </html>

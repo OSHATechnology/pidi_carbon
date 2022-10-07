@@ -20,89 +20,36 @@ var productionYearly = ['7709','6975','7709','7203','7546','7788','8158','8485',
 // JenisEnergi yg ada Natgas, Electric dan Diesel Oil 
 // Area Manufacturing
 
-// Chart 7 
-// var options = {
-//   series: [{
-//     name: 'Bubble1',
-//     data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-//       min: 10,
-//       max: 60
-//     })
-//   },
-//   {
-//     name: 'Bubble2',
-//     data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-//       min: 10,
-//       max: 60
-//     })
-//   },
-//   {
-//     name: 'Bubble3',
-//     data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-//       min: 10,
-//       max: 60
-//     })
-//   },
-//   {
-//     name: 'Bubble4',
-//     data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-//       min: 10,
-//       max: 60
-//     })
-//   }],
-//     chart: {
-//       height: 350,
-//       type: 'bubble',
-//   },
-//   dataLabels: {
-//       enabled: false
-//   },
-//   fill: {
-//       opacity: 0.8
-//   },
-//   title: {
-//       text: 'Simple Bubble Chart'
-//   },
-//   xaxis: {
-//       tickAmount: 12,
-//       type: 'category',
-//   },
-//   yaxis: {
-//       max: 70
-//   }
-// };
-
-// var chart = new ApexCharts(document.querySelector("#chart7"), options);
-// chart.render();
-
 //Chart 6
 var options = {
   series: [44, 55, 67, 83],
   chart: {
-  height: 350,
-  type: 'radialBar',
-},
-plotOptions: {
-  radialBar: {
-    dataLabels: {
-      name: {
-        fontSize: '22px',
-      },
-      value: {
-        fontSize: '16px',
-      },
-      total: {
-        show: true,
-        label: 'Total',
-        formatter: function (w) {
-          // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-          return 249
+    height: 350,
+    type: 'radialBar',
+  },
+  plotOptions: {
+    radialBar: {
+      dataLabels: {
+        name: {
+          fontSize: '22px',
+        },
+        value: {
+          fontSize: '16px',
+          formatter: function(val){
+            return val +" TonCO2"
+          }
+        },
+        total: {
+          show: true,
+          label: 'Total',
+          formatter: function (w) {
+            return 249 +" TonCO2"
+          }
         }
       }
     }
-  }
-},
-labels: ['manufacturing','building','utility','digital'],
+  },
+  labels: ['manufacturing','building','utility','digital'],
 };
 
 var chart = new ApexCharts(document.querySelector("#chart6"), options);
@@ -111,85 +58,26 @@ chart.render();
 // chart1
 var options = {
   series: [{
-  name: 'CO2 Emission',
-  type: 'column',
-  data: [10, 22, 25, 15, 25, 28, 38, 46]
-}, {
-  name: 'Tax',
-  type: 'line',
-  data: [20, 29, 37, 36, 44, 45, 50, 58]
-}],
-chart: {
-  height: 350,
-  type: 'line',
-  stacked: false,
-  toolbar: false
-},
-dataLabels: {
-  enabled: false
-},
-stroke: {
-  width: [1, 1, 4]
-},
-xaxis: {
-  categories: ['apr','may','june','july','august','sept','oct','nov'],
-},
-yaxis: [
-  {
-    axisTicks: {
-      show: true,
-    },
-    axisBorder: {
-      show: true,
-      color: '#008FFB'
-    },
-    labels: {
-      style: {
-        colors: '#008FFB',
-      }
-    },
-    title: {
-      text: "CO2 Emission/TON",
-      style: {
-        color: '#008FFB',
-      }
-    },
-    tooltip: {
-      enabled: true
+    name: 'emission',
+    data: [31, 40, 28, 51, 42, 109, 100]
+  }],
+  chart: {
+    type: 'area',
+    height: 350,
+    zoom: {
+      enabled: false
     }
   },
-  {
-    seriesName: 'tax',
-    opposite: true,
-    axisTicks: {
-      show: true,
-    },
-    axisBorder: {
-      show: true,
-      color: '#FEB019'
-    },
-    labels: {
-      style: {
-        colors: '#FEB019',
-      },
-    },
-    title: {
-      text: "Tax Rp. (Juta)",
-      style: {
-        color: '#FEB019',
-      }
-    }
+  xaxis: {
+    type: 'datetime',
+    categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
   },
-],
-tooltip: {
-  fixed: {
-    enabled: true,
-    position: 'topLeft', // topRight, topLeft, bottomRight, bottomLeft
-    offsetY: 30,
-    offsetX: 60
+  yaxis: {
+    opposite: true
   },
-},
-colors: ['#008FFB','#FEB019']
+  legend: {
+    horizontalAlign: 'left'
+  }
 };
 
 var chart = new ApexCharts(document.querySelector("#chart1"), options);
@@ -249,13 +137,10 @@ chart.render();
 
 // chart3
 var options = {
-  series: [44, 55, 41, 17, 15],
-  labels: ['manufacturing','building','utility','vehicles'],
+  series: [44, 55, 41, 17],
+  labels: ['manufacturing','building','utility','digital'],
   chart: {
     type: 'donut',
-  },
-  dataLabels: {
-    enabled: false
   },
   legend: {
     position: 'bottom',
@@ -263,7 +148,13 @@ var options = {
       horizontal: 10,
       vertical: 5
     } 
-  }
+  },
+  dataLabels: {
+    enabled: true,
+    formatter: function(val){
+      return val +" TonCO2"
+    }
+  },
 };
 
 var chart = new ApexCharts(document.querySelector("#chart3"), options);
@@ -292,7 +183,19 @@ var options = {
         position: 'bottom'
       }
     }
-  }]
+  }],
+  dataLabels: {
+    enabled: true,
+    formatter: function(val, series){
+      console.log(val, "value")
+      // console.log(series.w.config.series[0], 'series')
+      var data = series.w.config.series;
+      for(let i=0;i<data.length;i++){
+        console.log(data[i],"ini datanya");
+        // return data[i] + " TonCO2";
+      }
+    }
+  },
 };
 
 var chart = new ApexCharts(document.querySelector("#chart5"), options);
@@ -315,40 +218,17 @@ function  generateDayWiseTimeSeries ( baseval , count , yrange )  {
 }
 
 // Chart4
-function getNewSeries(baseval, yrange) {
-  var newDate = baseval + 86400000;
-  lastDate = newDate;
-  data1.push({
-    x: newDate,
-    y: Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
-  });
-  data2.push({
-    x: newDate,
-    y: Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
-  });
-}
-
 var options = {
   series: [{
-    data: data.slice()
+    name: 'Emission',
+    data: [31, 40, 28, 51, 42, 109, 100]
+  }, {
+    name: 'car production',
+    data: [11, 32, 45, 32, 34, 52, 41]
   }],
   chart: {
-    id: 'realtime',
     height: 350,
-    type: 'line',
-    animations: {
-      enabled: true,
-      easing: 'linear',
-      dynamicAnimation: {
-        speed: 1000
-      }
-    },
-    toolbar: {
-      show: false
-    },
-    zoom: {
-      enabled: false
-    }
+    type: 'area'
   },
   dataLabels: {
     enabled: false
@@ -356,36 +236,29 @@ var options = {
   stroke: {
     curve: 'smooth'
   },
-  title: {
-    text: 'Dynamic Updating Chart',
-    align: 'left'
-  },
-  markers: {
-    size: 0
-  },
   xaxis: {
     type: 'datetime',
-    // range: XAXISRANGE,
+    categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
   },
-  yaxis: {
-    max: 100
-  },
-  legend: {
-    show: false
+  tooltip: {
+    x: {
+      format: 'dd/MM/yy HH:mm'
+    },
   },
 };
 
 var chart = new ApexCharts(document.querySelector("#chart4"), options);
 chart.render();
 
-window.setInterval(function () {
-  getNewSeries(lastDate, {
-    min: 10,
-    max: 90
-  })
-  
-  chart.updateSeries([{
-    data: data
-  }])
-}, 1000)
-
+// function getNewSeries(baseval, yrange) {
+//   var newDate = baseval + 86400000;
+//   lastDate = newDate;
+//   data1.push({
+//     x: newDate,
+//     y: Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
+//   });
+//   data2.push({
+//     x: newDate,
+//     y: Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
+//   });
+// }
