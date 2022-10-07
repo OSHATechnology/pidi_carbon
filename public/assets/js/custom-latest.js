@@ -1,3 +1,123 @@
+// Global
+window.Apex = {
+  // Legend
+  legend: {
+    fontSize: '35px',
+    markers: {
+      width: 20,
+      height: 20
+    },
+    itemMargin: {
+      horizontal: 30,
+      vertical: 0
+    },
+    labels: {
+      colors: 'fbfbfb'
+    }
+  },
+
+  // DataLabels
+  dataLabels: {
+    style: {
+      fontSize: '40px'
+    }
+  },
+
+  // XAxis
+  xaxis: {
+    labels: {
+      style: {
+        colors: '#ebebeb',
+        fontSize: '35px', 
+      },
+      offsetX: 0,
+      offsetY: 10,
+    }
+  },
+
+  // YAxis
+  yaxis: {
+    labels: {
+      style: {
+        colors: '#ebebeb',
+        fontSize: '35px', 
+      },
+      offsetX: 0,
+      offsetY: 10,
+    }
+  },
+
+  // Tooltip
+  tooltip: {
+    style: {
+      fontSize: '40px',
+      fontFamily: undefined
+    }
+  },
+
+  // Responsive 0-3840
+  responsive: [{
+    breakpoint: 3840,
+      options: {
+        // Legend
+        legend: {
+          fontSize: '13px',
+          markers: {
+            width: 10,
+            height: 10
+          },
+          itemMargin: {
+            horizontal: 5 ,
+            vertical: 5 
+          },
+          labels: {
+            colors: '#fbfbfb'
+          }
+        },
+
+        // DataLabels
+        dataLabels: {
+          style: {
+            fontSize: '13px'
+          }
+        },
+
+        // XAxis
+        xaxis: {
+          labels: {
+            style: {
+              colors: '#ebebeb',
+              fontSize: '10px', 
+            },
+            offsetX: 0,
+            offsetY: 0,
+          }
+        },
+
+        // YAxis
+        yaxis: {
+          labels: {
+            style: {
+              colors: '#ebebeb',
+              fontSize: '10px', 
+            },
+            offsetX: 0,
+            offsetY: 0,
+          }
+        },
+
+        // Tooltip
+        tooltip: {
+          style: {
+            fontSize: '13px',
+            fontFamily: undefined
+          }
+        }
+      }
+  }]
+}
+
+
 // Data 
 var emisiYearly =['27741,33']
 var time =['00:00','01:00','02:00','03:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00',
@@ -84,7 +204,6 @@ function chart6(data) {
     var options = {
         series: [persentaeManufacturing.toFixed(2), persentaeBuilding.toFixed(2), persentaeUtility.toFixed(2), persentaeDigital.toFixed(2)],
         chart: {
-        height: 350,
         type: 'radialBar',
     },
     plotOptions: {
@@ -94,6 +213,7 @@ function chart6(data) {
               fontSize: '22px',
             },
             value: {
+              color: '#fbfbfb',
               fontSize: '16px',
               formatter: function(val){
                   let label = (val/100)*total;
@@ -101,6 +221,7 @@ function chart6(data) {
               }
             },
             total: {
+              color: '#fbfbfb',
               show: true,
               label: 'Total',
               formatter: function (w) {
@@ -131,26 +252,12 @@ function chart5(data) {
 var options = {
   series: [188, 32],
   chart: {
-    width: 380,
-    height: 450,
     type: 'pie',
   },
   legend: {
     position: 'bottom',
   },
   labels: ['Total Emission', 'Offset'],
-  responsive: [{
-    breakpoint: 480,
-    options: {
-      chart: {
-        width: 200,
-        height: 450,
-      },
-      legend: {
-        position: 'bottom'
-      }
-    }
-  }],
   dataLabels: {
     enabled: true,
     formatter: function(val, series){
@@ -205,7 +312,6 @@ chart.render();
 var options = {
   series: [44, 55, 67, 83],
   chart: {
-    height: 350,
     type: 'radialBar',
   },
   plotOptions: {
@@ -215,12 +321,14 @@ var options = {
           fontSize: '22px',
         },
         value: {
+          color: '#fbfbfb',
           fontSize: '16px',
           formatter: function(val){
             return val +" TonCO2"
           }
         },
         total: {
+          color: '#fbfbfb',
           show: true,
           label: 'Total',
           formatter: function (w) {
@@ -242,7 +350,6 @@ var options = {
   }],
   chart: {
     type: 'area',
-    height: 350,
     zoom: {
       enabled: false
     }
@@ -279,7 +386,6 @@ var options = {
   }],
   chart: {
     type: 'bar',
-    height: 350,
     stacked: true,
     toolbar: {
       show: true
@@ -364,7 +470,6 @@ var options = {
     data: [11, 32, 45, 32, 34, 52, 41]
   }],
   chart: {
-    height: 350,
     type: 'area'
   },
   dataLabels: {
