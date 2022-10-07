@@ -15,7 +15,7 @@
 </head>
 
 <body id="body-pd">
-    @include('components-new.header')
+    <!-- @include('components-new.header') -->
 
     <div class="content">
         @yield('content')

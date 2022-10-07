@@ -2,8 +2,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="dashboard-header">
-            <h1>Scope 2 Greenhouse Gas Emission</h1>
-            <p>Indirect Emissions from utility companies, such as electricity, heat, cooling and suppliers of steam.</p>
+            <h1>Carbon Footprint Dashboard</h1>
         </div>
 
         {{--  --}}

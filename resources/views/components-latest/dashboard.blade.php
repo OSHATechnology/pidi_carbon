@@ -15,7 +15,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title mb-0">Emission Accumulation</h5>
                             <div>
-                                <select name="" id="" class="form-select form-select-sm">
+                                <select name="" id="select-chart6" class="form-select form-select-sm">
                                     <option value="daily">Daily</option>
                                     <option value="monthly">Monthly</option>
                                     <option value="yearly">Yearly</option>

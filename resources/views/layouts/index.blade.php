@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
-    <title>Tiny Dashboard - A Bootstrap Dashboard Template</title>
+    <link rel="icon" href="{{asset('assets')}}/img/logo-pidi-2.png">
+    <title>PIDI 4.0 - CARBON FOOTPRINT</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{asset('assets')}}/css/simplebar.css">
     <!-- Fonts CSS -->
@@ -43,8 +43,8 @@
     <script src="{{asset('assets')}}/js/moment.min.js"></script>
     <script src="{{asset('assets')}}/js/bootstrap.min.js"></script>
     <script src="{{asset('assets')}}/js/simplebar.min.js"></script>
-    <script src='{{asset('assets')}}/js/daterangepicker.js'></script>
-    <script src='{{asset('assets')}}/js/jquery.stickOnScroll.js'></script>
+    <script src="{{asset('assets')}}/js/daterangepicker.js"></script>
+    <script src="{{asset('assets')}}/js/jquery.stickOnScroll.js"></script>
     <script src="{{asset('assets')}}/js/tinycolor-min.js"></script>
     <script src="{{asset('assets')}}/js/config.js"></script>
     <script src="{{asset('assets')}}/js/d3.min.js"></script>
@@ -62,14 +62,14 @@
     <script src="{{asset('assets')}}/js/jquery.sparkline.min.js"></script>
     <script src="{{asset('assets')}}/js/apexcharts.min.js"></script>
     <script src="{{asset('assets')}}/js/apexcharts.custom.js"></script>
-    <script src='{{asset('assets')}}/js/jquery.mask.min.js'></script>
-    <script src='{{asset('assets')}}/js/select2.min.js'></script>
-    <script src='{{asset('assets')}}/js/jquery.steps.min.js'></script>
-    <script src='{{asset('assets')}}/js/jquery.validate.min.js'></script>
-    <script src='{{asset('assets')}}/js/jquery.timepicker.js'></script>
-    <script src='{{asset('assets')}}/js/dropzone.min.js'></script>
-    <script src='{{asset('assets')}}/js/uppy.min.js'></script>
-    <script src='{{asset('assets')}}/js/quill.min.js'></script>
+    <script src="{{asset('assets')}}/js/jquery.mask.min.js"></script>
+    <script src="{{asset('assets')}}/js/select2.min.js"></script>
+    <script src="{{asset('assets')}}/js/jquery.steps.min.js"></script>
+    <script src="{{asset('assets')}}/js/jquery.validate.min.js"></script>
+    <script src="{{asset('assets')}}/js/jquery.timepicker.js"></script>
+    <script src="{{asset('assets')}}/js/dropzone.min.js"></script>
+    <script src="{{asset('assets')}}/js/uppy.min.js"></script>
+    <script src="{{asset('assets')}}/js/quill.min.js"></script>
     <script>
       $('.select2').select2(
       {
@@ -286,5 +286,7 @@
       gtag('js', new Date());
       gtag('config', 'UA-56159088-1');
     </script>
+    @yield('javascript')
+    
   </body>
 </html>
