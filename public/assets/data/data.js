@@ -213,19 +213,19 @@ var dataChart3 = [
     "carbon":[
       {
         "type": "manufacturing",
-        "value": 44
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "building",
-        "value": 55
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "utility",
-        "value": 41
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "digital",
-        "value": 17
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
     ]
   },
@@ -236,19 +236,19 @@ var dataChart3 = [
     "carbon":[
       {
         "type": "manufacturing",
-        "value": 40
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "building",
-        "value": 50
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "utility",
-        "value": 40
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "digital",
-        "value": 10
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
     ]
   },
@@ -259,19 +259,19 @@ var dataChart3 = [
     "carbon":[
       {
         "type": "manufacturing",
-        "value": 34
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "building",
-        "value": 25
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "utility",
-        "value": 31
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "digital",
-        "value": 27
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
     ]
   },
@@ -282,19 +282,19 @@ var dataChart3 = [
     "carbon":[
       {
         "type": "manufacturing",
-        "value": 43
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "building",
-        "value": 51
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "utility",
-        "value": 21
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "digital",
-        "value": 47
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
     ]
   },
@@ -305,19 +305,19 @@ var dataChart3 = [
     "carbon":[
       {
         "type": "manufacturing",
-        "value": 34
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "building",
-        "value": 25
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "utility",
-        "value": 45
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
       {
         "type": "digital",
-        "value": 19
+        "value": parseInt(generateRandomInRange(1000,3000,1))
       },
     ]
   }

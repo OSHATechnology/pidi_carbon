@@ -557,7 +557,7 @@ chart1(dataChart1[2])
 
 // chart 2
 // filter data function
-function filterDataForChart2(plant='karawang1', time='monthly') {
+function filterDataForChart2(plant='karawang1', time='daily') {
   var filteredDataChartManufacturing = []
   var filteredDataChartBuilding = []
   var filteredDataChartUtility = []
@@ -665,7 +665,10 @@ $('#select-time-chart2').on('change', function () {
   filterDataForChart2(plant, time)
 })
 
-filterDataForChart2()
+var plantChart2 = $('#select-plant-chart2').val()
+var timeChart2 = $('#select-time-chart2').val()
+
+filterDataForChart2(plantChart2, timeChart2)
 
 // chart3
 // var options = {
@@ -690,33 +693,6 @@ filterDataForChart2()
 // };
 
 // chart3
-var chart3 = new ApexCharts(document.querySelector("#chart3"),
-  {
-    series: [44, 40, 30, 17],
-    labels: ['manufacturing', 'building', 'utility', 'digital'],
-    chart: {
-      id: 'my-donut',
-      type: 'donut',
-      height: '80%'
-    },
-    colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
-    legend: {
-      position: 'bottom',
-      itemMargin: {
-        horizontal: 10,
-        vertical: 5
-      }
-    },
-    dataLabels: {
-      enabled: true,
-      formatter: function (val) {
-        return val + " TonCO2"
-      }
-    },
-  }
-);
-chart3.render();
-
 // filter data function
 function filterDataForChart3(filter) {
   var filteredDataChart = []
@@ -729,6 +705,33 @@ function filterDataForChart3(filter) {
 
   console.log(filteredDataChart)
 
+  var chart3 = new ApexCharts(document.querySelector("#chart3"),
+    {
+      series: filteredDataChart,
+      labels: ['manufacturing', 'building', 'utility', 'digital'],
+      chart: {
+        id: 'my-donut',
+        type: 'donut',
+        height: '80%'
+      },
+      colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
+      legend: {
+        position: 'bottom',
+        itemMargin: {
+          horizontal: 10,
+          vertical: 5
+        }
+      },
+      dataLabels: {
+        enabled: true,
+        formatter: function (val) {
+          return val + " TonCO2"
+        }
+      },
+    }
+  );
+  chart3.render();
+
   ApexCharts.exec("my-donut", 'updateSeries',
     filteredDataChart
   )
@@ -738,8 +741,10 @@ function filterDataForChart3(filter) {
 $('#select-chart3').on('change', function () {
   var value = $('#select-chart3').val()
   filterDataForChart3(value)
-  reloadStylesheets()
 })
+
+var plantChart3 = $('#select-chart3').val()
+filterDataForChart3(plantChart3)
 
 //Define a method to simulate data, this is the method of ApexCharts official website 
 function generateDayWiseTimeSeries(baseval, count, yrange) {
