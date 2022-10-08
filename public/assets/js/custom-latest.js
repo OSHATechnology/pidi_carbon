@@ -461,7 +461,6 @@ var options = {
     toolbar: {
       show: false,
     },
-    height: '80%'
   },
   legend: {
     position: 'top'
@@ -469,7 +468,7 @@ var options = {
   plotOptions: {
     bar: {
       horizontal: false,
-      borderRadius: 30
+      borderRadius: 15
     },
   },
   xaxis: {
@@ -483,33 +482,130 @@ var options = {
   }
 };
 
-var chart = new ApexCharts(document.querySelector("#chart2"), options);
-chart.render();
+var chart2 = new ApexCharts(document.querySelector("#chart2"), options);
+chart2.render();
+
+dataChart2[0].carbon.forEach( data => {
+  console.log(data.manufacturing)
+  console.log(data.building)
+  console.log(data.utility)
+  console.log(data.digital)
+})
+
+// filter data function
+function filterDataForChart2(filter) {
+  var filteredDataChartManufacturing = []
+  var filteredDataChartBuilding = []
+  var filteredDataChartUtility = []
+  var filteredDataChartDigital = []
+
+  var filteredData = dataChart2.filter(function(data){ return data.plant == filter });
+
+  filteredData[0].carbon.forEach( data => {
+    filteredDataChartManufacturing = data.manufacturing
+    filteredDataChartBuilding = data.building
+    filteredDataChartUtility = data.utility
+    filteredDataChartDigital = data.digital
+  });
+  
+  console.log(filteredDataChartManufacturing)
+  
+  chart2.updateSeries([
+    {
+      name: 'Manufacturing',
+      data: filteredDataChartManufacturing
+    },
+    {
+      name: 'Building',
+      data: filteredDataChartBuilding
+    },
+    {
+      name: 'Utility',
+      data: filteredDataChartUtility
+    },
+    {
+      name: 'Digital',
+      data: filteredDataChartDigital
+    }
+  ])
+}
+
+// chart 2 on select
+$('#select-plant-chart2').on('change', function() {
+  var value = $('#select-plant-chart2').val()
+  filterDataForChart2(value)
+})
 
 // chart3
-var options = {
-  series: [44, 55, 41, 17],
-  labels: ['manufacturing','building','utility','digital'],
-  chart: {
-    type: 'donut',
-  },
-  legend: {
-    position: 'bottom',
-    itemMargin: {
-      horizontal: 10,
-      vertical: 5
-    } 
-  },
-  dataLabels: {
-    enabled: true,
-    formatter: function(val){
-      return val +" TonCO2"
-    }
-  },
-};
+// var options = {
+//   series: filteredDataChart3,
+//   labels: ['manufacturing','building','utility','digital'],
+//   chart: {
+//     type: 'donut',
+//   },
+//   legend: {
+//     position: 'bottom',
+//     itemMargin: {
+//       horizontal: 10,
+//       vertical: 5
+//     } 
+//   },
+//   dataLabels: {
+//     enabled: true,
+//     formatter: function(val){
+//       return val +" TonCO2"
+//     }
+//   },
+// };
 
-var chart = new ApexCharts(document.querySelector("#chart3"), options);
-chart.render();
+// chart3
+var chart3 = new ApexCharts(document.querySelector("#chart3"), 
+  {
+    series: [44,40,30,17],
+    labels: ['manufacturing','building','utility','digital'],
+    chart: {
+      id: 'my-donut',
+      type: 'donut',
+    },
+    legend: {
+      position: 'bottom',
+      itemMargin: {
+        horizontal: 10,
+        vertical: 5
+      } 
+    },
+    dataLabels: {
+      enabled: true,
+      formatter: function(val){
+        return val +" TonCO2"
+      }
+    },
+  }
+);
+chart3.render();
+
+// filter data function
+function filterDataForChart3(filter) {
+  var filteredDataChart = []
+
+  var filteredData = dataChart3.filter(function(data){ return data.plant == filter });
+
+  filteredData[0].carbon.forEach( data => {
+    filteredDataChart.push(data.value)
+  });
+  
+  console.log(filteredDataChart)
+  
+  ApexCharts.exec("my-donut", 'updateSeries',
+    filteredDataChart
+  )
+}
+
+// chart 3 on select
+$('#select-chart3').on('change', function() {
+  var value = $('#select-chart3').val()
+  filterDataForChart3(value)
+})
 
 //Define a method to simulate data, this is the method of ApexCharts official website 
 function  generateDayWiseTimeSeries ( baseval , count , yrange )  {  
@@ -533,7 +629,6 @@ var options = {
   }],
   chart: {
     id: 'realtime',
-    height: '80%',
     type: 'area',
     animations: {
       enabled: true,
@@ -548,30 +643,26 @@ var options = {
   zoom: {
     enabled: false
   }
-},
-dataLabels: {
-  enabled: false
-},
-stroke: {
-  curve: 'smooth'
-},
-title: {
-  text: 'Dynamic Updating Chart',
-  align: 'left'
-},
-markers: {
-  size: 0
-},
-xaxis: {
-  type: 'datetime',
-  range: XAXISRANGE,
-},
-yaxis: {
-  max: 100
-},
-legend: {
-  show: false
-},
+  },
+  dataLabels: {
+    enabled: false
+  },
+  stroke: {
+    curve: 'smooth'
+  },
+  markers: {
+    size: 0
+  },
+  xaxis: {
+    type: 'datetime',
+    range: XAXISRANGE,
+  },
+  yaxis: {
+    max: 100
+  },
+  legend: {
+    show: false
+  },
 };
 
 var chart = new ApexCharts(document.querySelector("#chart4"), options);
