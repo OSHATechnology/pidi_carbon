@@ -1,150 +1,3 @@
-// Global
-window.Apex = {
-  // Legend
-  legend: {
-    fontSize: '35px',
-    markers: {
-      width: 20,
-      height: 20
-    },
-    itemMargin: {
-      horizontal: 30,
-      vertical: 0
-    },
-    labels: {
-      colors: 'fbfbfb'
-    }
-  },
-
-  // DataLabels
-  dataLabels: {
-    style: {
-      fontSize: '40px'
-    }
-  },
-
-  // XAxis
-  xaxis: {
-    labels: {
-      style: {
-        colors: '#ebebeb',
-        fontSize: '35px', 
-      },
-      offsetX: 0,
-      offsetY: 10,
-    }
-  },
-
-  // YAxis
-  yaxis: {
-    labels: {
-      style: {
-        colors: '#ebebeb',
-        fontSize: '35px', 
-      },
-      offsetX: 0,
-      offsetY: 10,
-    }
-  },
-
-  // Tooltip
-  tooltip: {
-    style: {
-      fontSize: '40px',
-      fontFamily: undefined
-    }
-  },
-
-  plotOptions: {
-    radialBar: {
-      dataLabels: {
-        name: {
-          fontSize: '40px',
-        },
-        value: {
-          color: '#fbfbfb',
-          fontSize: '40px',
-          formatter: function(val){
-              let label = (val/100)*total;
-            return label.toFixed(2) +" TonCO2"
-          }
-        },
-        total: {
-          color: '#fbfbfb',
-          fontSize: '40px',
-          show: true,
-          label: 'Total',
-          formatter: function (w) {
-            return total +" TonCO2"
-          }
-        }
-      }
-    }
-  },
-
-  // Responsive 0-3840 
-  responsive: [{
-    breakpoint: 3840,
-      options: {
-        // Legend
-        legend: {
-          fontSize: '13px',
-          markers: {
-            width: 10,
-            height: 10
-          },
-          itemMargin: {
-            horizontal: 5 ,
-            vertical: 5 
-          },
-          labels: {
-            colors: '#fbfbfb'
-          }
-        },
-
-        // DataLabels
-        dataLabels: {
-          style: {
-            fontSize: '13px'
-          }
-        },
-
-        // XAxis
-        xaxis: {
-          labels: {
-            style: {
-              colors: '#ebebeb',
-              fontSize: '10px', 
-            },
-            offsetX: 0,
-            offsetY: 0,
-          }
-        },
-
-        // YAxis
-        yaxis: {
-          labels: {
-            style: {
-              colors: '#ebebeb',
-              fontSize: '10px', 
-            },
-            offsetX: 0,
-            offsetY: 0,
-          }
-        },
-
-        // Tooltip
-        tooltip: {
-          style: {
-            fontSize: '13px',
-            fontFamily: undefined
-          }
-        },
-      }
-  }]
-}
-
-
 // Data 
 var emisiYearly =['27741,33']
 var time =['00:00','01:00','02:00','03:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00',
@@ -401,7 +254,6 @@ function chart5(data) {
 //   labels: ['manufacturing','building','utility','digital'],
 // };
 
-
 // chart Total Emission
 var options = {
   series: [{
@@ -433,16 +285,16 @@ chart.render();
 var options = {
   series: [{
     name: 'Manufacturing',
-    data: [44, 55, 41, 67, 22, 43]
+    data: [27, 50, 36, 32, 57, 39, 67, 42, 35, 37, 60, 34, 65, 53, 22, 52, 40, 48, 51, 19, 33, 20, 31, 63]
   }, {
     name: 'Building',
-    data: [13, 23, 20, 8, 13, 27]
+    data: [36, 58, 23, 43, 67, 63, 56, 50, 68, 45, 41, 44, 61, 46, 35, 21, 34, 69, 70, 37, 28, 25, 55, 65]
   }, {
     name: 'Utility',
-    data: [11, 17, 15, 15, 21, 14]
+    data: [20, 25, 54, 68, 24, 61, 40, 27, 57, 69, 62, 22, 70, 29, 44, 31, 28, 56, 49, 23, 48, 59, 55, 45]
   }, {
     name: 'Digital',
-    data: [21, 7, 25, 13, 22, 8]
+    data: [31, 69, 63, 30, 43, 27, 65, 57, 20, 52, 32, 55, 56, 47, 45, 44, 24, 39, 58, 34, 23, 37, 70, 53]
   }],
   chart: {
     type: 'bar',
@@ -464,10 +316,7 @@ var options = {
     },
   },
   xaxis: {
-    type: 'datetime',
-    categories: ['01/01/2011 GMT', '01/02/2011 GMT', '01/03/2011 GMT', '01/04/2011 GMT',
-      '01/05/2011 GMT', '01/06/2011 GMT'
-    ],
+    categories: time
   },
   fill: {
     opacity: 1
@@ -527,6 +376,8 @@ $('#select-plant-chart2').on('change', function() {
   var value = $('#select-plant-chart2').val()
   filterDataForChart2(value)
 })
+
+console.log('total', Math.floor(Math.random() * 10))
 
 // chart3
 // var options = {

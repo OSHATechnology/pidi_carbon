@@ -42,7 +42,7 @@
                                     <option value="sunter1">Sunter1</option>
                                     <option value="sunter2">Sunter2</option>
                                 </select>
-                                <select name="" id="" class="form-select bg-dark form-select-sm">
+                                <select name="" id="select-time-chart2" class="form-select bg-dark form-select-sm">
                                     <option value="daily">Daily</option>
                                     <option value="monthly">Monthly</option>
                                     <option value="yearly">Yearly</option>
