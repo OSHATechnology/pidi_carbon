@@ -101,7 +101,8 @@
                                 <div class="d-flex justify-content-between align-items-center card-title-container">
                                     <h5 class="card-title mb-0">Total Emission</h5>
                                     <div>
-                                        <select name="" id="" class="form-select bg-dark form-select-sm">
+                                        <select name="" id="select-chart1"
+                                            class="form-select bg-dark form-select-sm">
                                             <option value="daily">Daily</option>
                                             <option value="monthly">Monthly</option>
                                             <option value="yearly">Yearly</option>
