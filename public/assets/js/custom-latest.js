@@ -758,10 +758,15 @@ function filterDataForChart3(filter) {
       },
       dataLabels: {
         enabled: true,
-        formatter: function (val) {
-          return val + " TonCO2"
+        formatter: function(label, opts) {
+          return opts.w.globals.series[opts.seriesIndex] + ' TonCO2'
         }
       },
+      xaxis: {
+        labels: {
+          rotate: 0
+        }
+      }
     }
   );
   chart3.render();
