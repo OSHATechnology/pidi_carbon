@@ -83,7 +83,9 @@
                                             <option value="monthly">Monthly</option>
                                             <option value="yearly">Yearly</option>
                                         </select>
-                                        <select name="" id="" class="form-select bg-dark form-select-sm">
+                                        <select name="" id="select-area-chart2"
+                                            class="form-select bg-dark form-select-sm">
+                                            <option value="all">All</option>
                                             <option value="manufacturing">Manufacturing</option>
                                             <option value="building">Building</option>
                                             <option value="utility">Utility</option>

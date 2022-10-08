@@ -557,7 +557,7 @@ chart1(dataChart1[2])
 
 // chart 2
 // filter data function
-function filterDataForChart2(plant='karawang1', time='daily') {
+function filterDataForChart2(plant='karawang1', time='daily', area='all') {
   var filteredDataChartManufacturing = []
   var filteredDataChartBuilding = []
   var filteredDataChartUtility = []
@@ -649,26 +649,60 @@ function filterDataForChart2(plant='karawang1', time='daily') {
       }
     ]
   });
+
+  if (area === 'manufacturing') {
+    chart2.hideSeries('Building')
+    chart2.hideSeries('Utility')
+    chart2.hideSeries('Digital')
+  } else if (area === 'building') {
+    chart2.hideSeries('Manufacturing')
+    chart2.hideSeries('Utility')
+    chart2.hideSeries('Digital')
+  } else if (area === 'utility') {
+    chart2.hideSeries('Building')
+    chart2.hideSeries('Manufacturing')
+    chart2.hideSeries('Digital')
+  } else if (area === 'digital') {
+    chart2.hideSeries('Building')
+    chart2.hideSeries('Utility')
+    chart2.hideSeries('Manufacturing')
+  } else {  
+    chart2.showSeries('Digital')
+    chart2.showSeries('Building')
+    chart2.showSeries('Utility')
+    chart2.showSeries('Manufacturing')
+  }
 }
+
+var plantChart2 = $('#select-plant-chart2').val()
+var timeChart2 = $('#select-time-chart2').val()
+var areaChart2 = $('#select-area-chart2').val()
 
 // chart 2 on select
 $('#select-plant-chart2').on('change', function () {
   var plant = $('#select-plant-chart2').val()
   var time = $('#select-time-chart2').val()
-  filterDataForChart2(plant, time)
+  var area = $('#select-area-chart2').val()
+  filterDataForChart2(plant, time, area)
 })
 
 // chart 2 on select
 $('#select-time-chart2').on('change', function () {
   var plant = $('#select-plant-chart2').val()
   var time = $('#select-time-chart2').val()
-  filterDataForChart2(plant, time)
+  var area = $('#select-area-chart2').val()
+  filterDataForChart2(plant, time, area)
 })
 
-var plantChart2 = $('#select-plant-chart2').val()
-var timeChart2 = $('#select-time-chart2').val()
+// chart 2 on select 
+$('#select-area-chart2').on('change', function () {
+  var plant = $('#select-plant-chart2').val()
+  var time = $('#select-time-chart2').val()
+  var area = $('#select-area-chart2').val()
+  filterDataForChart2(plant, time, area)
+})
 
-filterDataForChart2(plantChart2, timeChart2)
+filterDataForChart2(plantChart2, timeChart2, areaChart2)
 
 // chart3
 // var options = {
