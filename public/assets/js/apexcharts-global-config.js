@@ -1,5 +1,10 @@
 // Global
 window.Apex = {
+    // 
+    chart: {
+      height: '90%'
+    },
+
     // Legend
     legend: {
       fontSize: '35px',
@@ -86,6 +91,9 @@ window.Apex = {
     responsive: [{
       breakpoint: 3840,
         options: {
+          chart: {
+            height: '90%'
+          },
           // Legend
           legend: {
             fontSize: '13px',

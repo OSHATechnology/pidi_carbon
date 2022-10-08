@@ -45,6 +45,18 @@ p {
     color: #e2e8f0;
 }
 
+.card {
+    height: 350px;
+}
+
+.card.smaller {
+    height: auto;
+}
+
+.card-body {
+    height: auto;
+}
+
 .card-title-container {
     padding: 5px 0;
 }
@@ -166,8 +178,16 @@ p.normal {
     }
 
     .apexcharts-datalabel-value {
-        font-size: 40px;
+        font-size: 30px;
         transform: translateY(30px);
+    }
+
+    .card {
+        height: 850px;
+    }
+
+    .card.smaller {
+        height: 600px;
     }
 
     .card-title-container {

@@ -114,7 +114,10 @@ const initChart6 = (n) => {
     series: [(result[0] / totalEmisi) * 100, (result[1] / totalEmisi) * 100, (result[2] / totalEmisi) * 100, (result[3] / totalEmisi) * 100],
     chart: {
       type: 'radialBar',
+      height: '80%'
     },
+    colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'] 
+    ,
     plotOptions: {
       radialBar: {
         dataLabels: {
@@ -277,7 +280,9 @@ function chart5(data) {
     series: [188, 32],
     chart: {
       type: 'pie',
+      height: '80%'
     },
+    colors: ['#FFC107', '#FF9900'] ,
     legend: {
       position: 'bottom',
     },
@@ -375,10 +380,12 @@ var options = {
   }],
   chart: {
     type: 'area',
+    height: '80%',
     zoom: {
       enabled: false
     }
   },
+  colors: ['#0E9CFF'],
   xaxis: {
     type: 'datetime',
     categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
@@ -411,6 +418,7 @@ var options = {
   }],
   chart: {
     type: 'bar',
+    height: '80%',
     stacked: true,
     zoom: {
       enabled: false
@@ -419,13 +427,14 @@ var options = {
       show: false,
     },
   },
+  colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'] ,
   legend: {
     position: 'top'
   },
   plotOptions: {
     bar: {
       horizontal: false,
-      borderRadius: 15
+      borderRadius: 5
     },
   },
   xaxis: {
@@ -433,6 +442,9 @@ var options = {
   },
   fill: {
     opacity: 1
+  },
+  dataLabels: {
+    enabled: false,
   }
 };
 
@@ -490,8 +502,6 @@ $('#select-plant-chart2').on('change', function () {
   filterDataForChart2(value)
 })
 
-console.log('total', Math.floor(Math.random() * 10))
-
 // chart3
 // var options = {
 //   series: filteredDataChart3,
@@ -522,7 +532,9 @@ var chart3 = new ApexCharts(document.querySelector("#chart3"),
     chart: {
       id: 'my-donut',
       type: 'donut',
+      height: '80%'
     },
+    colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
     legend: {
       position: 'bottom',
       itemMargin: {
@@ -600,10 +612,7 @@ var options = {
       enabled: false
     }
   },
-  title: {
-    text: 'Dynamic Updating Chart',
-    align: 'left'
-  },
+  colors: ['#84C294'],
   zoom: {
     enabled: false
   },
