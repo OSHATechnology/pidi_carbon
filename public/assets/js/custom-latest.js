@@ -401,33 +401,41 @@ function chart5(data) {
 //   labels: ['manufacturing','building','utility','digital'],
 // };
 
+// function chart1(data) {
+//   console.log(data, 'chart1', data.dataBuilding.reduce((a, b) => a + b, 0))
+//   var sumBuilding = data.dataBuilding.reduce((a, b) => a + b, 0)
+//   var sumManufacturing = data.dataManufacturing.reduce((a, b) => a + b, 0)
+//   var sumDigital = data.dataDigital.reduce((a, b) => a + b, 0)
+//   var sumUtility = data.dataUtility.reduce((a, b) => a + b, 0)
+//   var total = sumBuilding + sumDigital + sumManufacturing + sumUtility;
 
 // chart Total Emission
-var options = {
-  series: [{
-    name: 'emission',
-    data: [31, 40, 28, 51, 42, 109, 100]
-  }],
-  chart: {
-    type: 'area',
-    zoom: {
-      enabled: false
+  var options = {
+    series: [{
+      name: 'emission',
+      data: [sumBuilding.toFixed(2),sumManufacturing.toFixed(2),sumDigital.toFixed(2),sumUtility.toFixed(2)]
+    }],
+    chart: {
+      type: 'area',
+      zoom: {
+        enabled: false
+      }
+    },
+    xaxis: {
+      type: 'datetime',
+      categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+    },
+    yaxis: {
+      opposite: false
+    },
+    legend: {
+      horizontalAlign: 'left'
     }
-  },
-  xaxis: {
-    type: 'datetime',
-    categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-  },
-  yaxis: {
-    opposite: false
-  },
-  legend: {
-    horizontalAlign: 'left'
-  }
-};
+  };
 
-var chart = new ApexCharts(document.querySelector("#chart1"), options);
-chart.render();
+  var chart = new ApexCharts(document.querySelector("#chart1"), options);
+  chart.render();
+// }
 
 // chart Carbon Footprint
 var options = {
