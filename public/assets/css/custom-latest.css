@@ -88,6 +88,10 @@ p.normal {
     color: #222;
 }
   
+.apexcharts-tooltip {
+    transform: scale(0.4) translateX(-65%) translateY(-35%);
+}
+
 .apexcharts-tooltip .apexcharts-tooltip-series-group.active {
     background: #ffffff;
 }
@@ -125,8 +129,8 @@ p.normal {
     transform: translateX(30px);
 }
 
-.apexcharts-tooltip {
-    transform: scale(0.4) translateX(-65%) translateY(-35%);
+#chart4 .apexcharts-tooltip {
+    transform: scale(1) translateX(0) translateY(0) !important;
 } 
 
 .apexcharts-datalabel-value {
@@ -156,7 +160,7 @@ p.normal {
     }
 
     .dashboard-title {
-        font-size: 90px;
+        font-size: 60px;
         margin-left: 15px;
         margin-bottom: 40px;
     }
@@ -177,7 +181,7 @@ p.normal {
 
     .form-select {
         font-size: 40px;
-        padding-right: 80px;
+        padding-right: 40px;
     }
 
     .form-select option {
@@ -207,7 +211,8 @@ p.normal {
 
     #chart1 {
         transform: translateX(0);
-        margin-top: 80px !important;
+        /* margin-top: 80px !important; */
+        margin-top: 0px !important;
     }
 
     #chart2 {
