@@ -1,99 +1,210 @@
-var dataChart2 = [
-  // karawang1
-  {
-    "plant":"karawang1", 
-    "carbon":[{
-      "manufacturing":[
-        27, 50, 36, 32, 57, 39, 67, 42, 35, 37, 60, 34, 65, 53, 22, 52, 40, 48, 51, 19, 33, 20, 31, 63
-      ],
-      "building":[
-        36, 58, 23, 43, 67, 63, 56, 50, 68, 45, 41, 44, 61, 46, 35, 21, 34, 69, 70, 37, 28, 25, 55, 65
-      ],
-      "utility":[
-        20, 25, 54, 68, 24, 61, 40, 27, 57, 69, 62, 22, 70, 29, 44, 31, 28, 56, 49, 23, 48, 59, 55, 45
-      ],
-      "digital":[
-        31, 69, 63, 30, 43, 27, 65, 57, 20, 52, 32, 55, 56, 47, 45, 44, 24, 39, 58, 34, 23, 37, 70, 53
-      ],
-    }]
-  },
+let value3 = Math.floor(Math.random() * 10);
 
-  // karawang 2
-  {
-    "plant":"karawang2", 
-    "carbon":[{
-      "manufacturing":[
-        41, 62, 60, 42, 48, 47, 35, 64, 68, 57, 36, 23, 54, 34, 19, 33, 43, 55, 28, 31, 56, 21, 45, 63
-      ],
-      "building":[
-        20, 48, 54, 57, 46, 55, 56, 38, 59, 24, 27, 49, 28, 62, 19, 35, 44, 64, 61, 30, 43, 65, 25, 69
-      ],
-      "utility":[
-        23, 36, 46, 50, 24, 62, 40, 66, 26, 59, 38, 47, 20, 58, 32, 19, 45, 21, 44, 63, 33, 54, 34, 68
-      ],
-      "digital":[
-        39, 55, 32, 21, 61, 65, 46, 60, 37, 33, 22, 59, 19, 53, 62, 70, 30, 43, 48, 20, 56, 36, 24, 25
-      ],
-    }]
-  },
-  
-  // karawang 3
-  {
-    "plant":"karawang3", 
-    "carbon":[{
-      "manufacturing":[
-        27, 38, 43, 45, 19, 55, 49, 46, 51, 67, 62, 31, 61, 22, 37, 33, 70, 32, 66, 21, 35, 69, 36, 23
-      ],
-      "building":[
-        50, 23, 55, 39, 21, 63, 67, 61, 37, 19, 38, 42, 44, 46, 28, 65, 64, 41, 30, 53, 49, 32, 62, 48
-      ],
-      "utility":[
-        51, 32, 36, 23, 69, 52, 44, 20, 43, 45, 26, 63, 28, 55, 61, 42, 50, 25, 70, 60, 64, 41, 35, 24
-      ],
-      "digital":[
-        50, 44, 27, 33, 36, 24, 58, 29, 53, 54, 40, 55, 70, 25, 63, 68, 28, 43, 30, 39, 48, 60, 21, 66
-      ],
-    }]
-  },
+function generateRandomInRange(min, max, n) {
+  data = []
+  min = Math.ceil(min);
+  max = Math.floor(max);
 
-  // sunter 1
-  {
-    "plant":"sunter1", 
-    "carbon":[{
-      "manufacturing":[
-        22, 42, 23, 36, 46, 57, 56, 30, 39, 41, 27, 70, 68, 33, 38, 20, 49, 32, 29, 55, 63, 44, 48, 19
-      ],
-      "building":[
-        47, 56, 60, 45, 46, 37, 52, 43, 55, 69, 20, 58, 33, 66, 39, 38, 49, 57, 42, 22, 59, 24, 21, 23
-      ],
-      "utility":[
-        56, 67, 27, 32, 29, 35, 61, 52, 21, 70, 36, 42, 20, 19, 53, 63, 50, 54, 24, 51, 43, 23, 46, 68
-      ],
-      "digital":[
-        67, 19, 48, 64, 60, 44, 31, 51, 57, 65, 21, 46, 37, 62, 40, 29, 23, 61, 20, 68, 49, 38, 33, 43
-      ],
-    }]
-  },
-
-  // sunter 2
-  {
-    "plant":"sunter2", 
-    "carbon":[{
-      "manufacturing":[
-        67, 32, 41, 44, 23, 21, 28, 26, 36, 42, 20, 47, 65, 39, 43, 64, 58, 22, 46, 35, 31, 62, 29, 56
-      ],
-      "building":[
-        66, 41, 25, 68, 34, 45, 22, 40, 57, 27, 48, 20, 28, 58, 55, 43, 70, 62, 19, 33, 50, 23, 54, 49
-      ],
-      "utility":[
-        22, 70, 42, 57, 65, 61, 46, 39, 23, 29, 20, 44, 51, 34, 41, 64, 43, 45, 48, 68, 56, 26, 49, 69
-      ],
-      "digital":[
-        27, 28, 34, 58, 43, 29, 54, 24, 68, 53, 47, 50, 23, 61, 31, 56, 49, 57, 20, 21, 19, 52, 42, 37
-      ],
-    }]
+  for (i=1;i<=n;i++) {
+    data.push(Math.floor((Math.random() * (max - min + 1)) + min))
   }
-]
+
+  return data
+}
+
+var dataChart2 = [{
+  // daily
+  "daily": [{
+    "label": ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "08:00", "10:00",
+      "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
+    "data": [
+    // karawang 1
+    {
+      "plant":"karawang1", 
+      "carbon":[{
+        "manufacturing":generateRandomInRange(10,50,24),
+        "building":generateRandomInRange(10,50,24),
+        "utility":generateRandomInRange(10,50,24),
+        "digital":generateRandomInRange(10,50,24),
+      }]
+    },
+
+    // karawang 2
+    {
+      "plant":"karawang2", 
+      "carbon":[{
+        "manufacturing":generateRandomInRange(10,50,24),
+        "building":generateRandomInRange(10,50,24),
+        "utility":generateRandomInRange(10,50,24),
+        "digital":generateRandomInRange(10,50,24),
+      }]
+    },
+    
+    // karawang 3
+    {
+      "plant":"karawang3", 
+      "carbon":[{
+        "manufacturing":generateRandomInRange(10,50,24),
+        "building":generateRandomInRange(10,50,24),
+        "utility":generateRandomInRange(10,50,24),
+        "digital":generateRandomInRange(10,50,24),
+      }]
+    },
+
+    // sunter 1
+    {
+      "plant":"sunter1", 
+      "carbon":[{
+        "manufacturing":generateRandomInRange(10,50,24),
+        "building":generateRandomInRange(10,50,24),
+        "utility":generateRandomInRange(10,50,24),
+        "digital":generateRandomInRange(10,50,24),
+      }]
+    },
+
+    // sunter 2
+    {
+      "plant":"sunter2", 
+      "carbon":[{
+        "manufacturing":generateRandomInRange(10,50,24),
+        "building":generateRandomInRange(10,50,24),
+        "utility":generateRandomInRange(10,50,24),
+        "digital":generateRandomInRange(10,50,24),
+      }]
+    }
+    ]
+  }],
+
+  // monthly
+  "monthly": [
+    {
+      "label": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+      "data": [  
+        // karawang 1
+        {
+          "plant":"karawang1", 
+          "carbon":[{
+            "manufacturing":generateRandomInRange(100, 200, 30),
+            "building":generateRandomInRange(100, 200, 30),
+            "utility":generateRandomInRange(100, 200, 30),
+            "digital":generateRandomInRange(100, 200, 30),
+          }]
+        },
+
+        // karawang 2
+        {
+          
+          "plant":"karawang2", 
+          "carbon":[{
+            "manufacturing":generateRandomInRange(100, 200, 30),
+            "building":generateRandomInRange(100, 200, 30),
+            "utility":generateRandomInRange(100, 200, 30),
+            "digital":generateRandomInRange(100, 200, 30),
+          }]
+        },
+        
+        // karawang 3
+        {
+          "plant":"karawang3", 
+          "carbon":[{
+            "manufacturing":generateRandomInRange(100, 200, 30),
+            "building":generateRandomInRange(100, 200, 30),
+            "utility":generateRandomInRange(100, 200, 30),
+            "digital":generateRandomInRange(100, 200, 30),
+          }]
+        },
+
+        // sunter 1
+        {
+          "plant":"sunter1", 
+          "carbon":[{
+            "manufacturing":generateRandomInRange(100, 200, 30),
+            "building":generateRandomInRange(100, 200, 30),
+            "utility":generateRandomInRange(100, 200, 30),
+            "digital":generateRandomInRange(100, 200, 30),
+          }]
+        },
+
+        // sunter 2
+        {
+          "plant":"sunter2", 
+          "carbon":[{
+            "manufacturing":generateRandomInRange(100, 200, 30),
+            "building":generateRandomInRange(100, 200, 30),
+            "utility":generateRandomInRange(100, 200, 30),
+            "digital":generateRandomInRange(100, 200, 30),
+          }]
+        }
+      ]
+    }
+  ],
+
+  // yearly
+  "yearly": [{
+    "label": ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'],
+    "data": [
+      // karawang 1
+      {
+        "plant":"karawang1", 
+        "carbon":[{
+          "manufacturing":generateRandomInRange(1000, 3000, 12),
+          "building":generateRandomInRange(1000, 3000, 12),
+          "utility":generateRandomInRange(1000, 3000, 12),
+          "digital":generateRandomInRange(1000, 3000, 12),
+        }]
+      },
+
+      // karawang 2
+      {
+        "plant":"karawang2", 
+        "carbon":[{
+          "manufacturing":generateRandomInRange(1000, 3000, 12),
+          "building":generateRandomInRange(1000, 3000, 12),
+          "utility":generateRandomInRange(1000, 3000, 12),
+          "digital":generateRandomInRange(1000, 3000, 12),
+        }]
+      },
+      
+      // karawang 3
+      {
+        "plant":"karawang3", 
+        "carbon":[{
+          "manufacturing":generateRandomInRange(1000, 3000, 12),
+          "building":generateRandomInRange(1000, 3000, 12),
+          "utility":generateRandomInRange(1000, 3000, 12),
+          "digital":generateRandomInRange(1000, 3000, 12),
+        }]
+      },
+
+      // sunter 1
+      {
+        "plant":"sunter1", 
+        "carbon":[{
+          "manufacturing":generateRandomInRange(1000, 3000, 12),
+          "building":generateRandomInRange(1000, 3000, 12),
+          "utility":generateRandomInRange(1000, 3000, 12),
+          "digital":generateRandomInRange(1000, 3000, 12),
+        }]
+      },
+
+      // sunter 2
+      {
+        "plant":"sunter2", 
+        "carbon":[{
+          "manufacturing":generateRandomInRange(1000, 3000, 12),
+          "building":generateRandomInRange(1000, 3000, 12),
+          "utility":generateRandomInRange(1000, 3000, 12),
+          "digital":generateRandomInRange(1000, 3000, 12),
+        }]
+      }
+
+    ]
+  }],
+}]
+
+var dataChart2Label = {
+
+}
 
 var dataChart3 = [
   // karawang1

@@ -555,71 +555,22 @@ chart1(dataChart1[2])
 
 // }
 
-// chart Carbon Footprint
-var options = {
-  series: [{
-    name: 'Manufacturing',
-    data: [27, 50, 36, 32, 57, 39, 67, 42, 35, 37, 60, 34, 65, 53, 22, 52, 40, 48, 51, 19, 33, 20, 31, 63]
-  }, {
-    name: 'Building',
-    data: [36, 58, 23, 43, 67, 63, 56, 50, 68, 45, 41, 44, 61, 46, 35, 21, 34, 69, 70, 37, 28, 25, 55, 65]
-  }, {
-    name: 'Utility',
-    data: [20, 25, 54, 68, 24, 61, 40, 27, 57, 69, 62, 22, 70, 29, 44, 31, 28, 56, 49, 23, 48, 59, 55, 45]
-  }, {
-    name: 'Digital',
-    data: [31, 69, 63, 30, 43, 27, 65, 57, 20, 52, 32, 55, 56, 47, 45, 44, 24, 39, 58, 34, 23, 37, 70, 53]
-  }],
-  chart: {
-    type: 'bar',
-    height: '80%',
-    stacked: true,
-    zoom: {
-      enabled: false
-    },
-    toolbar: {
-      show: false,
-    },
-  },
-  colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
-  legend: {
-    position: 'top'
-  },
-  plotOptions: {
-    bar: {
-      horizontal: false,
-      borderRadius: 5
-    },
-  },
-  xaxis: {
-    categories: time
-  },
-  fill: {
-    opacity: 1
-  },
-  dataLabels: {
-    enabled: false,
-  }
-};
-
-var chart2 = new ApexCharts(document.querySelector("#chart2"), options);
-chart2.render();
-
-dataChart2[0].carbon.forEach(data => {
-  console.log(data.manufacturing)
-  console.log(data.building)
-  console.log(data.utility)
-  console.log(data.digital)
-})
-
+// chart 2
 // filter data function
-function filterDataForChart2(filter) {
+function filterDataForChart2(plant='karawang1', time='monthly') {
   var filteredDataChartManufacturing = []
   var filteredDataChartBuilding = []
   var filteredDataChartUtility = []
   var filteredDataChartDigital = []
 
-  var filteredData = dataChart2.filter(function (data) { return data.plant == filter });
+  var thedata
+
+  time === 'daily' ? thedata = dataChart2[0].daily[0]  
+  : time === 'monthly' ? thedata = dataChart2[0].monthly[0] 
+  : time === 'yearly' ? thedata = dataChart2[0].yearly[0]
+  : thedata = []
+
+  var filteredData = thedata.data.filter(function (data) { return data.plant === plant });
 
   filteredData[0].carbon.forEach(data => {
     filteredDataChartManufacturing = data.manufacturing
@@ -628,33 +579,93 @@ function filterDataForChart2(filter) {
     filteredDataChartDigital = data.digital
   });
 
-  console.log(filteredDataChartManufacturing)
+  console.log(thedata.label)
 
-  chart2.updateSeries([
-    {
+  console.log(filteredDataChartManufacturing)
+  console.log(filteredDataChartManufacturing)
+  console.log(filteredDataChartUtility)
+  console.log(filteredDataChartDigital)
+
+  var options = {
+    series: [{
       name: 'Manufacturing',
       data: filteredDataChartManufacturing
-    },
-    {
+    }, {
       name: 'Building',
       data: filteredDataChartBuilding
-    },
-    {
+    }, {
       name: 'Utility',
       data: filteredDataChartUtility
-    },
-    {
+    }, {
       name: 'Digital',
-      data: filteredDataChartDigital
+      data: filteredDataChartUtility
+    }],
+    chart: {
+      type: 'bar',
+      height: '80%',
+      stacked: true,
+      zoom: {
+        enabled: false
+      },
+      toolbar: {
+        show: false,
+      },
+    },
+    colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
+    legend: {
+      position: 'top'
+    },
+    xaxis: {
+      categories: thedata.label,
+    },
+    fill: {
+      opacity: 1
+    },
+    dataLabels: {
+      enabled: false,
     }
-  ])
+  };
+  
+  var chart2 = new ApexCharts(document.querySelector("#chart2"), options);
+  chart2.render();
+
+  chart2.updateOptions({
+    xaxis: {
+       categories: thedata.label
+    },
+    series: [
+      {
+        name: 'Manufacturing',
+        data: filteredDataChartManufacturing
+      }, {
+        name: 'Building',
+        data: filteredDataChartBuilding
+      }, {
+        name: 'Utility',
+        data: filteredDataChartUtility
+      }, {
+        name: 'Digital',
+        data: filteredDataChartUtility
+      }
+    ]
+  });
 }
 
 // chart 2 on select
 $('#select-plant-chart2').on('change', function () {
-  var value = $('#select-plant-chart2').val()
-  filterDataForChart2(value)
+  var plant = $('#select-plant-chart2').val()
+  var time = $('#select-time-chart2').val()
+  filterDataForChart2(plant, time)
 })
+
+// chart 2 on select
+$('#select-time-chart2').on('change', function () {
+  var plant = $('#select-plant-chart2').val()
+  var time = $('#select-time-chart2').val()
+  filterDataForChart2(plant, time)
+})
+
+filterDataForChart2()
 
 // chart3
 // var options = {
@@ -727,6 +738,7 @@ function filterDataForChart3(filter) {
 $('#select-chart3').on('change', function () {
   var value = $('#select-chart3').val()
   filterDataForChart3(value)
+  reloadStylesheets()
 })
 
 //Define a method to simulate data, this is the method of ApexCharts official website 
@@ -849,3 +861,10 @@ window.setInterval(function () {
 //     y: Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
 //   });
 // }
+
+function reloadStylesheets() {
+  var queryString = '?reload=' + new Date().getTime();
+  $('link[rel="stylesheet"]').each(function () {
+      this.href = this.href.replace(/\?.*|$/, queryString);
+  });
+}
