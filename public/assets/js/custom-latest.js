@@ -1,37 +1,41 @@
 // Data 
-var emisiYearly =['27741,33']
-var time =['00:00','01:00','02:00','03:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00',
-'13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00']
-var date =['2022-03-01','2022-02-01','2022-01-01','2021-12-01','2021-11-01','2021-10-01','2021-09-01','2021-08-01','2021-07-01',
-'2021-06-01','2021-05-01','2021-04-01']
-var electric =['7500','9400']
+var emisiYearly = ['27741,33']
+var time = ['00:00', '01:00', '02:00', '03:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
+  '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
+var date = ['2022-03-01', '2022-02-01', '2022-01-01', '2021-12-01', '2021-11-01', '2021-10-01', '2021-09-01', '2021-08-01', '2021-07-01',
+  '2021-06-01', '2021-05-01', '2021-04-01']
+var electric = ['7500', '9400']
 var targetElectricHourly = 7800
 var targetGasHourly = 1600
 var targetFuelHourly = 4000
-var targetElectricDaily = 7800*24
-var targetGasDaily = 1600*24
-var targetFuelDaily = 4000*24
-var JenisEnergi = ['Electricity','LPG','Diesel Oil','Natural Gas']
-var area = ['manufacturing','building','utility','digital']
-var plant = ['Karawang1','Karawang2','Karawang3','Sunter1','Sunter2']
-var productionYearly = [7709,6975,7709,7203,7546,7788,8158,8485,8516,9196,6048,7659]
+var targetElectricDaily = 7800 * 24
+var targetGasDaily = 1600 * 24
+var targetFuelDaily = 4000 * 24
+var JenisEnergi = ['Electricity', 'LPG', 'Diesel Oil', 'Natural Gas']
+var area = ['manufacturing', 'building', 'utility', 'digital']
+var plant = ['Karawang1', 'Karawang2', 'Karawang3', 'Sunter1', 'Sunter2']
+var productionYearly = [7709, 6975, 7709, 7203, 7546, 7788, 8158, 8485, 8516, 9196, 6048, 7659]
 var dataDigital = [];
 var dataUtility = [];
 var dataBuilding = [];
 var dataManufacturing = [];
 let n = 7;
 
+let presentaseMonth = (Math.random() * 100) / 100;
+
 let datass = callRandomData();
-$('#select-chart6').on('change', function() {
-    var selectValue = $('#select-chart6').val()
-    if(selectValue == 'monthly') {
-      n = 30;
-    } else if(selectValue == 'yearly') {
-      n = 12;
-    } else {
-      n = 7;
-    }
-    let dataRandom = callRandomData();
+$('#select-chart6').on('change', function () {
+  var selectValue = $('#select-chart6').val()
+  if (selectValue == 'monthly') {
+    n = 30;
+  } else if (selectValue == 'yearly') {
+    n = 12;
+  } else {
+    n = 7;
+  }
+  // let dataRandom = callRandomData();
+  $('#chart6').html('');
+  initChart6(n);
 })
 
 function callRandomData() {
@@ -48,41 +52,66 @@ function callRandomData() {
   }
 
   $('#chart6').html('');
-  chart6(datas);
+  // chart6(datas);
   chart5(datas);
   return datas
 }
 
 function randomData(n = 30) {
-    let average = productionYearly.reduce((a, b) => a + b, 0) / productionYearly.length;
-    let maxValue = Math.max(...productionYearly);
-    let minValue = Math.min(...productionYearly);
-    let dataRandom = [];
-    average = average.toFixed(2)
+  let average = productionYearly.reduce((a, b) => a + b, 0) / productionYearly.length;
+  let maxValue = Math.max(...productionYearly);
+  let minValue = Math.min(...productionYearly);
+  let dataRandom = [];
+  average = average.toFixed(2)
 
-    for(let i = 0; i < n; i++) {
-      dataRandom[i] = Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
-    }
+  for (let i = 0; i < n; i++) {
+    dataRandom[i] = Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
+  }
 
-    return dataRandom;
+  return dataRandom;
 }
+const initChart6 = (n) => {
 
-function chart6(data) {
-    console.log(data, 'chart6', data.dataBuilding.reduce((a, b) => a + b, 0))
-    var sumBuilding = data.dataBuilding.reduce((a, b) => a + b, 0)
-    var sumManufacturing = data.dataManufacturing.reduce((a, b) => a + b, 0)
-    var sumDigital = data.dataDigital.reduce((a, b) => a + b, 0)
-    var sumUtility = data.dataUtility.reduce((a, b) => a + b, 0)
-    var total = sumBuilding + sumDigital + sumManufacturing + sumUtility;
+  let sumDigital, sumUtility, sumBuilding, sumManufacturing, total = 0;
+  const presentase = (n = 4) => {
+    let data = [];
+    let tmpPresentase = 100;
+    for (let i = 0; i < n; i++) {
+      if (i == n - 1) {
+        data[i] = tmpPresentase;
+      } else {
+        data[i] = Math.round(Math.random() * (tmpPresentase + i));
+        tmpPresentase = tmpPresentase - data[i];
+      }
+    }
+    return data;
+  }
 
-    var persentaeBuilding = (sumBuilding / total) * 100
-    var persentaeManufacturing = (sumManufacturing / total) * 100
-    var persentaeUtility = (sumUtility / total) * 100
-    var persentaeDigital = (sumDigital / total) * 100
+  let precentData = presentase();
 
-    //Chart 6
-    var options = {
-    series: [persentaeManufacturing.toFixed(2), persentaeBuilding.toFixed(2), persentaeUtility.toFixed(2), persentaeDigital.toFixed(2)],
+  const CalculateData = (data, precentData) => {
+    sumDigital = Math.round(data * precentData[0] / 100);
+    sumUtility = Math.round(data * precentData[1] / 100);
+    sumBuilding = Math.round(data * precentData[2] / 100);
+    sumManufacturing = Math.round(data * precentData[3] / 100);
+    return [sumDigital, sumUtility, sumBuilding, sumManufacturing];
+  }
+
+  if (n !== 12) {
+    if (n === 30) {
+      totalEmisi = emisiYearly.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) * presentaseMonth;
+    } else {
+      totalEmisi = emisiYearly.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) * presentaseMonth / 4; // 7 hari
+    }
+  } else {
+    totalEmisi = emisiYearly.reduce((a, b) => parseFloat(a) + parseFloat(b), 0);
+  }
+
+  let result = CalculateData(totalEmisi, precentData);
+  total = totalEmisi.toFixed(2);
+
+  var options = {
+    series: [(result[0] / totalEmisi) * 100, (result[1] / totalEmisi) * 100, (result[2] / totalEmisi) * 100, (result[3] / totalEmisi) * 100],
     chart: {
       type: 'radialBar',
     },
@@ -95,9 +124,9 @@ function chart6(data) {
           value: {
             // color: '#fbfbfb',
             // fontSize: '16px',
-            formatter: function(val){
-                let label = (val/100)*total;
-              return label.toFixed(2) +" TonCO2"
+            formatter: function (val) {
+              let label = (val / 100) * total;
+              return label.toFixed(2) + " TonCO2"
             }
           },
           total: {
@@ -105,13 +134,13 @@ function chart6(data) {
             show: true,
             label: 'Total',
             formatter: function (w) {
-              return total +" TonCO2"
+              return total + " TonCO2"
             }
           }
         }
       }
     },
-    labels: ['manufacturing','building','utility','digital'],
+    labels: ['manufacturing', 'building', 'utility', 'digital'],
     responsive: [{
       breakpoint: 3840,
       options: {
@@ -124,9 +153,9 @@ function chart6(data) {
               value: {
                 color: '#fbfbfb',
                 fontSize: '13px',
-                formatter: function(val){
-                    let label = (val/100)*total;
-                  return label.toFixed(2) +" TonCO2"
+                formatter: function (val) {
+                  let label = (val / 100) * total;
+                  return label.toFixed(2) + " TonCO2"
                 }
               },
               total: {
@@ -135,7 +164,7 @@ function chart6(data) {
                 show: true,
                 label: 'Total',
                 formatter: function (w) {
-                  return total +" TonCO2"
+                  return total + " TonCO2"
                 }
               }
             }
@@ -143,11 +172,95 @@ function chart6(data) {
         }
       }
     }]
-    };
-    
-    var chart = new ApexCharts(document.querySelector("#chart6"), options);
-    chart.render();
+  };
+
+  var chart = new ApexCharts(document.querySelector("#chart6"), options);
+  chart.render();
 }
+
+initChart6(n)
+
+// function chart6(data) {
+//     console.log(data, 'chart6', data.dataBuilding.reduce((a, b) => a + b, 0))
+//     var sumBuilding = data.dataBuilding.reduce((a, b) => a + b, 0)
+//     var sumManufacturing = data.dataManufacturing.reduce((a, b) => a + b, 0)
+//     var sumDigital = data.dataDigital.reduce((a, b) => a + b, 0)
+//     var sumUtility = data.dataUtility.reduce((a, b) => a + b, 0)
+//     var total = sumBuilding + sumDigital + sumManufacturing + sumUtility;
+
+//     var persentaeBuilding = (sumBuilding / total) * 100
+//     var persentaeManufacturing = (sumManufacturing / total) * 100
+//     var persentaeUtility = (sumUtility / total) * 100
+//     var persentaeDigital = (sumDigital / total) * 100
+
+//     //Chart 6
+//     var options = {
+//     series: [persentaeManufacturing.toFixed(2), persentaeBuilding.toFixed(2), persentaeUtility.toFixed(2), persentaeDigital.toFixed(2)],
+//     chart: {
+//       type: 'radialBar',
+//     },
+//     plotOptions: {
+//       radialBar: {
+//         dataLabels: {
+//           name: {
+//             // fontSize: '22px',
+//           },
+//           value: {
+//             // color: '#fbfbfb',
+//             // fontSize: '16px',
+//             formatter: function(val){
+//                 let label = (val/100)*total;
+//               return label.toFixed(2) +" TonCO2"
+//             }
+//           },
+//           total: {
+//             // color: '#fbfbfb',
+//             show: true,
+//             label: 'Total',
+//             formatter: function (w) {
+//               return total +" TonCO2"
+//             }
+//           }
+//         }
+//       }
+//     },
+//     labels: ['manufacturing','building','utility','digital'],
+//     responsive: [{
+//       breakpoint: 3840,
+//       options: {
+//         plotOptions: {
+//           radialBar: {
+//             dataLabels: {
+//               name: {
+//                 fontSize: '13px',
+//               },
+//               value: {
+//                 color: '#fbfbfb',
+//                 fontSize: '13px',
+//                 formatter: function(val){
+//                     let label = (val/100)*total;
+//                   return label.toFixed(2) +" TonCO2"
+//                 }
+//               },
+//               total: {
+//                 color: '#fbfbfb',
+//                 fontSize: '13px',
+//                 show: true,
+//                 label: 'Total',
+//                 formatter: function (w) {
+//                   return total +" TonCO2"
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }]
+//     };
+
+//     var chart = new ApexCharts(document.querySelector("#chart6"), options);
+//     chart.render();
+// }
 
 function chart5(data) {
   var sumBuilding = data.dataBuilding.reduce((a, b) => a + b, 0)
@@ -155,7 +268,7 @@ function chart5(data) {
   var sumDigital = data.dataDigital.reduce((a, b) => a + b, 0)
   var sumUtility = data.dataUtility.reduce((a, b) => a + b, 0)
   var total = sumBuilding + sumDigital + sumManufacturing + sumUtility;
-  var target = total*0.98;
+  var target = total * 0.98;
   var result = total - target;
   result = result
 
@@ -171,12 +284,12 @@ function chart5(data) {
     labels: ['Total Emission', 'Offset'],
     dataLabels: {
       enabled: true,
-      formatter: function(val, series){
+      formatter: function (val, series) {
         console.log(val, "value")
         // console.log(series.w.config.series[0], 'series')
         var data = series.w.config.series;
-        for(let i=0;i<data.length;i++){
-          console.log(data[i],"ini datanya");
+        for (let i = 0; i < data.length; i++) {
+          console.log(data[i], "ini datanya");
           // return data[i] + " TonCO2";
         }
       }
@@ -186,34 +299,34 @@ function chart5(data) {
   var chart = new ApexCharts(document.querySelector("#chart5"), options);
   chart.render();
 
-// Chart5
-// var options = {
-//     series: [total, result],
-//     chart: {
-//       width: 380,
-//       height: 450,
-//       type: 'pie',
-//     },
-//     legend: {
-//       position: 'bottom',
-//     },
-//     labels: ['Total Emission', 'Offset'],
-//     responsive: [{
-//       breakpoint: 480,
-//       options: {
-//         chart: {
-//           width: 200,
-//           height: 450,
-//         },
-//         legend: {
-//           position: 'bottom'
-//         }
-//       }
-//     }]
-//   };
-  
-//   var chart = new ApexCharts(document.querySelector("#chart5"), options);
-//   chart.render();
+  // Chart5
+  // var options = {
+  //     series: [total, result],
+  //     chart: {
+  //       width: 380,
+  //       height: 450,
+  //       type: 'pie',
+  //     },
+  //     legend: {
+  //       position: 'bottom',
+  //     },
+  //     labels: ['Total Emission', 'Offset'],
+  //     responsive: [{
+  //       breakpoint: 480,
+  //       options: {
+  //         chart: {
+  //           width: 200,
+  //           height: 450,
+  //         },
+  //         legend: {
+  //           position: 'bottom'
+  //         }
+  //       }
+  //     }]
+  //   };
+
+  //   var chart = new ApexCharts(document.querySelector("#chart5"), options);
+  //   chart.render();
 
 }
 
@@ -326,7 +439,7 @@ var options = {
 var chart2 = new ApexCharts(document.querySelector("#chart2"), options);
 chart2.render();
 
-dataChart2[0].carbon.forEach( data => {
+dataChart2[0].carbon.forEach(data => {
   console.log(data.manufacturing)
   console.log(data.building)
   console.log(data.utility)
@@ -340,17 +453,17 @@ function filterDataForChart2(filter) {
   var filteredDataChartUtility = []
   var filteredDataChartDigital = []
 
-  var filteredData = dataChart2.filter(function(data){ return data.plant == filter });
+  var filteredData = dataChart2.filter(function (data) { return data.plant == filter });
 
-  filteredData[0].carbon.forEach( data => {
+  filteredData[0].carbon.forEach(data => {
     filteredDataChartManufacturing = data.manufacturing
     filteredDataChartBuilding = data.building
     filteredDataChartUtility = data.utility
     filteredDataChartDigital = data.digital
   });
-  
+
   console.log(filteredDataChartManufacturing)
-  
+
   chart2.updateSeries([
     {
       name: 'Manufacturing',
@@ -372,7 +485,7 @@ function filterDataForChart2(filter) {
 }
 
 // chart 2 on select
-$('#select-plant-chart2').on('change', function() {
+$('#select-plant-chart2').on('change', function () {
   var value = $('#select-plant-chart2').val()
   filterDataForChart2(value)
 })
@@ -391,7 +504,7 @@ console.log('total', Math.floor(Math.random() * 10))
 //     itemMargin: {
 //       horizontal: 10,
 //       vertical: 5
-//     } 
+//     }
 //   },
 //   dataLabels: {
 //     enabled: true,
@@ -402,10 +515,10 @@ console.log('total', Math.floor(Math.random() * 10))
 // };
 
 // chart3
-var chart3 = new ApexCharts(document.querySelector("#chart3"), 
+var chart3 = new ApexCharts(document.querySelector("#chart3"),
   {
-    series: [44,40,30,17],
-    labels: ['manufacturing','building','utility','digital'],
+    series: [44, 40, 30, 17],
+    labels: ['manufacturing', 'building', 'utility', 'digital'],
     chart: {
       id: 'my-donut',
       type: 'donut',
@@ -415,12 +528,12 @@ var chart3 = new ApexCharts(document.querySelector("#chart3"),
       itemMargin: {
         horizontal: 10,
         vertical: 5
-      } 
+      }
     },
     dataLabels: {
       enabled: true,
-      formatter: function(val){
-        return val +" TonCO2"
+      formatter: function (val) {
+        return val + " TonCO2"
       }
     },
   }
@@ -431,38 +544,38 @@ chart3.render();
 function filterDataForChart3(filter) {
   var filteredDataChart = []
 
-  var filteredData = dataChart3.filter(function(data){ return data.plant == filter });
+  var filteredData = dataChart3.filter(function (data) { return data.plant == filter });
 
-  filteredData[0].carbon.forEach( data => {
+  filteredData[0].carbon.forEach(data => {
     filteredDataChart.push(data.value)
   });
-  
+
   console.log(filteredDataChart)
-  
+
   ApexCharts.exec("my-donut", 'updateSeries',
     filteredDataChart
   )
 }
 
 // chart 3 on select
-$('#select-chart3').on('change', function() {
+$('#select-chart3').on('change', function () {
   var value = $('#select-chart3').val()
   filterDataForChart3(value)
 })
 
 //Define a method to simulate data, this is the method of ApexCharts official website 
-function  generateDayWiseTimeSeries ( baseval , count , yrange )  {  
-  var i =  0 ; 
-  var series =  [ ] ; 
-  while  ( i < count )  { 
-    var x = baseval ; 
-    var y = Math.floor( Math.random()*(yrange.max-yrange.min+.1 ))+yrange.min;
+function generateDayWiseTimeSeries(baseval, count, yrange) {
+  var i = 0;
+  var series = [];
+  while (i < count) {
+    var x = baseval;
+    var y = Math.floor(Math.random() * (yrange.max - yrange.min + .1)) + yrange.min;
 
-    series.push([x,y]) ; 
-    baseval +=  12 ; 
-    i++ ; 
-  } 
-  return series ; 
+    series.push([x, y]);
+    baseval += 12;
+    i++;
+  }
+  return series;
 }
 
 // Chart4
@@ -478,14 +591,21 @@ var options = {
       easing: 'linear',
       dynamicAnimation: {
         speed: 1000
+      }
+    },
+    toolbar: {
+      show: false
+    },
+    zoom: {
+      enabled: false
     }
   },
-  toolbar: {
-    show: false
+  title: {
+    text: 'Dynamic Updating Chart',
+    align: 'left'
   },
   zoom: {
     enabled: false
-  }
   },
   dataLabels: {
     enabled: false
@@ -513,14 +633,14 @@ chart.render();
 
 
 window.setInterval(function () {
-getNewSeries(lastDate, {
-  min: 10,
-  max: 90
-})
+  getNewSeries(lastDate, {
+    min: 10,
+    max: 90
+  })
 
-chart.updateSeries([{
-  data: data
-}])
+  chart.updateSeries([{
+    data: data
+  }])
 }, 1000)
 
 // var options = {
