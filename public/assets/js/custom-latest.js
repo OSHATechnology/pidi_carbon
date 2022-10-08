@@ -1,151 +1,4 @@
 // const { result } = require("lodash");as
-
-// Global
-window.Apex = {
-  // Legend
-  legend: {
-    fontSize: '35px',
-    markers: {
-      width: 20,
-      height: 20
-    },
-    itemMargin: {
-      horizontal: 30,
-      vertical: 0
-    },
-    labels: {
-      colors: 'fbfbfb'
-    }
-  },
-
-  // DataLabels
-  dataLabels: {
-    style: {
-      fontSize: '40px'
-    }
-  },
-
-  // XAxis
-  xaxis: {
-    labels: {
-      style: {
-        colors: '#ebebeb',
-        fontSize: '35px',
-      },
-      offsetX: 0,
-      offsetY: 10,
-    }
-  },
-
-  // YAxis
-  yaxis: {
-    labels: {
-      style: {
-        colors: '#ebebeb',
-        fontSize: '35px',
-      },
-      offsetX: 0,
-      offsetY: 10,
-    }
-  },
-
-  // Tooltip
-  tooltip: {
-    style: {
-      fontSize: '40px',
-      fontFamily: undefined
-    }
-  },
-
-  plotOptions: {
-    radialBar: {
-      dataLabels: {
-        name: {
-          fontSize: '40px',
-        },
-        value: {
-          color: '#fbfbfb',
-          fontSize: '40px',
-          formatter: function (val) {
-            let label = (val / 100) * total;
-            return label.toFixed(2) + " TonCO2"
-          }
-        },
-        total: {
-          color: '#fbfbfb',
-          fontSize: '40px',
-          show: true,
-          label: 'Total',
-          formatter: function (w) {
-            return total + " TonCO2"
-          }
-        }
-      }
-    }
-  },
-
-  // Responsive 0-3840 
-  responsive: [{
-    breakpoint: 3840,
-    options: {
-      // Legend
-      legend: {
-        fontSize: '13px',
-        markers: {
-          width: 10,
-          height: 10
-        },
-        itemMargin: {
-          horizontal: 5,
-          vertical: 5
-        },
-        labels: {
-          colors: '#fbfbfb'
-        }
-      },
-
-      // DataLabels
-      dataLabels: {
-        style: {
-          fontSize: '13px'
-        }
-      },
-
-      // XAxis
-      xaxis: {
-        labels: {
-          style: {
-            colors: '#ebebeb',
-            fontSize: '10px',
-          },
-          offsetX: 0,
-          offsetY: 0,
-        }
-      },
-
-      // YAxis
-      yaxis: {
-        labels: {
-          style: {
-            colors: '#ebebeb',
-            fontSize: '10px',
-          },
-          offsetX: 0,
-          offsetY: 0,
-        }
-      },
-
-      // Tooltip
-      tooltip: {
-        style: {
-          fontSize: '13px',
-          fontFamily: undefined
-        }
-      },
-    }
-  }]
-}
-
 // Data 
 var emisiYearly = ['27741,33']
 var time = ['00:00', '01:00', '02:00', '03:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
@@ -171,8 +24,6 @@ let n = 7;
 let presentaseMonth = (Math.random() * 100) / 100;
 
 let dataTotalEmissionsPlant = dataEmissionsPerPlant(plant)
-
-console.log(dataTotalEmissionsPlant)
 
 let datass = callRandomData();
 $('#select-chart6').on('change', function () {
@@ -296,7 +147,10 @@ const initChart6 = (n) => {
     series: [(result[0] / totalEmisi) * 100, (result[1] / totalEmisi) * 100, (result[2] / totalEmisi) * 100, (result[3] / totalEmisi) * 100],
     chart: {
       type: 'radialBar',
+      height: '80%'
     },
+    colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50']
+    ,
     plotOptions: {
       radialBar: {
         dataLabels: {
@@ -520,7 +374,9 @@ function chart5(data = 0) {
     series: [totalEmission, totalOffset],
     chart: {
       type: 'pie',
+      height: '80%'
     },
+    colors: ['#FFC107', '#FF9900'],
     legend: {
       position: 'bottom',
     },
@@ -600,12 +456,22 @@ chart5()
 // }
 // console.log(filterDataChart1(value),'tes chart1')
 
+// get breakpoint
+var getBreakpoint = function () {
+  return window.getComputedStyle(document.body, ':before').content.replace(/\"/g, '');;
+};
+
+// Calculate breakpoint on page load
+var breakpoint = getBreakpoint();
+
+console.log(breakpoint)
+
 // select chart1 
 var dataChart1 = [
   // yearly
   {
     "time": "yearly",
-    "label": ["Jan", "Feb", "March", "Apr", "May", "June", "July", "August", "Sept", "Oct"],
+    "label": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
     "target": [2311, 2310, 2309, 2308, 2307, 2306, 2305, 2304, 2303, 2302],
     "emisi": [2311.75, 2301.75, 2307.75, 2290.75, 2299.75, 2304.75, 2304.75, 2311.75, 2303.75, 2301.75]
   },
@@ -630,17 +496,21 @@ var dataChart1 = [
 // chart1(dataChart1[2])
 $('#select-chart1').on('change', function () {
   var value = $('#select-chart1').val()
-  var results
+  var results = []
   if (value == "yearly") {
     results = dataChart1[0]
+    breakpoint == "large" ? $("#chart1").css({ "transform": "translateX(0) translateY(0)" }) : $("#chart1").css({ "transform": "translateX(-50px) translateY(-30px)" });
   } else if (value == "monthly") {
     results = dataChart1[1]
+    breakpoint === "large" ? $("#chart1").css({ "transform": "translateX(0) translateY(0)" }) : $("#chart1").css({ "transform": "translateX(-40px) translateY(-30px)" });
   } else {
     results = dataChart1[2]
+    breakpoint === "large" ? $("#chart1").css({ "transform": "translateX(0) translateY(0)" }) : $("#chart1").css({ "transform": "translateX(-30px) translateY(0px)" });
   }
-  // chart1(result)
-  console.log(results, 'ini result emisi', results.emisi)
-  console.log(results, 'ini result label', results.label)
+
+  chart1(results)
+  console.log(results)
+  console.log(results)
 
 })
 
@@ -648,18 +518,19 @@ function chart1(data) {
   var options = {
     series: [{
       name: 'emission',
-      data: results.emisi,
+      data: data.emisi,
     }],
     chart: {
       type: 'area',
+      height: '80%',
       zoom: {
         enabled: false
       }
     },
     xaxis: {
       // data: results.label
-      type: 'datetime',
-      categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z"],
+      // type: 'datetime',
+      categories: data.label,
     },
     yaxis: {
       opposite: false
@@ -671,7 +542,16 @@ function chart1(data) {
 
   var chart = new ApexCharts(document.querySelector("#chart1"), options);
   chart.render();
+
+  chart.updateSeries([
+    {
+      name: 'emission',
+      data: data.emisi,
+    }
+  ])
 }
+
+chart1(dataChart1[2])
 
 // }
 
@@ -679,19 +559,20 @@ function chart1(data) {
 var options = {
   series: [{
     name: 'Manufacturing',
-    data: [44, 55, 41, 67, 22, 43]
+    data: [27, 50, 36, 32, 57, 39, 67, 42, 35, 37, 60, 34, 65, 53, 22, 52, 40, 48, 51, 19, 33, 20, 31, 63]
   }, {
     name: 'Building',
-    data: [13, 23, 20, 8, 13, 27]
+    data: [36, 58, 23, 43, 67, 63, 56, 50, 68, 45, 41, 44, 61, 46, 35, 21, 34, 69, 70, 37, 28, 25, 55, 65]
   }, {
     name: 'Utility',
-    data: [11, 17, 15, 15, 21, 14]
+    data: [20, 25, 54, 68, 24, 61, 40, 27, 57, 69, 62, 22, 70, 29, 44, 31, 28, 56, 49, 23, 48, 59, 55, 45]
   }, {
     name: 'Digital',
-    data: [21, 7, 25, 13, 22, 8]
+    data: [31, 69, 63, 30, 43, 27, 65, 57, 20, 52, 32, 55, 56, 47, 45, 44, 24, 39, 58, 34, 23, 37, 70, 53]
   }],
   chart: {
     type: 'bar',
+    height: '80%',
     stacked: true,
     zoom: {
       enabled: false
@@ -700,23 +581,24 @@ var options = {
       show: false,
     },
   },
+  colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
   legend: {
     position: 'top'
   },
   plotOptions: {
     bar: {
       horizontal: false,
-      borderRadius: 15
+      borderRadius: 5
     },
   },
   xaxis: {
-    type: 'datetime',
-    categories: ['01/01/2011 GMT', '01/02/2011 GMT', '01/03/2011 GMT', '01/04/2011 GMT',
-      '01/05/2011 GMT', '01/06/2011 GMT'
-    ],
+    categories: time
   },
   fill: {
     opacity: 1
+  },
+  dataLabels: {
+    enabled: false,
   }
 };
 
@@ -804,7 +686,9 @@ var chart3 = new ApexCharts(document.querySelector("#chart3"),
     chart: {
       id: 'my-donut',
       type: 'donut',
+      height: '80%'
     },
+    colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
     legend: {
       position: 'bottom',
       itemMargin: {
@@ -882,10 +766,7 @@ var options = {
       enabled: false
     }
   },
-  title: {
-    text: 'Dynamic Updating Chart',
-    align: 'left'
-  },
+  colors: ['#84C294'],
   zoom: {
     enabled: false
   },

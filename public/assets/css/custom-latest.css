@@ -1,3 +1,9 @@
+body:before {
+	content: "normal";
+	display: none;
+	visibility: hidden;
+}
+
 body {
     background: #293145;
     color: #ebebeb;
@@ -43,6 +49,18 @@ p {
     box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
     background-color: #313a55;
     color: #e2e8f0;
+}
+
+.card {
+    height: 350px;
+}
+
+.card.smaller {
+    height: auto;
+}
+
+.card-body {
+    height: auto;
 }
 
 .card-title-container {
@@ -147,6 +165,12 @@ p.normal {
 }
 
 @media only screen and (min-width: 3840px) {
+    body:before {
+        content: "large";
+        display: none;
+        visibility: hidden;
+    }
+
     p.large {
         font-size: 50px;
     }
@@ -166,8 +190,16 @@ p.normal {
     }
 
     .apexcharts-datalabel-value {
-        font-size: 40px;
+        font-size: 30px;
         transform: translateY(30px);
+    }
+
+    .card {
+        height: 850px;
+    }
+
+    .card.smaller {
+        height: 600px;
     }
 
     .card-title-container {
