@@ -168,8 +168,11 @@ var dataUtility = [];
 var dataBuilding = [];
 var dataManufacturing = [];
 let n = 7;
-
 let presentaseMonth = (Math.random() * 100) / 100;
+
+let dataTotalEmissionsPlant = dataEmissionsPerPlant(plant)
+
+console.log(dataTotalEmissionsPlant)
 
 let datass = callRandomData();
 $('#select-chart6').on('change', function () {
@@ -186,6 +189,17 @@ $('#select-chart6').on('change', function () {
   initChart6(n);
 })
 
+$('#select-chart5').on('change', function () {
+  var selectValue = $(this).val();
+  $('#chart5').html('');
+  chart5(selectValue);
+});
+
+$('#select-chart5').html('');
+plant.forEach((item, index) => {
+  $('#select-chart5').append(`<option value="${index}">${item}</option>`)
+});
+
 function callRandomData() {
   dataDigital = randomData(n);
   dataUtility = randomData(n);
@@ -201,8 +215,28 @@ function callRandomData() {
 
   $('#chart6').html('');
   // chart6(datas);
-  chart5(datas);
+  // chart5(datas);
   return datas
+}
+
+function dataEmissionsPerPlant(plants) {
+  let data = [];
+  let total_emissions, offset, target = 0;
+  plants.forEach((item, index) => {
+    total_emissions = Math.random() * emisiYearly.reduce((a, b) => parseFloat(a) + parseFloat(b), 0);
+    target = total_emissions * 0.98;
+    offset = total_emissions - target;
+    data.push({
+      id: index,
+      name: item,
+      data: {
+        total_emissions: Math.floor(total_emissions),
+        offset: Math.floor(offset),
+        target: Math.floor(target)
+      }
+    })
+  })
+  return data
 }
 
 function randomData(n = 30) {
@@ -218,8 +252,8 @@ function randomData(n = 30) {
 
   return dataRandom;
 }
-const initChart6 = (n) => {
 
+const initChart6 = (n) => {
   let sumDigital, sumUtility, sumBuilding, sumManufacturing, total = 0;
   const presentase = (n = 4) => {
     let data = [];
@@ -410,19 +444,80 @@ initChart6(n)
 //     chart.render();
 // }
 
-function chart5(data) {
-  var sumBuilding = data.dataBuilding.reduce((a, b) => a + b, 0)
-  var sumManufacturing = data.dataManufacturing.reduce((a, b) => a + b, 0)
-  var sumDigital = data.dataDigital.reduce((a, b) => a + b, 0)
-  var sumUtility = data.dataUtility.reduce((a, b) => a + b, 0)
-  var total = sumBuilding + sumDigital + sumManufacturing + sumUtility;
-  var target = total * 0.98;
-  var result = total - target;
-  result = result
+// function chart5(data) {
+//   var sumBuilding = data.dataBuilding.reduce((a, b) => a + b, 0)
+//   var sumManufacturing = data.dataManufacturing.reduce((a, b) => a + b, 0)
+//   var sumDigital = data.dataDigital.reduce((a, b) => a + b, 0)
+//   var sumUtility = data.dataUtility.reduce((a, b) => a + b, 0)
+//   var total = sumBuilding + sumDigital + sumManufacturing + sumUtility;
+//   var target = total * 0.98;
+//   var result = total - target;
+//   result = result
 
-  // Chart5
+//   // Chart5
+//   var options = {
+//     series: [188, 32],
+//     chart: {
+//       type: 'pie',
+//     },
+//     legend: {
+//       position: 'bottom',
+//     },
+//     labels: ['Total Emission', 'Offset'],
+//     dataLabels: {
+//       enabled: true,
+//       formatter: function (val, series) {
+//         // console.log(val, "value")
+//         // console.log(series.w.config.series[0], 'series')
+//         var data = series.w.config.series;
+//         // for (let i = 0; i < data.length; i++) {
+//         // console.log(data[i], "ini datanya");
+//         // return data[i] + " TonCO2";
+//         // }
+//       }
+//     },
+//   };
+
+//   var chart = new ApexCharts(document.querySelector("#chart5"), options);
+//   chart.render();
+
+//   // Chart5
+//   // var options = {
+//   //     series: [total, result],
+//   //     chart: {
+//   //       width: 380,
+//   //       height: 450,
+//   //       type: 'pie',
+//   //     },
+//   //     legend: {
+//   //       position: 'bottom',
+//   //     },
+//   //     labels: ['Total Emission', 'Offset'],
+//   //     responsive: [{
+//   //       breakpoint: 480,
+//   //       options: {
+//   //         chart: {
+//   //           width: 200,
+//   //           height: 450,
+//   //         },
+//   //         legend: {
+//   //           position: 'bottom'
+//   //         }
+//   //       }
+//   //     }]
+//   //   };
+
+//   //   var chart = new ApexCharts(document.querySelector("#chart5"), options);
+//   //   chart.render();
+
+// }
+
+function chart5(data = 0) {
+  totalEmission = dataTotalEmissionsPlant[data].data.total_emissions
+  totalOffset = dataTotalEmissionsPlant[data].data.offset
+  console.log(totalEmission, 'totalEmission')
   var options = {
-    series: [188, 32],
+    series: [totalEmission, totalOffset],
     chart: {
       type: 'pie',
     },
@@ -433,50 +528,21 @@ function chart5(data) {
     dataLabels: {
       enabled: true,
       formatter: function (val, series) {
-        console.log(val, "value")
+        // console.log(val, "value")
         // console.log(series.w.config.series[0], 'series')
         var data = series.w.config.series;
-        for (let i = 0; i < data.length; i++) {
-          console.log(data[i], "ini datanya");
-          // return data[i] + " TonCO2";
-        }
+        // for (let i = 0; i < data.length; i++) {
+        // console.log(data[i], "ini datanya");
+        // return data[i] + " TonCO2";
+        // }
       }
     },
   };
-
   var chart = new ApexCharts(document.querySelector("#chart5"), options);
   chart.render();
-
-  // Chart5
-  // var options = {
-  //     series: [total, result],
-  //     chart: {
-  //       width: 380,
-  //       height: 450,
-  //       type: 'pie',
-  //     },
-  //     legend: {
-  //       position: 'bottom',
-  //     },
-  //     labels: ['Total Emission', 'Offset'],
-  //     responsive: [{
-  //       breakpoint: 480,
-  //       options: {
-  //         chart: {
-  //           width: 200,
-  //           height: 450,
-  //         },
-  //         legend: {
-  //           position: 'bottom'
-  //         }
-  //       }
-  //     }]
-  //   };
-
-  //   var chart = new ApexCharts(document.querySelector("#chart5"), options);
-  //   chart.render();
-
 }
+
+chart5()
 
 // Catatan KRW1
 // JenisEnergi yg ada Natgas, Electric dan Diesel Oil 
@@ -525,9 +591,9 @@ function chart5(data) {
 //   filteredData[0].carbon.forEach( data => {
 //     filteredDataChart.push(data.value)
 //   });
-  
+
 //   console.log(filteredDataChart)
-  
+
 //   ApexCharts.exec("data-chart1", 'updateSeries',
 //     filteredDataChart
 //   )
@@ -535,47 +601,47 @@ function chart5(data) {
 // console.log(filterDataChart1(value),'tes chart1')
 
 // select chart1 
-var dataChart1 = [    
+var dataChart1 = [
   // yearly
   {
-    "time":"yearly",
-    "label": ["Jan","Feb","March","Apr","May","June","July","August","Sept","Oct"],
-    "target":[2311, 2310, 2309, 2308, 2307, 2306, 2305, 2304, 2303, 2302],
-    "emisi":[2311.75, 2301.75, 2307.75, 2290.75, 2299.75, 2304.75, 2304.75, 2311.75, 2303.75, 2301.75]
+    "time": "yearly",
+    "label": ["Jan", "Feb", "March", "Apr", "May", "June", "July", "August", "Sept", "Oct"],
+    "target": [2311, 2310, 2309, 2308, 2307, 2306, 2305, 2304, 2303, 2302],
+    "emisi": [2311.75, 2301.75, 2307.75, 2290.75, 2299.75, 2304.75, 2304.75, 2311.75, 2303.75, 2301.75]
   },
   // monthly
   {
-    "time":"monthly",
+    "time": "monthly",
     "label": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    "target":[77.14, 77.13, 77.12, 77.11, 77.1, 77.09, 77.08, 77.07, 77.06, 77.05],
-    "emisi":[77.05, 77.04, 77.06, 77.03, 77.02, 77.07, 77.08, 77.01, 77.00, 77.09]
+    "target": [77.14, 77.13, 77.12, 77.11, 77.1, 77.09, 77.08, 77.07, 77.06, 77.05],
+    "emisi": [77.05, 77.04, 77.06, 77.03, 77.02, 77.07, 77.08, 77.01, 77.00, 77.09]
   },
   // daily
   {
-    "time":"daily",
+    "time": "daily",
     "label": ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "08:00", "10:00",
-    "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
-    "target":[3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21,
-        3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21],
-    "emisi":[3.20, 3.21, 3.22, 3.23, 3.19, 3.18, 3.17, 3.16, 3.15, 3.14, 3.24, 3.25, 3.26, 3.27, 3.28, 3.29, 3.13, 
-        3.12, 3.11, 3.10, 3.21, 3.20, 3.19, 3.18]
+      "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
+    "target": [3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21,
+      3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21],
+    "emisi": [3.20, 3.21, 3.22, 3.23, 3.19, 3.18, 3.17, 3.16, 3.15, 3.14, 3.24, 3.25, 3.26, 3.27, 3.28, 3.29, 3.13,
+      3.12, 3.11, 3.10, 3.21, 3.20, 3.19, 3.18]
   },
 ]
 // chart1(dataChart1[2])
-$('#select-chart1').on('change', function() {
+$('#select-chart1').on('change', function () {
   var value = $('#select-chart1').val()
   var results
-  if(value=="yearly"){
+  if (value == "yearly") {
     results = dataChart1[0]
-  }else if(value=="monthly"){
+  } else if (value == "monthly") {
     results = dataChart1[1]
-  }else{
+  } else {
     results = dataChart1[2]
   }
   // chart1(result)
-  console.log(results,'ini result emisi', results.emisi)
-  console.log(results,'ini result label', results.label)
-  
+  console.log(results, 'ini result emisi', results.emisi)
+  console.log(results, 'ini result label', results.label)
+
 })
 
 function chart1(data) {
@@ -606,7 +672,7 @@ function chart1(data) {
   var chart = new ApexCharts(document.querySelector("#chart1"), options);
   chart.render();
 }
-  
+
 // }
 
 // chart Carbon Footprint

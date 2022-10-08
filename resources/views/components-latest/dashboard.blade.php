@@ -105,12 +105,12 @@
                         <div class="d-flex justify-content-between align-items-center card-title-container">
                             <h5 class="card-title mb-0">Total Emission/Offset</h5>
                             <div>
-                                <select name="" id="" class="form-select bg-dark form-select-sm">
-                                    <option value="karawang1">Karawang1</option>
+                                <select name="" id="select-chart5" class="form-select bg-dark form-select-sm">
+                                    {{-- <option value="karawang1">Karawang1</option>
                                     <option value="karawang2">Karawang2</option>
                                     <option value="karawang3">Karawang3</option>
                                     <option value="sunter1">Sunter1</option>
-                                    <option value="sunter2">Sunter2</option>
+                                    <option value="sunter2">Sunter2</option> --}}
                                 </select>
                             </div>
                         </div>
