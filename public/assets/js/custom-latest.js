@@ -1,3 +1,5 @@
+// const { result } = require("lodash");as
+
 // Global
 window.Apex = {
   // Legend
@@ -143,7 +145,6 @@ window.Apex = {
       }
   }]
 }
-
 
 // Data 
 var emisiYearly =['27741,33']
@@ -401,19 +402,74 @@ function chart5(data) {
 //   labels: ['manufacturing','building','utility','digital'],
 // };
 
-// function chart1(data) {
-//   console.log(data, 'chart1', data.dataBuilding.reduce((a, b) => a + b, 0))
-//   var sumBuilding = data.dataBuilding.reduce((a, b) => a + b, 0)
-//   var sumManufacturing = data.dataManufacturing.reduce((a, b) => a + b, 0)
-//   var sumDigital = data.dataDigital.reduce((a, b) => a + b, 0)
-//   var sumUtility = data.dataUtility.reduce((a, b) => a + b, 0)
-//   var total = sumBuilding + sumDigital + sumManufacturing + sumUtility;
+// chart1 Total Emission
 
-// chart Total Emission
+// function filterDataChart1(filter) {
+//   var filteredDataChart = []
+
+//   var filteredData = dataChart1.filter(function(data){ return data.time == filter });
+
+//   filteredData[0].carbon.forEach( data => {
+//     filteredDataChart.push(data.value)
+//   });
+  
+//   console.log(filteredDataChart)
+  
+//   ApexCharts.exec("data-chart1", 'updateSeries',
+//     filteredDataChart
+//   )
+// }
+// console.log(filterDataChart1(value),'tes chart1')
+
+// select chart1 
+var dataChart1 = [    
+  // yearly
+  {
+    "time":"yearly",
+    "label": ["Jan","Feb","March","Apr","May","June","July","August","Sept","Oct"],
+    "target":[2311, 2310, 2309, 2308, 2307, 2306, 2305, 2304, 2303, 2302],
+    "emisi":[2311.75, 2301.75, 2307.75, 2290.75, 2299.75, 2304.75, 2304.75, 2311.75, 2303.75, 2301.75]
+  },
+  // monthly
+  {
+    "time":"monthly",
+    "label": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "target":[77.14, 77.13, 77.12, 77.11, 77.1, 77.09, 77.08, 77.07, 77.06, 77.05],
+    "emisi":[77.05, 77.04, 77.06, 77.03, 77.02, 77.07, 77.08, 77.01, 77.00, 77.09]
+  },
+  // daily
+  {
+    "time":"daily",
+    "label": ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "08:00", "10:00",
+    "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
+    "target":[3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21,
+        3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21],
+    "emisi":[3.20, 3.21, 3.22, 3.23, 3.19, 3.18, 3.17, 3.16, 3.15, 3.14, 3.24, 3.25, 3.26, 3.27, 3.28, 3.29, 3.13, 
+        3.12, 3.11, 3.10, 3.21, 3.20, 3.19, 3.18]
+  },
+]
+// chart1(dataChart1[2])
+$('#select-chart1').on('change', function() {
+  var value = $('#select-chart1').val()
+  var results
+  if(value=="yearly"){
+    results = dataChart1[0]
+  }else if(value=="monthly"){
+    results = dataChart1[1]
+  }else{
+    results = dataChart1[2]
+  }
+  // chart1(result)
+  console.log(results,'ini result emisi', results.emisi)
+  console.log(results,'ini result label', results.label)
+  
+})
+
+function chart1(data) {
   var options = {
     series: [{
       name: 'emission',
-      data: [sumBuilding.toFixed(2),sumManufacturing.toFixed(2),sumDigital.toFixed(2),sumUtility.toFixed(2)]
+      data: results.emisi,
     }],
     chart: {
       type: 'area',
@@ -422,8 +478,9 @@ function chart5(data) {
       }
     },
     xaxis: {
+      // data: results.label
       type: 'datetime',
-      categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+      categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z"],
     },
     yaxis: {
       opposite: false
@@ -435,6 +492,8 @@ function chart5(data) {
 
   var chart = new ApexCharts(document.querySelector("#chart1"), options);
   chart.render();
+}
+  
 // }
 
 // chart Carbon Footprint
