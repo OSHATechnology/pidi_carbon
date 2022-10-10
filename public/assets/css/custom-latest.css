@@ -128,7 +128,7 @@ p.normal {
 }
 
 #chart1 .apexcharts-legend {
-    transform: translateX(30px);
+    transform: translateX(130px) !important;
 }
 
 #chart1 .apexcharts-tooltip {
@@ -257,6 +257,10 @@ p.normal {
         transform: translateX(0);
         /* margin-top: 80px !important; */
         margin-top: 0px !important;
+    }
+
+    #chart1 .apexcharts-legend {
+        transform: translateX(330px) !important;
     }
 
     #chart2 {

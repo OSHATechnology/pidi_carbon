@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [DashboardController::class, 'index']);
+
+Route::get('/', function () {
+    return view('components-latest.dashboard');
+});
 
 Route::get('/the-dashboard', function () {
     return view('components-new.dashboard');

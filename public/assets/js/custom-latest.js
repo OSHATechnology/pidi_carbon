@@ -466,6 +466,64 @@ var breakpoint = getBreakpoint();
 
 console.log(breakpoint)
 
+// generate data
+var productionMonthly = [] 
+var productionDaily = [] 
+
+function getRandomNumberBetweenIncluding(min, max) {
+  return Number((Math.floor(Math.random() * (max - min + 1)) + min).toFixed(0));
+}
+
+function randomNumbersWithFixedSum(quantity, sum, fix) {
+  // only a single number required; return the passed sum.
+  if (quantity === 1) {
+      return [sum];
+  }
+
+  // Create one random number and return an array containing that number
+  // as first item. Then use the spread operator and recursively execute
+  // the function again with a decremented quantity and the updated  
+  // maximum possible sum.
+
+  var average = getRandomNumberBetweenIncluding((fix/quantity)/2, fix/quantity) 
+
+  const randomNum = getRandomNumberBetweenIncluding(average, sum/quantity);
+  return [
+      randomNum,
+      ...randomNumbersWithFixedSum(quantity - 1, sum - randomNum, sum),
+  ];
+}
+
+function generateDataChart1Car () {
+  productionMonthly = []
+  productionDaily = []
+  var productionMonthlyYear = []
+  var productionDailyYear = [] 
+  
+  productionYearly.forEach((data) => {
+    var monthly = data/30
+    for(i=0;i<30;i++) {
+      productionMonthlyYear.push([randomNumbersWithFixedSum(30, data, data)])
+    }
+
+    // var daily = monthly/24
+    for(i=0;i<24;i++) {
+      productionDailyYear.push([randomNumbersWithFixedSum(24, monthly, monthly)])
+    }
+  })
+  
+  productionMonthlyYear[9][0][productionMonthlyYear[9][0].length - 1] = Number(productionMonthlyYear[9][0][productionMonthlyYear[9][0].length - 1].toFixed(2)) 
+  productionDailyYear[9][0][productionDailyYear[9][0].length - 1] = Number(productionDailyYear[9][0][productionDailyYear[9][0].length - 1].toFixed(2)) 
+
+  productionMonthly = productionMonthlyYear[9][0]
+  productionDaily = productionDailyYear[9][0]
+
+  console.log("monthly",productionMonthly.slice(0,10))
+  console.log("daily",productionDaily)
+}
+
+generateDataChart1Car()
+
 // select chart1 
 var dataChart1 = [
   // yearly
@@ -473,14 +531,16 @@ var dataChart1 = [
     "time": "yearly",
     "label": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
     "target": [2311, 2310, 2309, 2308, 2307, 2306, 2305, 2304, 2303, 2302],
-    "emisi": [2311.75, 2301.75, 2307.75, 2290.75, 2299.75, 2304.75, 2304.75, 2311.75, 2303.75, 2301.75]
+    "emisi": [2311.75, 2301.75, 2307.75, 2290.75, 2299.75, 2304.75, 2304.75, 2311.75, 2303.75, 2301.75],
+    "produksi": productionYearly.slice(0,10)
   },
   // monthly
   {
     "time": "monthly",
     "label": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     "target": [77.14, 77.13, 77.12, 77.11, 77.1, 77.09, 77.08, 77.07, 77.06, 77.05],
-    "emisi": [77.05, 77.04, 77.06, 77.03, 77.02, 77.07, 77.08, 77.01, 77.00, 77.09]
+    "emisi": [77.05, 77.04, 77.06, 77.03, 77.02, 77.07, 77.08, 77.01, 77.00, 77.09],
+    "produksi": productionMonthly.slice(0,10)
   },
   // daily
   {
@@ -490,9 +550,11 @@ var dataChart1 = [
     "target": [3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21,
       3.21, 3.21, 3.21, 3.21, 3.21, 3.21, 3.21],
     "emisi": [3.20, 3.21, 3.22, 3.23, 3.19, 3.18, 3.17, 3.16, 3.15, 3.14, 3.24, 3.25, 3.26, 3.27, 3.28, 3.29, 3.13,
-      3.12, 3.11, 3.10, 3.21, 3.20, 3.19, 3.18]
+      3.12, 3.11, 3.10, 3.21, 3.20, 3.19, 3.18],
+    "produksi": productionDaily
   },
 ]
+
 // chart1(dataChart1[2])
 $('#select-chart1').on('change', function () {
   var value = $('#select-chart1').val()
@@ -519,6 +581,10 @@ function chart1(data) {
     series: [{
       name: 'emission',
       data: data.emisi,
+    },
+    {
+      name: 'car production',
+      data: data.produksi
     }],
     chart: {
       type: 'area',
@@ -533,10 +599,13 @@ function chart1(data) {
       categories: data.label,
     },
     yaxis: {
-      opposite: false
+      opposite: false,
     },
     legend: {
       horizontalAlign: 'left'
+    },
+    dataLabels: {
+      show: false
     }
   };
 
@@ -547,6 +616,10 @@ function chart1(data) {
     {
       name: 'emission',
       data: data.emisi,
+    },
+    {
+      name: 'car production',
+      data: data.produksi,
     }
   ])
 }
@@ -785,21 +858,6 @@ $('#select-chart3').on('change', function () {
 var plantChart3 = $('#select-chart3').val()
 filterDataForChart3(plantChart3)
 
-//Define a method to simulate data, this is the method of ApexCharts official website 
-function generateDayWiseTimeSeries(baseval, count, yrange) {
-  var i = 0;
-  var series = [];
-  while (i < count) {
-    var x = baseval;
-    var y = Math.floor(Math.random() * (yrange.max - yrange.min + .1)) + yrange.min;
-
-    series.push([x, y]);
-    baseval += 12;
-    i++;
-  }
-  return series;
-}
-
 // Chart4
 var options = {
   series: [{
@@ -847,20 +905,115 @@ var options = {
   },
 };
 
-var chart = new ApexCharts(document.querySelector("#chart4"), options);
-chart.render();
+var chart4 = new ApexCharts(document.querySelector("#chart4"), options);
+chart4.render();
 
+// chart 4 filter
+var yesterday = new Date().getTime()-89800000
+var lastMonth = new Date().getTime()-(86400000*30)
+var lastYear = new Date().getTime()-(86400000*300)
+var intervalHour = 3600000
+var intervalDay = 86400000
+var intervalMonth = Math.pow(2,31)-1
+var usedInterval = 0
 
-window.setInterval(function () {
+function chart4Filter(time) {
+  if (time === 'daily') {
+    TICKINTERVAL = 86400000/24
+    XAXISRANGE = 777600000/24
+    usedInterval = 1000
+
+    getDayWiseTimeSeries(yesterday, 24, {
+      min: 10,
+      max: 90
+    })
+  } else if (time === 'monthly') {
+    TICKINTERVAL = 86400000-1
+    XAXISRANGE = 777600000-1
+    usedInterval = 10000
+
+    getDayWiseTimeSeries(lastMonth, 30, {
+      min: 10,
+      max: 90
+    })
+  } else if (time === 'yearly') {
+    TICKINTERVAL = 86400000*30
+    XAXISRANGE = 777600000*30
+    usedInterval = 30000
+    
+    getDayWiseTimeSeries(lastYear, 10, {
+      min: 10,
+      max: 90
+    })
+  }
+
   getNewSeries(lastDate, {
     min: 10,
     max: 90
   })
 
-  chart.updateSeries([{
+  chart4.updateSeries([{
     data: data
   }])
-}, 1000)
+
+  chart4.updateOptions({
+    xaxis: {
+      type: 'datetime',
+      range: XAXISRANGE,
+    }
+  })
+}
+
+var selectTimeChart4 = $('#select-time-chart4').val()
+chart4Filter(selectTimeChart4)
+
+// chart 4 on select
+$('#select-plant-chart4').on('change', function () {
+  chart4Filter(selectTimeChart4)
+})
+
+$('#select-time-chart4').on('change', function () {
+  var value = $('#select-time-chart4').val()
+
+  chart4Filter(value)
+  updateChart4Interval(value)
+})
+
+// Interval
+var interval
+
+updateChart4Interval(selectTimeChart4)
+
+function theInterval (time) {
+  if (time === 'daily') {
+    usedInterval = intervalHour
+  } else if (time === 'monthly') {
+    usedInterval = intervalDay
+  } else if (time === 'yearly') {
+    usedInterval = intervalMonth
+  }
+} 
+
+function updateChart4Interval(time) {
+  // Clears the previous setInterval timer
+  clearInterval(interval)
+  theInterval(time);
+  console.log(usedInterval)
+  interval = window.setInterval(function () {
+    getNewSeries(lastDate, {
+      min: 10,
+      max: 90
+    })
+  
+    chart4.updateSeries([{
+      data: data
+    }])
+  }, usedInterval)
+}
+
+// // console.log() requires firebug    
+// setDeceleratingTimeout(function(){ console.log('hi'); }, 10, 10);
+// setDeceleratingTimeout(function(){ console.log('bye'); }, 100, 10);
 
 // var options = {
 //   series: [{

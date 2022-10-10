@@ -123,14 +123,14 @@
                         <div class="d-flex justify-content-between align-items-center card-title-container">
                             <h5 class="card-title mb-0">Realtime Emission</h5>
                             <div class="d-flex gap-1">
-                                <select name="" id="" class="form-select bg-dark form-select-sm">
+                                <select name="" id="select-plant-chart4" class="form-select bg-dark form-select-sm">
                                     <option value="karawang1">Karawang1</option>
                                     <option value="karawang2">Karawang2</option>
                                     <option value="karawang3">Karawang3</option>
                                     <option value="sunter1">Sunter1</option>
                                     <option value="sunter2">Sunter2</option>
                                 </select>
-                                <select name="" id="" class="form-select bg-dark form-select-sm">
+                                <select name="" id="select-time-chart4" class="form-select bg-dark form-select-sm">
                                     <option value="daily">Daily</option>
                                     <option value="monthly">Monthly</option>
                                     <option value="yearly">Yearly</option>
