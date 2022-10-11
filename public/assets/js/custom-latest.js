@@ -26,6 +26,19 @@ let presentaseMonth = (Math.random() * 100) / 100;
 let dataTotalEmissionsPlant = dataEmissionsPerPlant(plant)
 
 let datass = callRandomData();
+
+// Show Chart Time Function
+function chartTime(time, timeChartId) {
+  var date = new Date()
+  time === 'daily' ? dateTime = date.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', day: 'numeric', month: 'long'})
+  : time === 'monthly' ? dateTime = date.toLocaleDateString("en-US", { year: 'numeric', month: 'long'})
+  : time === 'yearly' ? dateTime = date.toLocaleDateString("en-US", { year: 'numeric'})
+  : ''
+
+  $('#'+timeChartId).html('<small>'+dateTime+'</small>');
+}
+
+// CHART 6
 $('#select-chart6').on('change', function () {
   var selectValue = $('#select-chart6').val()
   if (selectValue == 'monthly') {
@@ -40,6 +53,7 @@ $('#select-chart6').on('change', function () {
   initChart6(n);
 })
 
+// CHART5
 $('#select-chart5').on('change', function () {
   var selectValue = $(this).val();
   $('#chart5').html('');
@@ -51,6 +65,7 @@ plant.forEach((item, index) => {
   $('#select-chart5').append(`<option value="${index}">${item}</option>`)
 });
 
+// Function CallRandomData
 function callRandomData() {
   dataDigital = randomData(n);
   dataUtility = randomData(n);
@@ -65,17 +80,16 @@ function callRandomData() {
   }
 
   $('#chart6').html('');
-  // chart6(datas);
-  // chart5(datas);
   return datas
 }
 
+// Function Data Emission Per Plant
 function dataEmissionsPerPlant(plants) {
   let data = [];
   let total_emissions, offset, target = 0;
   plants.forEach((item, index) => {
     total_emissions = Math.random() * emisiYearly.reduce((a, b) => parseFloat(a) + parseFloat(b), 0);
-    target = total_emissions * 0.98;
+    target = total_emissions * 0.9;
     offset = total_emissions - target;
     data.push({
       id: index,
@@ -90,6 +104,7 @@ function dataEmissionsPerPlant(plants) {
   return data
 }
 
+// Function Random Data
 function randomData(n = 30) {
   let average = productionYearly.reduce((a, b) => a + b, 0) / productionYearly.length;
   let maxValue = Math.max(...productionYearly);
@@ -104,6 +119,7 @@ function randomData(n = 30) {
   return dataRandom;
 }
 
+// CHART 6 init
 const initChart6 = (n) => {
   let sumDigital, sumUtility, sumBuilding, sumManufacturing, total = 0;
   const presentase = (n = 4) => {
@@ -147,30 +163,24 @@ const initChart6 = (n) => {
     series: [(result[0] / totalEmisi) * 100, (result[1] / totalEmisi) * 100, (result[2] / totalEmisi) * 100, (result[3] / totalEmisi) * 100],
     chart: {
       type: 'radialBar',
-      height: '80%'
     },
     colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50']
     ,
     plotOptions: {
       radialBar: {
         dataLabels: {
-          name: {
-            // fontSize: '22px',
-          },
           value: {
-            // color: '#fbfbfb',
-            // fontSize: '16px',
             formatter: function (val) {
               let label = (val / 100) * total;
-              return label.toFixed(2) + " TonCO2"
+              return label.toFixed(2) + " KgCO2"
             }
           },
           total: {
-            // color: '#fbfbfb',
+            color: '#fbfbfb',
             show: true,
             label: 'Total',
             formatter: function (w) {
-              return total + " TonCO2"
+              return total + " KgCO2"
             }
           }
         }
@@ -191,7 +201,7 @@ const initChart6 = (n) => {
                 fontSize: '13px',
                 formatter: function (val) {
                   let label = (val / 100) * total;
-                  return label.toFixed(2) + " TonCO2"
+                  return label.toFixed(2) + " KgCO2"
                 }
               },
               total: {
@@ -200,7 +210,7 @@ const initChart6 = (n) => {
                 show: true,
                 label: 'Total',
                 formatter: function (w) {
-                  return total + " TonCO2"
+                  return total + " KgCO2"
                 }
               }
             }
@@ -246,7 +256,7 @@ initChart6(n)
 //             // fontSize: '16px',
 //             formatter: function(val){
 //                 let label = (val/100)*total;
-//               return label.toFixed(2) +" TonCO2"
+//               return label.toFixed(2) +" KgCO2"
 //             }
 //           },
 //           total: {
@@ -254,7 +264,7 @@ initChart6(n)
 //             show: true,
 //             label: 'Total',
 //             formatter: function (w) {
-//               return total +" TonCO2"
+//               return total +" KgCO2"
 //             }
 //           }
 //         }
@@ -275,7 +285,7 @@ initChart6(n)
 //                 fontSize: '13px',
 //                 formatter: function(val){
 //                     let label = (val/100)*total;
-//                   return label.toFixed(2) +" TonCO2"
+//                   return label.toFixed(2) +" KgCO2"
 //                 }
 //               },
 //               total: {
@@ -284,7 +294,7 @@ initChart6(n)
 //                 show: true,
 //                 label: 'Total',
 //                 formatter: function (w) {
-//                   return total +" TonCO2"
+//                   return total +" KgCO2"
 //                 }
 //               }
 //             }
@@ -326,7 +336,7 @@ initChart6(n)
 //         var data = series.w.config.series;
 //         // for (let i = 0; i < data.length; i++) {
 //         // console.log(data[i], "ini datanya");
-//         // return data[i] + " TonCO2";
+//         // return data[i] + " KgCO2";
 //         // }
 //       }
 //     },
@@ -366,6 +376,7 @@ initChart6(n)
 
 // }
 
+// CHART 5
 function chart5(data = 0) {
   totalEmission = dataTotalEmissionsPlant[data].data.total_emissions
   totalOffset = dataTotalEmissionsPlant[data].data.offset
@@ -374,7 +385,6 @@ function chart5(data = 0) {
     series: [totalEmission, totalOffset],
     chart: {
       type: 'pie',
-      height: '80%'
     },
     colors: ['#FFC107', '#FF9900'],
     legend: {
@@ -383,14 +393,8 @@ function chart5(data = 0) {
     labels: ['Total Emission', 'Offset'],
     dataLabels: {
       enabled: true,
-      formatter: function (val, series) {
-        // console.log(val, "value")
-        // console.log(series.w.config.series[0], 'series')
-        var data = series.w.config.series;
-        // for (let i = 0; i < data.length; i++) {
-        // console.log(data[i], "ini datanya");
-        // return data[i] + " TonCO2";
-        // }
+      formatter: function(label, opts) {
+        return opts.w.globals.series[opts.seriesIndex] + ' KgCO2'
       }
     },
   };
@@ -420,7 +424,7 @@ chart5()
 //           color: '#fbfbfb',
 //           fontSize: '16px',
 //           formatter: function(val){
-//             return val +" TonCO2"
+//             return val +" KgCO2"
 //           }
 //         },
 //         total: {
@@ -428,7 +432,7 @@ chart5()
 //           show: true,
 //           label: 'Total',
 //           formatter: function (w) {
-//             return 249 +" TonCO2"
+//             return 249 +" KgCO2"
 //           }
 //         }
 //       }
@@ -456,14 +460,16 @@ chart5()
 // }
 // console.log(filterDataChart1(value),'tes chart1')
 
-// generate data
+// Generate Data Production Monthly and Daily
 var productionMonthly = [] 
 var productionDaily = [] 
 
+// Random Between
 function getRandomNumberBetweenIncluding(min, max) {
   return Number((Math.floor(Math.random() * (max - min + 1)) + min).toFixed(0));
 }
 
+// Random With Fixed Sum
 function randomNumbersWithFixedSum(quantity, sum, fix) {
   // only a single number required; return the passed sum.
   if (quantity === 1) {
@@ -484,6 +490,8 @@ function randomNumbersWithFixedSum(quantity, sum, fix) {
   ];
 }
 
+// CHART 1
+// Generate Data for Chart 1
 function generateDataChart1Car () {
   productionMonthly = []
   productionDaily = []
@@ -491,12 +499,12 @@ function generateDataChart1Car () {
   var productionDailyYear = [] 
   
   productionYearly.forEach((data) => {
-    var monthly = data/30
     for(i=0;i<30;i++) {
       productionMonthlyYear.push([randomNumbersWithFixedSum(30, data, data)])
     }
-
-    // var daily = monthly/24
+    
+    var monthly = data/30
+    
     for(i=0;i<24;i++) {
       productionDailyYear.push([randomNumbersWithFixedSum(24, monthly, monthly)])
     }
@@ -514,7 +522,7 @@ function generateDataChart1Car () {
 
 generateDataChart1Car()
 
-// select chart1 
+// Data Chart 1
 var dataChart1 = [
   // yearly
   {
@@ -545,7 +553,7 @@ var dataChart1 = [
   },
 ]
 
-// chart1(dataChart1[2])
+// CHART 1
 $('#select-chart1').on('change', function () {
   var value = $('#select-chart1').val()
   var results = []
@@ -559,8 +567,10 @@ $('#select-chart1').on('change', function () {
 
   chart1(results)
   console.log(results)
+  chartTime(value, 'chart1Time')
 })
 
+// YAxis Custom if Normal
 var yaxisChart1Normal = [
   {
     title: {
@@ -574,9 +584,10 @@ var yaxisChart1Normal = [
           val = (val / 1000).toFixed(0) + 'K'
         }
         
-        return val + " TonCO2"
+        return val + " KgCO2"
       }
-    }
+    },
+    tickAmount: 4,
   },
   {
     opposite: true,
@@ -593,10 +604,12 @@ var yaxisChart1Normal = [
         
         return val
       }
-    }
+    },
+    tickAmount: 4,
   }
 ]
 
+// YAxis Custom if Large
 var yaxisChart1Large = [
   {
     title: {
@@ -614,7 +627,7 @@ var yaxisChart1Large = [
           val = (val / 1000).toFixed(0) + 'K'
         }
         
-        return val + " TonCO2"
+        return val + " KgCO2"
       }
     }
   },
@@ -641,6 +654,7 @@ var yaxisChart1Large = [
   }
 ]
 
+// CHART 1
 function chart1(data) {
   var yaxisConfig
   breakpoint === 'large' ? yaxisConfig = yaxisChart1Large : yaxisConfig = yaxisChart1Normal 
@@ -674,7 +688,7 @@ function chart1(data) {
       y: [{
         formatter: function (y) {
           if(typeof y !== "undefined") {
-            return  y.toFixed(2) + " TonCO2";
+            return  y.toFixed(2) + " KgCO2";
           }
           return y;
           
@@ -700,7 +714,7 @@ function chart1(data) {
       breakpoint: 3840,
       options: {
         chart: {
-          height: '100%'
+          height: '90%'
         }
       }
     }]
@@ -721,22 +735,24 @@ function chart1(data) {
   ])
 }
 
+// Initial Chart 1
 var value = $('#select-chart1').val()
 var results = []
 if (value == "yearly") {
   results = dataChart1[0]
   chart1(results)
+  chartTime(value, 'chart1Time')
 } else if (value == "monthly") {
   results = dataChart1[1]
   chart1(results)
+  chartTime(value, 'chart1Time')
 } else {
   results = dataChart1[2]
   chart1(results)
+  chartTime(value, 'chart1Time')
 }
 
-// }
-
-// chart 2
+// CHART 2
 // filter data function
 function filterDataForChart2(plant='karawang1', time='daily', area='all') {
   var filteredDataChartManufacturing = []
@@ -804,7 +820,18 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
     },
     dataLabels: {
       enabled: false,
-    }
+    },
+    responsive: [{
+      breakpoint: 3840,
+      options: {
+        chart: {
+          height: '90%'
+        },
+        yaxis: {
+          tickAmount: 4,
+        }
+      }
+    }]
   };
   
   var chart2 = new ApexCharts(document.querySelector("#chart2"), options);
@@ -859,6 +886,8 @@ var plantChart2 = $('#select-plant-chart2').val()
 var timeChart2 = $('#select-time-chart2').val()
 var areaChart2 = $('#select-area-chart2').val()
 
+chartTime(timeChart2, 'chart2Time')
+
 // chart 2 on select
 $('#select-plant-chart2').on('change', function () {
   var plant = $('#select-plant-chart2').val()
@@ -867,15 +896,14 @@ $('#select-plant-chart2').on('change', function () {
   filterDataForChart2(plant, time, area)
 })
 
-// chart 2 on select
 $('#select-time-chart2').on('change', function () {
   var plant = $('#select-plant-chart2').val()
   var time = $('#select-time-chart2').val()
   var area = $('#select-area-chart2').val()
   filterDataForChart2(plant, time, area)
+  chartTime(time, 'chart2Time')
 })
 
-// chart 2 on select 
 $('#select-area-chart2').on('change', function () {
   var plant = $('#select-plant-chart2').val()
   var time = $('#select-time-chart2').val()
@@ -885,29 +913,7 @@ $('#select-area-chart2').on('change', function () {
 
 filterDataForChart2(plantChart2, timeChart2, areaChart2)
 
-// chart3
-// var options = {
-//   series: filteredDataChart3,
-//   labels: ['manufacturing','building','utility','digital'],
-//   chart: {
-//     type: 'donut',
-//   },
-//   legend: {
-//     position: 'bottom',
-//     itemMargin: {
-//       horizontal: 10,
-//       vertical: 5
-//     }
-//   },
-//   dataLabels: {
-//     enabled: true,
-//     formatter: function(val){
-//       return val +" TonCO2"
-//     }
-//   },
-// };
-
-// chart3
+// CHART 3
 // filter data function
 function filterDataForChart3(filter) {
   var filteredDataChart = []
@@ -927,7 +933,6 @@ function filterDataForChart3(filter) {
       chart: {
         id: 'my-donut',
         type: 'donut',
-        height: '80%'
       },
       colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
       legend: {
@@ -940,7 +945,7 @@ function filterDataForChart3(filter) {
       dataLabels: {
         enabled: true,
         formatter: function(label, opts) {
-          return opts.w.globals.series[opts.seriesIndex] + ' TonCO2'
+          return opts.w.globals.series[opts.seriesIndex] + ' KgCO2'
         }
       },
       xaxis: {
@@ -966,7 +971,7 @@ $('#select-chart3').on('change', function () {
 var plantChart3 = $('#select-chart3').val()
 filterDataForChart3(plantChart3)
 
-// Chart4
+// CHART 4
 var options = {
   series: [{
     data: data.slice()
@@ -1017,17 +1022,20 @@ var options = {
 var chart4 = new ApexCharts(document.querySelector("#chart4"), options);
 chart4.render();
 
-// chart 4 filter
-var yesterday = new Date().getTime()-89800000
-var lastMonth = new Date().getTime()-(86400000*30)
-var lastYear = new Date().getTime()-(86400000*300)
+// Chart 4 Interval Variable
+var today = new Date()
+var yesterday = new Date().getTime()-10800000
+var lastMonth = new Date().getTime()-10800000-(86400000*30)
+var lastYear = new Date().getTime()-10800000-(86400000*300)
 var intervalHour = 3600000
 var intervalDay = 86400000
 var intervalMonth = Math.pow(2,31)-1
 var usedInterval = 0
 var minimalSeries
 var maximalSeries
+var interval
 
+// Chart 4 Filter Function
 function chart4Filter(time) {
   if (time === 'daily') {
     TICKINTERVAL = 86400000/24
@@ -1037,7 +1045,7 @@ function chart4Filter(time) {
     minimalSeries = 10
     maximalSeries = 90
 
-    getDayWiseTimeSeries(yesterday, 24, {
+    getDayWiseTimeSeries(yesterday, 10, {
       min: minimalSeries,
       max: maximalSeries
     })
@@ -1089,6 +1097,7 @@ function chart4Filter(time) {
 
 var selectTimeChart4 = $('#select-time-chart4').val()
 chart4Filter(selectTimeChart4)
+chartTime(selectTimeChart4, 'chart4Time')
 
 // chart 4 on select
 $('#select-plant-chart4').on('change', function () {
@@ -1103,13 +1112,13 @@ $('#select-time-chart4').on('change', function () {
 
   chart4Filter(value)
   updateChart4Interval(value)
+  chartTime(value, 'chart4Time')
 })
 
-// Interval
-var interval
-
+// Interval for Chart 4
 updateChart4Interval(selectTimeChart4)
 
+// Get Interval Based on Selected Time 
 function theInterval (time) {
   if (time === 'daily') {
     usedInterval = intervalHour
@@ -1120,11 +1129,14 @@ function theInterval (time) {
   }
 } 
 
+// Update Chart 4 Interval
 function updateChart4Interval(time) {
   // Clears the previous setInterval timer
   clearInterval(interval)
+  // Set New Interval
   theInterval(time);
   console.log(usedInterval)
+  // Set Min Max Series Based on Selected Time
   var minimalSeries
   var maximalSeries
   if (time === 'daily') {
@@ -1149,11 +1161,6 @@ function updateChart4Interval(time) {
     }])
   }, usedInterval)
 }
-
-// // console.log() requires firebug    
-// setDeceleratingTimeout(function(){ console.log('hi'); }, 10, 10);
-// setDeceleratingTimeout(function(){ console.log('bye'); }, 100, 10);
-
 // var options = {
 //   series: [{
 //     name: 'Emission',
@@ -1197,10 +1204,3 @@ function updateChart4Interval(time) {
 //     y: Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
 //   });
 // }
-
-function reloadStylesheets() {
-  var queryString = '?reload=' + new Date().getTime();
-  $('link[rel="stylesheet"]').each(function () {
-      this.href = this.href.replace(/\?.*|$/, queryString);
-  });
-}

@@ -78,16 +78,16 @@ var dataChart2 = [{
   // monthly
   "monthly": [
     {
-      "label": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+      "label": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, /*11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30*/],
       "data": [  
         // karawang 1
         {
           "plant":"karawang1", 
           "carbon":[{
-            "manufacturing":generateRandomInRange(100, 200, 30),
-            "building":generateRandomInRange(100, 200, 30),
-            "utility":generateRandomInRange(100, 200, 30),
-            "digital":generateRandomInRange(100, 200, 30),
+            "manufacturing":generateRandomInRange(100, 200, 10),
+            "building":generateRandomInRange(100, 200, 10),
+            "utility":generateRandomInRange(100, 200, 10),
+            "digital":generateRandomInRange(100, 200, 10),
           }]
         },
 
@@ -96,10 +96,10 @@ var dataChart2 = [{
           
           "plant":"karawang2", 
           "carbon":[{
-            "manufacturing":generateRandomInRange(100, 200, 30),
-            "building":generateRandomInRange(100, 200, 30),
-            "utility":generateRandomInRange(100, 200, 30),
-            "digital":generateRandomInRange(100, 200, 30),
+            "manufacturing":generateRandomInRange(100, 200, 10),
+            "building":generateRandomInRange(100, 200, 10),
+            "utility":generateRandomInRange(100, 200, 10),
+            "digital":generateRandomInRange(100, 200, 10),
           }]
         },
         
@@ -107,10 +107,10 @@ var dataChart2 = [{
         {
           "plant":"karawang3", 
           "carbon":[{
-            "manufacturing":generateRandomInRange(100, 200, 30),
-            "building":generateRandomInRange(100, 200, 30),
-            "utility":generateRandomInRange(100, 200, 30),
-            "digital":generateRandomInRange(100, 200, 30),
+            "manufacturing":generateRandomInRange(100, 200, 10),
+            "building":generateRandomInRange(100, 200, 10),
+            "utility":generateRandomInRange(100, 200, 10),
+            "digital":generateRandomInRange(100, 200, 10),
           }]
         },
 
@@ -118,10 +118,10 @@ var dataChart2 = [{
         {
           "plant":"sunter1", 
           "carbon":[{
-            "manufacturing":generateRandomInRange(100, 200, 30),
-            "building":generateRandomInRange(100, 200, 30),
-            "utility":generateRandomInRange(100, 200, 30),
-            "digital":generateRandomInRange(100, 200, 30),
+            "manufacturing":generateRandomInRange(100, 200, 10),
+            "building":generateRandomInRange(100, 200, 10),
+            "utility":generateRandomInRange(100, 200, 10),
+            "digital":generateRandomInRange(100, 200, 10),
           }]
         },
 
@@ -129,10 +129,10 @@ var dataChart2 = [{
         {
           "plant":"sunter2", 
           "carbon":[{
-            "manufacturing":generateRandomInRange(100, 200, 30),
-            "building":generateRandomInRange(100, 200, 30),
-            "utility":generateRandomInRange(100, 200, 30),
-            "digital":generateRandomInRange(100, 200, 30),
+            "manufacturing":generateRandomInRange(100, 200, 10),
+            "building":generateRandomInRange(100, 200, 10),
+            "utility":generateRandomInRange(100, 200, 10),
+            "digital":generateRandomInRange(100, 200, 10),
           }]
         }
       ]
@@ -141,16 +141,16 @@ var dataChart2 = [{
 
   // yearly
   "yearly": [{
-    "label": ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'],
+    "label": ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct',/*'Nov','Dec'*/],
     "data": [
       // karawang 1
       {
         "plant":"karawang1", 
         "carbon":[{
-          "manufacturing":generateRandomInRange(1000, 3000, 12),
-          "building":generateRandomInRange(1000, 3000, 12),
-          "utility":generateRandomInRange(1000, 3000, 12),
-          "digital":generateRandomInRange(1000, 3000, 12),
+          "manufacturing":generateRandomInRange(1000, 3000, 10),
+          "building":generateRandomInRange(1000, 3000, 10),
+          "utility":generateRandomInRange(1000, 3000, 10),
+          "digital":generateRandomInRange(1000, 3000, 10),
         }]
       },
 
@@ -158,10 +158,10 @@ var dataChart2 = [{
       {
         "plant":"karawang2", 
         "carbon":[{
-          "manufacturing":generateRandomInRange(1000, 3000, 12),
-          "building":generateRandomInRange(1000, 3000, 12),
-          "utility":generateRandomInRange(1000, 3000, 12),
-          "digital":generateRandomInRange(1000, 3000, 12),
+          "manufacturing":generateRandomInRange(1000, 3000, 10),
+          "building":generateRandomInRange(1000, 3000, 10),
+          "utility":generateRandomInRange(1000, 3000, 10),
+          "digital":generateRandomInRange(1000, 3000, 10),
         }]
       },
       

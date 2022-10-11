@@ -9,6 +9,10 @@ body {
     color: #ebebeb;
 }
 
+i.bi {
+    font-size: 15px;
+}
+
 .w-30 {
     width: 30%;
 }
@@ -52,23 +56,29 @@ p {
 }
 
 .card {
-    height: 350px;
+    height: 30vh;
 }
 
 .card.smaller {
-    height: 50%;
+    height: 30vh
 }
 
 .card-body {
-    height: auto;
+    height: 100px;
 }
 
-.card-title-container {
-    padding: 5px 0;
+.card-title-container.with-date {
+    padding: 0;
+    height: 43px;
 }
 
 .card-title {
     font-weight: bold;
+    margin-bottom: 0 !important;
+}
+
+.small-date {
+    font-size: 13px;
 }
 
 p.large {
@@ -102,11 +112,20 @@ p.normal {
     color: #222;
 }
 
+.apexcharts-datalabel-value {
+    transform: translateY(-19px);
+    font-size: 11px;
+}
+
 @media only screen and (min-width: 3840px) {
     body:before {
         content: "large";
         display: none;
         visibility: hidden;
+    }
+
+    i.bi {
+        font-size: 35px;
     }
 
     p.large {
@@ -145,9 +164,18 @@ p.normal {
         padding: 15px 10px;
         margin-bottom: 30px;
     }
-    
+
+    .card-title-container.with-date {
+        padding: 0 10px;
+        height: 100px;
+    }
+
     .card-title {
         font-size: 45px;
+    }
+
+    .small-date {
+        font-size: 35px;
     }
 
     .form-select {
@@ -161,5 +189,11 @@ p.normal {
 
     #chart1 tspan {
         font-size: 30px !important;
+    }
+
+    .tooltip-inner {
+        max-width: 900px;
+        font-size: 45px;
+        padding: 20px;
     }
 }   

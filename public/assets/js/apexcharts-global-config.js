@@ -20,7 +20,7 @@ var normalScreenConfig = {
           val = (val / 1000).toFixed(0) + 'K'
         }
         
-        return val + " TonCO2"
+        return val + " KgCO2"
       }
     }
   },
@@ -87,7 +87,7 @@ var largeScreenConfig = {
           val = (val / 1000).toFixed(0) + 'K'
         }
         
-        return val + " TonCO2"
+        return val + " KgCO2"
       },
     }
   },
@@ -110,7 +110,7 @@ var largeScreenConfig = {
           fontSize: '40px',
           formatter: function(val){
               let label = (val/100)*total;
-            return label.toFixed(2) +" TonCO2"
+            return label.toFixed(2) +" KgCO2"
           }
         },
         total: {
@@ -118,7 +118,7 @@ var largeScreenConfig = {
           show: true,
           label: 'Total',
           formatter: function (w) {
-            return total +" TonCO2"
+            return total +" KgCO2"
           }
         }
       }

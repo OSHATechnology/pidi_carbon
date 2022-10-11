@@ -6,9 +6,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center card-title-container">
-                            <h5 class="card-title mb-0" data-bs-toggle="tooltip" data-bs-placement="right"
-                                data-bs-title="Default tooltip">
-                                Emission Accumulation
+                            <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
+                                data-bs-title="Menampilkan total emisi untuk setiap area">
+                                Emission Accumulation <i class="bi bi-info-circle text-white"></i>
                             </h5>
                             <div>
                                 <select name="" id="select-chart6" class="form-select bg-dark form-select-sm">
@@ -26,7 +26,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center card-title-container">
-                            <h5 class="card-title">Top Emmissions by Area</h5>
+                            <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
+                                data-bs-title="Menampilkan nilai emisi setiap plant berdasarkan detail nilai emisi maing-masing area">
+                                Top Emmissions by Area <i class="bi bi-info-circle text-white"></i></h5>
                             <div>
                                 <select name="" id="select-chart3" class="form-select bg-dark form-select-sm">
                                     <option value="karawang1">Karawang1</option>
@@ -45,7 +47,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center card-title-container">
-                            <h5 class="card-title mb-0">Total Emission/Offset</h5>
+                            <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
+                                data-bs-title="Menampilkan total emisi berbanding dengan target emisi yang sudah ditentukan">
+                                Total Emission/Offset <i class="bi bi-info-circle text-white"></i></h5>
                             <div>
                                 <select name="" id="select-chart5" class="form-select bg-dark form-select-sm">
                                     {{-- <option value="karawang1">Karawang1</option>
@@ -69,8 +73,15 @@
                     <div class="col h-50">
                         <div class="card smaller">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center card-title-container">
-                                    <h5 class="card-title">Carbon Footprint</h5>
+                                <div
+                                    class="d-flex justify-content-between align-items-center card-title-container with-date">
+                                    <div class="d-flex flex-column">
+                                        <h5 class="card-title" data-bs-toggle="tooltip"
+                                            data-bs-custom-class="custom-tooltip" data-bs-placement="right"
+                                            data-bs-title="Menampilkan nilai emisi setiap area pada masing-masing plantnya">
+                                            Carbon Footprint <i class="bi bi-info-circle text-white"></i></h5>
+                                        <p id="chart2Time" class="small-date"></p>
+                                    </div>
                                     <div class="d-flex gap-1">
                                         <select name="" id="select-plant-chart2"
                                             class="form-select bg-dark form-select-sm">
@@ -96,15 +107,21 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div id="chart2" class="mt-3"></div>
+                                <div id="chart2"></div>
                             </div>
                         </div>
                     </div>
                     <div class="col h-50">
                         <div class="card smaller">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center card-title-container">
-                                    <h5 class="card-title mb-0">Total Emission</h5>
+                                <div
+                                    class="d-flex justify-content-between align-items-center card-title-container with-date">
+                                    <div class="d-flex flex-column">
+                                        <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
+                                            data-bs-title="Menampilkan nilai emisi berbanding dengan jumlah produksi mobil">
+                                            Total Emission <i class="bi bi-info-circle text-white"></i></h5>
+                                        <p id="chart1Time" class="small-date"></p>
+                                    </div>
                                     <div>
                                         <select name="" id="select-chart1"
                                             class="form-select bg-dark form-select-sm">
@@ -114,7 +131,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div id="chart1" class="mt-3"></div>
+                                <div id="chart1"></div>
                             </div>
                         </div>
                     </div>
@@ -123,10 +140,16 @@
             <div class="col-6">
                 <div class="card h-100">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center card-title-container">
-                            <h5 class="card-title mb-0">Realtime Emission</h5>
+                        <div class="d-flex justify-content-between align-items-center card-title-container with-date">
+                            <div class="d-flex flex-column">
+                                <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
+                                    data-bs-title="Menampilkan data total emisi secara realtime pada setiap plantnya">
+                                    Realtime Emission <i class="bi bi-info-circle text-white"></i></h5>
+                                <p id="chart4Time" class="small-date"></p>
+                            </div>
                             <div class="d-flex gap-1">
-                                <select name="" id="select-plant-chart4" class="form-select bg-dark form-select-sm">
+                                <select name="" id="select-plant-chart4"
+                                    class="form-select bg-dark form-select-sm">
                                     <option value="karawang1">Karawang1</option>
                                     <option value="karawang2">Karawang2</option>
                                     <option value="karawang3">Karawang3</option>
