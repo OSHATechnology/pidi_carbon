@@ -559,8 +559,6 @@ $('#select-chart1').on('change', function () {
 
   chart1(results)
   console.log(results)
-  console.log(results)
-
 })
 
 var yaxisChart1Normal = [
@@ -723,7 +721,18 @@ function chart1(data) {
   ])
 }
 
-chart1(dataChart1[2])
+var value = $('#select-chart1').val()
+var results = []
+if (value == "yearly") {
+  results = dataChart1[0]
+  chart1(results)
+} else if (value == "monthly") {
+  results = dataChart1[1]
+  chart1(results)
+} else {
+  results = dataChart1[2]
+  chart1(results)
+}
 
 // }
 

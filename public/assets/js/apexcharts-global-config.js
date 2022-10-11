@@ -1,5 +1,4 @@
 // Global
-
 var normalScreenConfig = {
   chart: {
     height: '100%',

@@ -96,7 +96,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div id="chart2"></div>
+                                <div id="chart2" class="mt-3"></div>
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div id="chart1" class="mt-4"></div>
+                                <div id="chart1" class="mt-3"></div>
                             </div>
                         </div>
                     </div>
@@ -133,7 +133,8 @@
                                     <option value="sunter1">Sunter1</option>
                                     <option value="sunter2">Sunter2</option>
                                 </select>
-                                <select name="" id="select-time-chart4" class="form-select bg-dark form-select-sm">
+                                <select name="" id="select-time-chart4"
+                                    class="form-select bg-dark form-select-sm">
                                     <option value="daily">Daily</option>
                                     <option value="monthly">Monthly</option>
                                     <option value="yearly">Yearly</option>
