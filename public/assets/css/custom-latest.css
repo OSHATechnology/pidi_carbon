@@ -56,7 +56,7 @@ p {
 }
 
 .card.smaller {
-    height: auto;
+    height: 50%;
 }
 
 .card-body {
@@ -98,82 +98,8 @@ p.normal {
     border: none;
 }
 
-.apexcharts-text tspan {
-    font-size: 13px !important;
-}
-
 .apexcharts-tooltip {
     color: #222;
-}
-  
-.apexcharts-tooltip {
-    transform: scale(0.4) translateX(-65%) translateY(-35%);
-}
-
-.apexcharts-tooltip .apexcharts-tooltip-series-group.active {
-    background: #ffffff;
-}
-
-.apexcharts-legend-series.custom .apexcharts-legend-text {
-    font-size: 15px !important;
-}
-
-.apexcharts-legend-series.custom .apexcharts-legend-marker {
-    width: 15px !important;
-    height: 15px !important;
-}
-
-#chart1 {
-    transform: translateX(-30px);
-}
-
-#chart1 .apexcharts-legend {
-    transform: translateX(130px) !important;
-}
-
-#chart1 .apexcharts-tooltip {
-    transform: scale(1) translateX(0) translateY(0) !important;
-} 
-
-#chart2 {
-    transform: translateX(-30px);
-}
-
-#chart2 .apexcharts-legend {
-    transform: translateX(30px);
-}
-
-#chart2 .apexcharts-tooltip {
-    transform: scale(1) translateX(0) translateY(0) !important;
-} 
-
-#chart3 .apexcharts-tooltip {
-    transform: scale(1) translateX(0) translateY(0) !important;
-} 
-
-#chart4 {
-    transform: translateX(-30px);
-} 
-
-#chart4 .apexcharts-legend {
-    transform: translateX(30px);
-}
-
-#chart4 .apexcharts-tooltip {
-    transform: scale(1) translateX(0) translateY(0) !important;
-} 
-
-.apexcharts-datalabel-value {
-    font-size: 13px;
-    transform: translateY(-13px);
-}
-
-.footer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    bottom: 0;
-    margin: 30px 0;
 }
 
 @media only screen and (min-width: 3840px) {
@@ -189,6 +115,7 @@ p.normal {
 
     .form-select.bg-dark {
         background-size: 25px;
+        padding-right: 100px;
     }
 
     .mt-large {
@@ -202,8 +129,8 @@ p.normal {
     }
 
     .apexcharts-datalabel-value {
-        font-size: 30px;
-        transform: translateY(30px);
+        font-size: 35px;
+        transform: translateY(10px);
     }
 
     .card {
@@ -220,7 +147,7 @@ p.normal {
     }
     
     .card-title {
-        font-size: 50px;
+        font-size: 45px;
     }
 
     .form-select {
@@ -232,55 +159,7 @@ p.normal {
         font-size: 13px;
     }
 
-    .custom-legend-1 {
-        margin: 15px 0;
-    }
-
-    .apexcharts-legend-series.custom .apexcharts-legend-text {
-        font-size: 40px !important;
-    }
-
-    .apexcharts-legend-series.custom .apexcharts-legend-marker {
-        width: 30px !important;
-        height: 30px !important;
-    }
-
-    .apexcharts-legend-series.custom p {
-        font-size: 40px;
-    }
-
-    .apexcharts-text tspan {
+    #chart1 tspan {
         font-size: 30px !important;
-    }
-
-    #chart1 {
-        transform: translateX(0);
-        /* margin-top: 80px !important; */
-        margin-top: 0px !important;
-    }
-
-    #chart1 .apexcharts-legend {
-        transform: translateX(330px) !important;
-    }
-
-    #chart2 {
-        transform: translateX(0);
-    }
-    
-    #chart2 .apexcharts-legend {
-        transform: translateX(0);
-    }
-
-    #chart4 {
-        transform: translateX(0);
-    }
-
-    .apexcharts-tooltip {
-        transform: scale(1) translateX(0%) translateY(0%);
-    } 
-    
-    .footer p {
-        margin-top: 30px;
-        font-size: 40px;
     }
 }   

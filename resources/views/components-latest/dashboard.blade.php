@@ -6,7 +6,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center card-title-container">
-                            <h5 class="card-title mb-0">Emission Accumulation</h5>
+                            <h5 class="card-title mb-0" data-bs-toggle="tooltip" data-bs-placement="right"
+                                data-bs-title="Default tooltip">
+                                Emission Accumulation
+                            </h5>
                             <div>
                                 <select name="" id="select-chart6" class="form-select bg-dark form-select-sm">
                                     <option value="daily">Daily</option>
@@ -61,9 +64,9 @@
 
         {{-- Row 2 --}}
         <div class="row my-3">
-            <div class="col-4">
+            <div class="col-6">
                 <div class="row row-cols-1 gap-3">
-                    <div class="col">
+                    <div class="col h-50">
                         <div class="card smaller">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center card-title-container">
@@ -97,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col h-50">
                         <div class="card smaller">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center card-title-container">
@@ -117,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-6">
                 <div class="card h-100">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center card-title-container">

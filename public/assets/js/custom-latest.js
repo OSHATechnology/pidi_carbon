@@ -456,16 +456,6 @@ chart5()
 // }
 // console.log(filterDataChart1(value),'tes chart1')
 
-// get breakpoint
-var getBreakpoint = function () {
-  return window.getComputedStyle(document.body, ':before').content.replace(/\"/g, '');;
-};
-
-// Calculate breakpoint on page load
-var breakpoint = getBreakpoint();
-
-console.log(breakpoint)
-
 // generate data
 var productionMonthly = [] 
 var productionDaily = [] 
@@ -561,13 +551,10 @@ $('#select-chart1').on('change', function () {
   var results = []
   if (value == "yearly") {
     results = dataChart1[0]
-    breakpoint == "large" ? $("#chart1").css({ "transform": "translateX(0) translateY(0)" }) : $("#chart1").css({ "transform": "translateX(-50px) translateY(-30px)" });
   } else if (value == "monthly") {
     results = dataChart1[1]
-    breakpoint === "large" ? $("#chart1").css({ "transform": "translateX(0) translateY(0)" }) : $("#chart1").css({ "transform": "translateX(-40px) translateY(-30px)" });
   } else {
     results = dataChart1[2]
-    breakpoint === "large" ? $("#chart1").css({ "transform": "translateX(0) translateY(0)" }) : $("#chart1").css({ "transform": "translateX(-30px) translateY(0px)" });
   }
 
   chart1(results)
@@ -576,7 +563,90 @@ $('#select-chart1').on('change', function () {
 
 })
 
+var yaxisChart1Normal = [
+  {
+    title: {
+      text: "Emission"
+    },
+    labels: {
+      minWidth: 140,
+      maxWidth: 140,
+      formatter: function(val, chart) {
+        if( val >= 1000) {
+          val = (val / 1000).toFixed(0) + 'K'
+        }
+        
+        return val + " TonCO2"
+      }
+    }
+  },
+  {
+    opposite: true,
+    title: {
+      text: "Car Production"
+    },
+    labels: {
+      minWidth: 30,
+      maxWidth: 30,
+      formatter: function(val, chart) {
+        if( val >= 1000) {
+          val = (val / 1000).toFixed(0) + 'K'
+        }
+        
+        return val
+      }
+    }
+  }
+]
+
+var yaxisChart1Large = [
+  {
+    title: {
+      text: "Emission",
+      style: {
+        fontSize: '30px'
+      }
+    },
+    labels: {
+      fontSize: '30px',
+      minWidth: 275,
+      maxWidth: 275,
+      formatter: function(val, chart) {
+        if( val >= 1000) {
+          val = (val / 1000).toFixed(0) + 'K'
+        }
+        
+        return val + " TonCO2"
+      }
+    }
+  },
+  {
+    opposite: true,
+    title: {
+      text: "Car Production",
+      style: {
+        fontSize: '30px'
+      }
+    },
+    labels: {
+      fontSize: '30px',
+      minWidth: 60,
+      maxWidth: 60,
+      formatter: function(val, chart) {
+        if( val >= 1000) {
+          val = (val / 1000).toFixed(0) + 'K'
+        }
+        
+        return val
+      }
+    }
+  }
+]
+
 function chart1(data) {
+  var yaxisConfig
+  breakpoint === 'large' ? yaxisConfig = yaxisChart1Large : yaxisConfig = yaxisChart1Normal 
+
   var options = {
     series: [{
       name: 'emission',
@@ -588,25 +658,54 @@ function chart1(data) {
     }],
     chart: {
       type: 'area',
-      height: '80%',
       zoom: {
         enabled: false
+      },
+      toolbar: {
+        show: false
       }
     },
     xaxis: {
-      // data: results.label
-      // type: 'datetime',
+      hideOverlappingLabels: true,
       categories: data.label,
     },
-    yaxis: {
-      opposite: false,
+    yaxis: yaxisConfig,
+    tooltip: {
+      shared: true,
+      intersect: false,
+      y: [{
+        formatter: function (y) {
+          if(typeof y !== "undefined") {
+            return  y.toFixed(2) + " TonCO2";
+          }
+          return y;
+          
+        }
+      }, {
+        formatter: function (y) {
+          if(typeof y !== "undefined") {
+            return  y.toFixed(0) + " products";
+          }
+          return y;
+          
+        }
+      }]
     },
     legend: {
-      horizontalAlign: 'left'
+      position: 'top',
+      horizontalAlign: 'center'
     },
     dataLabels: {
-      show: false
-    }
+      enabled: false
+    },
+    responsive: [{
+      breakpoint: 3840,
+      options: {
+        chart: {
+          height: '100%'
+        }
+      }
+    }]
   };
 
   var chart = new ApexCharts(document.querySelector("#chart1"), options);
@@ -674,8 +773,8 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
       data: filteredDataChartUtility
     }],
     chart: {
+      id: 'chart2',
       type: 'bar',
-      height: '80%',
       stacked: true,
       zoom: {
         enabled: false
@@ -704,7 +803,7 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
 
   chart2.updateOptions({
     xaxis: {
-       categories: thedata.label
+      categories: thedata.label
     },
     series: [
       {
@@ -866,6 +965,7 @@ var options = {
   chart: {
     id: 'realtime',
     type: 'area',
+    height: '90%',
     animations: {
       enabled: true,
       easing: 'linear',
@@ -898,7 +998,7 @@ var options = {
     range: XAXISRANGE,
   },
   yaxis: {
-    max: 100
+    max: 10000
   },
   legend: {
     show: false
@@ -916,6 +1016,8 @@ var intervalHour = 3600000
 var intervalDay = 86400000
 var intervalMonth = Math.pow(2,31)-1
 var usedInterval = 0
+var minimalSeries
+var maximalSeries
 
 function chart4Filter(time) {
   if (time === 'daily') {
@@ -923,33 +1025,42 @@ function chart4Filter(time) {
     XAXISRANGE = 777600000/24
     usedInterval = 1000
 
+    minimalSeries = 10
+    maximalSeries = 90
+
     getDayWiseTimeSeries(yesterday, 24, {
-      min: 10,
-      max: 90
+      min: minimalSeries,
+      max: maximalSeries
     })
   } else if (time === 'monthly') {
     TICKINTERVAL = 86400000-1
     XAXISRANGE = 777600000-1
     usedInterval = 10000
 
+    minimalSeries = 100
+    maximalSeries = 500
+
     getDayWiseTimeSeries(lastMonth, 30, {
-      min: 10,
-      max: 90
+      min: minimalSeries,
+      max: maximalSeries
     })
   } else if (time === 'yearly') {
     TICKINTERVAL = 86400000*30
     XAXISRANGE = 777600000*30
     usedInterval = 30000
-    
+
+    minimalSeries = 3000
+    maximalSeries = 9000
+
     getDayWiseTimeSeries(lastYear, 10, {
-      min: 10,
-      max: 90
+      min: minimalSeries,
+      max: maximalSeries
     })
   }
 
   getNewSeries(lastDate, {
-    min: 10,
-    max: 90
+    min: minimalSeries,
+    max: maximalSeries
   })
 
   chart4.updateSeries([{
@@ -960,6 +1071,9 @@ function chart4Filter(time) {
     xaxis: {
       type: 'datetime',
       range: XAXISRANGE,
+    },
+    yaxis: {
+      max: maximalSeries
     }
   })
 }
@@ -969,7 +1083,10 @@ chart4Filter(selectTimeChart4)
 
 // chart 4 on select
 $('#select-plant-chart4').on('change', function () {
-  chart4Filter(selectTimeChart4)
+  var value = $('#select-time-chart4').val()
+
+  chart4Filter(value)
+  updateChart4Interval(value)
 })
 
 $('#select-time-chart4').on('change', function () {
@@ -999,10 +1116,23 @@ function updateChart4Interval(time) {
   clearInterval(interval)
   theInterval(time);
   console.log(usedInterval)
+  var minimalSeries
+  var maximalSeries
+  if (time === 'daily') {
+    minimalSeries = 10
+    maximalSeries = 90
+  } else if (time === 'monthly') {
+    minimalSeries = 100
+    maximalSeries = 500
+  } else if (time === 'yearly') {
+    minimalSeries = 1000
+    maximalSeries = 5000
+  }
+
   interval = window.setInterval(function () {
     getNewSeries(lastDate, {
-      min: 10,
-      max: 90
+      min: minimalSeries,
+      max: maximalSeries
     })
   
     chart4.updateSeries([{
