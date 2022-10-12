@@ -943,25 +943,21 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
   chart2.render();
 
   if (area === 'manufacturing') {
-    alert(area)
     chart2.showSeries('Manufacturing')
     chart2.hideSeries('Building')
     chart2.hideSeries('Utility')
     chart2.hideSeries('Digital')
   } else if (area === 'building') {
-    alert(area)
     chart2.showSeries('Building')
     chart2.hideSeries('Manufacturing')
     chart2.hideSeries('Utility')
     chart2.hideSeries('Digital')
   } else if (area === 'utility') {
-    alert(area)
     chart2.showSeries('Utility')
     chart2.hideSeries('Building')
     chart2.hideSeries('Manufacturing')
     chart2.hideSeries('Digital')
   } else if (area === 'digital') {
-    alert(area)
     chart2.showSeries('Digital')
     chart2.hideSeries('Building')
     chart2.hideSeries('Utility')
