@@ -622,6 +622,7 @@ var yaxisChart1Normal = [
         return val + " KgCO2"
       }
     },
+    tickAmount: 4,
   },
   {
     opposite: false,
@@ -643,6 +644,7 @@ var yaxisChart1Normal = [
       },
       offsetX: 20,
     },
+    tickAmount: 4,
   }
 ]
 
@@ -821,6 +823,7 @@ function chart1(time='daily') {
     
                 legendClicked = false
               }
+              
               chartContext.updateOptions({
                 yaxis: [
                   {
@@ -841,6 +844,7 @@ function chart1(time='daily') {
                         return val + " KgCO2"
                       }
                     },
+                    tickAmount: 4,
                   },
                   {
                     opposite: false,
@@ -862,6 +866,7 @@ function chart1(time='daily') {
                       },
                       offsetX: offsetNumber,
                     },
+                    tickAmount: 4,
                   }
                 ]
               })
@@ -938,7 +943,7 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
   if (time === 'daily') {
     minimalSeries = 10
     maximalSeries = 50
-    dateTo = new Date().getTime()-(3600000*2)-1500000
+    dateTo = new Date().getTime()-(3600000*2)-500000
     dateRange = 10
     xAxisRange = 777600000/24
     TICKINTERVAL2 = 86400000/24
