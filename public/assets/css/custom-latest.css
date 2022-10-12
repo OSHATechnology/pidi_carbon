@@ -56,7 +56,7 @@ p {
 }
 
 .card {
-    height: 33vh;
+    height: 30vh;
 }
 
 .card.smaller {
@@ -125,7 +125,7 @@ p.normal {
     display: flex;
     position: absolute;
     right: 0;
-    bottom: 10%;
+    top: 80%;
 }
 
 #totalChart6 {
