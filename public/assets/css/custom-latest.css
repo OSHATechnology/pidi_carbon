@@ -213,7 +213,7 @@ p.normal {
     }
 
     #chart1 .apexcharts-yaxis-title {
-        transform: translateX(-10px);
+        transform: translateX(-15px);
     }
 
     .tooltip-inner {
