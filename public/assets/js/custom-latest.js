@@ -762,65 +762,6 @@ function chart1(time='daily') {
       toolbar: {
         show: false
       },
-      events: {
-        legendClick: function(chartContext, seriesIndex, config) {
-          if(!legendClicked) {
-            var offsetNumberTitle=0
-            var offsetNumber=0
-
-            legendClicked = true
-          } else {
-            var offsetNumberTitle=10
-            var offsetNumber=20
-
-            legendClicked = false
-          }
-          chartContext.updateOptions({
-            yaxis: [
-              {
-                title: {
-                  text: "Emission",
-                  style: {
-                    fontSize: '10px',
-                  },
-                  offsetX: offsetNumberTitle,
-                },
-                labels: {
-                  maxWidth: 60,
-                  formatter: function(val, chart) {
-                    if( val >= 1000) {
-                      val = (val / 1000).toFixed(0) + 'K'
-                    }
-                    
-                    return val + " KgCO2"
-                  }
-                },
-              },
-              {
-                opposite: false,
-                title: {
-                  text: "Car Production",
-                  style: {
-                    fontSize: '10px',
-                  },
-                  offsetX: offsetNumberTitle,
-                },
-                labels: {
-                  maxWidth: 60,
-                  formatter: function(val, chart) {
-                    if( val >= 1000) {
-                      val = (val / 1000).toFixed(0) + 'K'
-                    }
-                    
-                    return val
-                  },
-                  offsetX: offsetNumber,
-                },
-              }
-            ]
-          })
-        }
-      }
     },
     xaxis: {
       type: 'datetime',
@@ -866,7 +807,66 @@ function chart1(time='daily') {
       breakpoint: 3840,
       options: {
         chart: {
-          height: '80%'
+          height: '80%',
+          events: {
+            legendClick: function(chartContext, seriesIndex, config) {
+              if(!legendClicked) {
+                var offsetNumberTitle=0
+                var offsetNumber=0
+    
+                legendClicked = true
+              } else {
+                var offsetNumberTitle=10
+                var offsetNumber=20
+    
+                legendClicked = false
+              }
+              chartContext.updateOptions({
+                yaxis: [
+                  {
+                    title: {
+                      text: "Emission",
+                      style: {
+                        fontSize: '10px',
+                      },
+                      offsetX: offsetNumberTitle,
+                    },
+                    labels: {
+                      maxWidth: 60,
+                      formatter: function(val, chart) {
+                        if( val >= 1000) {
+                          val = (val / 1000).toFixed(0) + 'K'
+                        }
+                        
+                        return val + " KgCO2"
+                      }
+                    },
+                  },
+                  {
+                    opposite: false,
+                    title: {
+                      text: "Car Production",
+                      style: {
+                        fontSize: '10px',
+                      },
+                      offsetX: offsetNumberTitle,
+                    },
+                    labels: {
+                      maxWidth: 60,
+                      formatter: function(val, chart) {
+                        if( val >= 1000) {
+                          val = (val / 1000).toFixed(0) + 'K'
+                        }
+                        
+                        return val
+                      },
+                      offsetX: offsetNumber,
+                    },
+                  }
+                ]
+              })
+            }
+          }
         }
       }
     }]
