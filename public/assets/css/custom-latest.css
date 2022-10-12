@@ -212,6 +212,10 @@ p.normal {
         font-size: 30px !important;
     }
 
+    #chart1 .apexcharts-yaxis-title {
+        transform: translateX(-10px);
+    }
+
     .tooltip-inner {
         max-width: 900px;
         font-size: 45px;
