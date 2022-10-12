@@ -210,11 +210,17 @@ const initChart6 = (n) => {
     responsive: [{
       breakpoint: 3840,
       options: {
+        chart: {
+          height: '80%'
+        },
+        legend: {
+          position: 'left'
+        },
         plotOptions: {
           radialBar: {
             dataLabels: {
               name: {
-                fontSize: '13px',
+                fontSize: '11px',
               },
               value: {
                 color: '#fbfbfb',
@@ -232,7 +238,7 @@ const initChart6 = (n) => {
                 formatter: function (w) {
                   return total + " KgCO2"
                 }
-              }
+              },
             }
           }
         }
@@ -1085,17 +1091,14 @@ function filterDataForChart3(filter) {
           rotate: 0
         }
       }, 
-      // responsive: [{
-      //   breakpoint: 3840,
-      //   options: {
-      //     legend:{
-      //       itemMargin: {
-      //         horizontal: 5,
-      //         vertical: 2
-      //       }
-      //     }
-      //   }
-      // }]
+      responsive: [{
+        breakpoint: 3840,
+        options: {
+          legend:{
+            position: 'left'
+          }
+        }
+      }]
     }
   );
   chart3.render();
