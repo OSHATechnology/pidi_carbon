@@ -202,10 +202,6 @@ var dataChart2 = [{
   }],
 }]
 
-var dataChart2Label = {
-
-}
-
 var dataChart3 = [
   // karawang1
   {
@@ -322,3 +318,4 @@ var dataChart3 = [
     ]
   }
 ]
+

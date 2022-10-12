@@ -27,19 +27,6 @@ let dataTotalEmissionsPlant = dataEmissionsPerPlant(plant)
 
 let datass = callRandomData();
 
-// Interval Variable
-var today = new Date()
-var yesterday = new Date().getTime()-10800000
-var lastMonth = new Date().getTime()-10800000-(86400000*30)
-var lastYear = new Date().getTime()-10800000-(86400000*300)
-var intervalHour = 3600000
-var intervalDay = 86400000
-var intervalMonth = Math.pow(2,31)-1
-var usedInterval = 0
-var minimalSeries
-var maximalSeries
-var interval
-
 // Show Chart Time Function
 function chartTime(time, timeChartId) {
   var date = new Date()
@@ -576,8 +563,17 @@ var dataChart1 = [
 // CHART 1
 $('#select-chart1').on('change', function () {
   var value = $('#select-chart1').val()
+  var results = []
+  if (value == "yearly") {
+    results = dataChart1[0]
+  } else if (value == "monthly") {
+    results = dataChart1[1]
+  } else {
+    results = dataChart1[2]
+  }
 
-  chart1(value)
+  chart1(results)
+  console.log(results)
   chartTime(value, 'chart1Time')
 })
 
@@ -666,65 +662,18 @@ var yaxisChart1Large = [
 ]
 
 // CHART 1
-
-// interval chart 1
-var interval3
-var usedInterval3
-
-// CHART 1
-function chart1(time='daily') {
-  $('#chart1').html('')
-
-  var minimalSeries
-  var maximalSeries
-  var dateTo
-  var dateRange
-  var xAxisRange
-  var updateInterval
-
-  if (time === 'daily') {
-    minimalSeries = 10
-    maximalSeries = 50
-    dateTo = new Date().getTime()-(3600000*2)
-    dateRange = 10
-    xAxisRange = 777600000/24
-    TICKINTERVAL3 = 86400000/24
-    updateInterval = intervalHour
-  } else if (time === 'monthly') {
-    minimalSeries = 100
-    maximalSeries = 200
-    dateTo = new Date().getTime()-(3600000*2)-(86400000*30)
-    dateRange = 31
-    xAxisRange = 777600000
-    TICKINTERVAL3 = 86400000 
-    updateInterval = intervalDay
-  } else if (time === 'yearly') {
-    minimalSeries = 1000
-    maximalSeries = 3000
-    dateTo =  new Date().getTime()-(3600000*2)-(86400000*300)
-    dateRange = 11
-    xAxisRange = 777600000*30
-    TICKINTERVAL3 = 86400000*30
-    updateInterval = intervalMonth
-  }     
-  
+function chart1(data) {
   var yaxisConfig
   breakpoint === 'large' ? yaxisConfig = yaxisChart1Large : yaxisConfig = yaxisChart1Normal 
-  
+
   var options = {
     series: [{
       name: 'emission',
-      data: generateSecondWiseTimeSeries(dateTo, dateRange, {
-        min: minimalSeries,
-        max: maximalSeries
-      }),
+      data: data.emisi,
     },
     {
       name: 'car production',
-      data: generateSecondWiseTimeSeries(dateTo, dateRange, {
-        min: minimalSeries,
-        max: maximalSeries
-      })
+      data: data.produksi
     }],
     chart: {
       type: 'area',
@@ -736,8 +685,8 @@ function chart1(time='daily') {
       }
     },
     xaxis: {
-      type: 'datetime',
-      range: xAxisRange
+      hideOverlappingLabels: true,
+      categories: data.label,
     },
     yaxis: yaxisConfig,
     tooltip: {
@@ -778,121 +727,82 @@ function chart1(time='daily') {
     }]
   };
 
-  var chart1 = new ApexCharts(document.querySelector("#chart1"), options);
-  chart1.render();
+  var chart = new ApexCharts(document.querySelector("#chart1"), options);
+  chart.render();
 
-  clearInterval(interval3)
-  // Set New Interval
-  theInterval3(time);
-  console.log(usedInterval3)
-
-  interval3 = window.setInterval(function () {
-    chart1.updateSeries([
-      {
-        data: [...chart1.w.config.series[0].data,
-          [
-            chart1.w.globals.maxX + updateInterval,
-            getRandom(minimalSeries, maximalSeries)
-          ]
-        ]
-      }, {
-        data: [...chart1.w.config.series[1].data,
-          [
-            chart1.w.globals.maxX + updateInterval,
-            getRandom(minimalSeries, maximalSeries)
-          ]
-        ]
-      }
-    ])
-  
-  }, usedInterval3);
+  chart.updateSeries([
+    {
+      name: 'emission',
+      data: data.emisi,
+    },
+    {
+      name: 'car production',
+      data: data.produksi,
+    }
+  ])
 }
-
-// Get Interval Based on Selected Time 
-function theInterval3 (time) {
-  if (time === 'daily') {
-    usedInterval3 = intervalHour
-  } else if (time === 'monthly') {
-    usedInterval3 = intervalDay
-  } else if (time === 'yearly') {
-    usedInterval3 = intervalMonth
-  }
-} 
 
 // Initial Chart 1
 var value = $('#select-chart1').val()
 var results = []
-chart1(value)
-chartTime(value, 'chart1Time')
+if (value == "yearly") {
+  results = dataChart1[0]
+  chart1(results)
+  chartTime(value, 'chart1Time')
+} else if (value == "monthly") {
+  results = dataChart1[1]
+  chart1(results)
+  chartTime(value, 'chart1Time')
+} else {
+  results = dataChart1[2]
+  chart1(results)
+  chartTime(value, 'chart1Time')
+}
 
 // CHART 2
-
-// interval chart 2
-var interval2
-var usedInterval2
-
 // filter data function
 function filterDataForChart2(plant='karawang1', time='daily', area='all') {
-  $('#chart2').html('')
+  var filteredDataChartManufacturing = []
+  var filteredDataChartBuilding = []
+  var filteredDataChartUtility = []
+  var filteredDataChartDigital = []
 
-  var minimalSeries
-  var maximalSeries
-  var dateTo
-  var dateRange
-  var xAxisRange
-  var updateInterval
+  var thedata
 
-  if (time === 'daily') {
-    minimalSeries = 10
-    maximalSeries = 50
-    dateTo = new Date().getTime()-(3600000*2)
-    dateRange = 10
-    xAxisRange = 777600000/24
-    TICKINTERVAL2 = 86400000/24
-    updateInterval = intervalHour
-  } else if (time === 'monthly') {
-    minimalSeries = 100
-    maximalSeries = 200
-    dateTo = new Date().getTime()-(3600000*2)-(86400000*30)
-    dateRange = 31
-    xAxisRange = 777600000
-    TICKINTERVAL2 = 86400000 
-    updateInterval = intervalDay
-  } else if (time === 'yearly') {
-    minimalSeries = 1000
-    maximalSeries = 3000
-    dateTo =  new Date().getTime()-(3600000*2)-(86400000*300)
-    dateRange = 11
-    xAxisRange = 777600000*30
-    TICKINTERVAL2 = 86400000*30
-    updateInterval = intervalMonth
-  }    
+  time === 'daily' ? thedata = dataChart2[0].daily[0]  
+  : time === 'monthly' ? thedata = dataChart2[0].monthly[0] 
+  : time === 'yearly' ? thedata = dataChart2[0].yearly[0]
+  : thedata = []
+
+  var filteredData = thedata.data.filter(function (data) { return data.plant === plant });
+
+  filteredData[0].carbon.forEach(data => {
+    filteredDataChartManufacturing = data.manufacturing
+    filteredDataChartBuilding = data.building
+    filteredDataChartUtility = data.utility
+    filteredDataChartDigital = data.digital
+  });
+
+  console.log(thedata.label)
+
+  console.log(filteredDataChartManufacturing)
+  console.log(filteredDataChartManufacturing)
+  console.log(filteredDataChartUtility)
+  console.log(filteredDataChartDigital)
 
   var options = {
     series: [{
       name: 'Manufacturing',
-      data: generateMinuteWiseTimeSeries(dateTo, dateRange, {
-        min: minimalSeries,
-        max: maximalSeries
-      })
+      data: filteredDataChartManufacturing
     }, {
       name: 'Building',
-      data:  generateMinuteWiseTimeSeries(dateTo, dateRange, {
-        min: minimalSeries,
-        max: maximalSeries
-      })
+      data: filteredDataChartBuilding
     }, {
       name: 'Utility',
-      data:  generateMinuteWiseTimeSeries(dateTo, dateRange, {
-        min: minimalSeries,
-        max: maximalSeries
-      })
+      data: filteredDataChartUtility
     }, {
       name: 'Digital',
-      data:  generateMinuteWiseTimeSeries(dateTo, dateRange, {
-        min: minimalSeries,
-        max: maximalSeries
-      })
+      data: filteredDataChartUtility
     }],
     chart: {
       id: 'chart2',
@@ -910,8 +820,7 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
       position: 'top'
     },
     xaxis: {
-      type: 'datetime',
-      range: xAxisRange
+      categories: thedata.label,
     },
     fill: {
       opacity: 1
@@ -935,27 +844,40 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
   var chart2 = new ApexCharts(document.querySelector("#chart2"), options);
   chart2.render();
 
+  chart2.updateOptions({
+    xaxis: {
+      categories: thedata.label
+    },
+    series: [
+      {
+        name: 'Manufacturing',
+        data: filteredDataChartManufacturing
+      }, {
+        name: 'Building',
+        data: filteredDataChartBuilding
+      }, {
+        name: 'Utility',
+        data: filteredDataChartUtility
+      }, {
+        name: 'Digital',
+        data: filteredDataChartUtility
+      }
+    ]
+  });
+
   if (area === 'manufacturing') {
-    alert(area)
-    chart2.showSeries('Manufacturing')
     chart2.hideSeries('Building')
     chart2.hideSeries('Utility')
     chart2.hideSeries('Digital')
   } else if (area === 'building') {
-    alert(area)
-    chart2.showSeries('Building')
     chart2.hideSeries('Manufacturing')
     chart2.hideSeries('Utility')
     chart2.hideSeries('Digital')
   } else if (area === 'utility') {
-    alert(area)
-    chart2.showSeries('Utility')
     chart2.hideSeries('Building')
     chart2.hideSeries('Manufacturing')
     chart2.hideSeries('Digital')
   } else if (area === 'digital') {
-    alert(area)
-    chart2.showSeries('Digital')
     chart2.hideSeries('Building')
     chart2.hideSeries('Utility')
     chart2.hideSeries('Manufacturing')
@@ -965,58 +887,7 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
     chart2.showSeries('Utility')
     chart2.showSeries('Manufacturing')
   }
-
-  clearInterval(interval2)
-  // Set New Interval
-  theInterval2(time);
-  console.log(usedInterval2)
-
-  interval2 = window.setInterval(function () {
-    chart2.updateSeries([
-      {
-        data: [...chart2.w.config.series[0].data,
-          [
-            chart2.w.globals.maxX + updateInterval,
-            getRandom(minimalSeries, maximalSeries)
-          ]
-        ]
-      }, {
-        data: [...chart2.w.config.series[1].data,
-          [
-            chart2.w.globals.maxX + updateInterval,
-            getRandom(minimalSeries, maximalSeries)
-          ]
-        ]
-      }, {
-        data: [...chart2.w.config.series[2].data,
-          [
-            chart2.w.globals.maxX + updateInterval,
-            getRandom(minimalSeries, maximalSeries)
-          ]
-        ]
-      }, {
-        data: [...chart2.w.config.series[3].data,
-          [
-            chart2.w.globals.maxX + updateInterval,
-            getRandom(minimalSeries, maximalSeries)
-          ]
-        ]
-      }
-    ])
-  
-  }, usedInterval2);
 }
-
-// Get Interval Based on Selected Time 
-function theInterval2 (time) {
-  if (time === 'daily') {
-    usedInterval2 = intervalHour
-  } else if (time === 'monthly') {
-    usedInterval2 = intervalDay
-  } else if (time === 'yearly') {
-    usedInterval2 = intervalMonth
-  }
-} 
 
 var plantChart2 = $('#select-plant-chart2').val()
 var timeChart2 = $('#select-time-chart2').val()
@@ -1165,6 +1036,18 @@ var options = {
 var chart4 = new ApexCharts(document.querySelector("#chart4"), options);
 chart4.render();
 
+// Chart 4 Interval Variable
+var today = new Date()
+var yesterday = new Date().getTime()-10800000
+var lastMonth = new Date().getTime()-10800000-(86400000*30)
+var lastYear = new Date().getTime()-10800000-(86400000*300)
+var intervalHour = 3600000
+var intervalDay = 86400000
+var intervalMonth = Math.pow(2,31)-1
+var usedInterval = 0
+var minimalSeries
+var maximalSeries
+var interval
 
 // Chart 4 Filter Function
 function chart4Filter(time) {
@@ -1226,98 +1109,9 @@ function chart4Filter(time) {
   })
 }
 
-// Get Interval Based on Selected Time 
-function theInterval (time) {
-  if (time === 'daily') {
-    usedInterval = intervalHour
-  } else if (time === 'monthly') {
-    usedInterval = intervalDay
-  } else if (time === 'yearly') {
-    usedInterval = intervalMonth
-  }
-} 
-
-// Update Chart 4 Interval
-function updateChart4Interval(time) {
-  // Clears the previous setInterval timer
-  clearInterval(interval)
-  // Set New Interval
-  theInterval(time);
-  console.log(usedInterval)
-  // Set Min Max Series Based on Selected Time
-  var minimalSeries
-  var maximalSeries
-  if (time === 'daily') {
-    minimalSeries = 10
-    maximalSeries = 90
-  } else if (time === 'monthly') {
-    minimalSeries = 100
-    maximalSeries = 500
-  } else if (time === 'yearly') {
-    minimalSeries = 1000
-    maximalSeries = 5000
-  }
-
-  interval = window.setInterval(function () {
-    getNewSeries(lastDate, {
-      min: minimalSeries,
-      max: maximalSeries
-    })
-  
-    chart4.updateSeries([{
-      data: data
-    }])
-  }, usedInterval)
-}
-
-// Get Interval Based on Selected Time 
-function theInterval (time) {
-  if (time === 'daily') {
-    usedInterval = intervalHour
-  } else if (time === 'monthly') {
-    usedInterval = intervalDay
-  } else if (time === 'yearly') {
-    usedInterval = intervalMonth
-  }
-} 
-
-// Update Chart 4 Interval
-function updateChart4Interval(time) {
-  // Clears the previous setInterval timer
-  clearInterval(interval)
-  // Set New Interval
-  theInterval(time);
-  console.log(usedInterval)
-  // Set Min Max Series Based on Selected Time
-  var minimalSeries
-  var maximalSeries
-  if (time === 'daily') {
-    minimalSeries = 10
-    maximalSeries = 90
-  } else if (time === 'monthly') {
-    minimalSeries = 100
-    maximalSeries = 500
-  } else if (time === 'yearly') {
-    minimalSeries = 1000
-    maximalSeries = 5000
-  }
-
-  interval = window.setInterval(function () {
-    getNewSeries(lastDate, {
-      min: minimalSeries,
-      max: maximalSeries
-    })
-  
-    chart4.updateSeries([{
-      data: data
-    }])
-  }, usedInterval)
-}
-
 var selectTimeChart4 = $('#select-time-chart4').val()
 chart4Filter(selectTimeChart4)
 chartTime(selectTimeChart4, 'chart4Time')
-updateChart4Interval(selectTimeChart4)
 
 // chart 4 on select
 $('#select-plant-chart4').on('change', function () {
@@ -1334,6 +1128,53 @@ $('#select-time-chart4').on('change', function () {
   updateChart4Interval(value)
   chartTime(value, 'chart4Time')
 })
+
+// Interval for Chart 4
+updateChart4Interval(selectTimeChart4)
+
+// Get Interval Based on Selected Time 
+function theInterval (time) {
+  if (time === 'daily') {
+    usedInterval = intervalHour
+  } else if (time === 'monthly') {
+    usedInterval = intervalDay
+  } else if (time === 'yearly') {
+    usedInterval = intervalMonth
+  }
+} 
+
+// Update Chart 4 Interval
+function updateChart4Interval(time) {
+  // Clears the previous setInterval timer
+  clearInterval(interval)
+  // Set New Interval
+  theInterval(time);
+  console.log(usedInterval)
+  // Set Min Max Series Based on Selected Time
+  var minimalSeries
+  var maximalSeries
+  if (time === 'daily') {
+    minimalSeries = 10
+    maximalSeries = 90
+  } else if (time === 'monthly') {
+    minimalSeries = 100
+    maximalSeries = 500
+  } else if (time === 'yearly') {
+    minimalSeries = 1000
+    maximalSeries = 5000
+  }
+
+  interval = window.setInterval(function () {
+    getNewSeries(lastDate, {
+      min: minimalSeries,
+      max: maximalSeries
+    })
+  
+    chart4.updateSeries([{
+      data: data
+    }])
+  }, usedInterval)
+}
 // var options = {
 //   series: [{
 //     name: 'Emission',

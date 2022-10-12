@@ -26,6 +26,8 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="/assets/js/apexcharts-global-config.js"></script>
     <script src="/assets/js/realtime-timeseries-1.js"></script>
+    <script src="/assets/js/realtime-timeseries-2.js"></script>
+    <script src="/assets/js/realtime-timeseries-3.js"></script>
     <script src="/assets/js/custom-latest.js"></script>
 
     <script>
