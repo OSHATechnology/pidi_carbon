@@ -5,6 +5,10 @@ var normalScreenConfig = {
     foreColor: '#fbfbfb'
   },
 
+  xaxis: {
+    logBase: 10,
+  },
+
   // YAxis
   yaxis: {
     labels: {
@@ -13,8 +17,8 @@ var normalScreenConfig = {
       },
       offsetX: 0,
       offsetY: 0,
-      minWidth: 80,
-      maxWidth: 80,
+      minWidth: 60,
+      maxWidth: 60,
       formatter: function(val, chart) {
         if( val >= 1000) {
           val = (val / 1000).toFixed(0) + 'K'

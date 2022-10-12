@@ -598,9 +598,14 @@ $('#select-chart1').on('change', function () {
 var yaxisChart1Normal = [
   {
     title: {
-      text: "Emission"
+      text: "Emission",
+      style: {
+        fontSize: '10px',
+      },
+      offsetX: 10,
     },
     labels: {
+      maxWidth: 60,
       formatter: function(val, chart) {
         if( val >= 1000) {
           val = (val / 1000).toFixed(0) + 'K'
@@ -613,16 +618,22 @@ var yaxisChart1Normal = [
   {
     opposite: false,
     title: {
-      text: "Car Production"
+      text: "Car Production",
+      style: {
+        fontSize: '10px',
+      },
+      offsetX: 10,
     },
     labels: {
+      maxWidth: 60,
       formatter: function(val, chart) {
         if( val >= 1000) {
           val = (val / 1000).toFixed(0) + 'K'
         }
         
         return val
-      }
+      },
+      offsetX: 20,
     },
   }
 ]
@@ -745,6 +756,13 @@ function chart1(time='daily') {
     xaxis: {
       type: 'datetime',
       range: xAxisRange,
+      labels: {
+        show: true,
+        rotate: -45,
+        rotateAlways: false,
+        hideOverlappingLabels: true,
+        showDuplicates: false,
+      }
     },
     yaxis: yaxisConfig,
     tooltip: {
@@ -873,7 +891,7 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
     xAxisRange = 777600000*30
     TICKINTERVAL2 = 86400000*30
     updateInterval = intervalMonth
-  }    
+  }  
 
   var options = {
     series: [{
@@ -918,7 +936,7 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
     },
     xaxis: {
       type: 'datetime',
-      range: xAxisRange
+      range: xAxisRange,
     },
     fill: {
       opacity: 1
