@@ -736,7 +736,9 @@ function chart1(time='daily') {
   
   var yaxisConfig
   breakpoint === 'large' ? yaxisConfig = yaxisChart1Large : yaxisConfig = yaxisChart1Normal 
-  
+
+  var legendClicked = false
+
   var options = {
     series: [{
       name: 'emission',
@@ -759,6 +761,65 @@ function chart1(time='daily') {
       },
       toolbar: {
         show: false
+      },
+      events: {
+        legendClick: function(chartContext, seriesIndex, config) {
+          if(!legendClicked) {
+            var offsetNumberTitle=0
+            var offsetNumber=0
+
+            legendClicked = true
+          } else {
+            var offsetNumberTitle=10
+            var offsetNumber=20
+
+            legendClicked = false
+          }
+          chartContext.updateOptions({
+            yaxis: [
+              {
+                title: {
+                  text: "Emission",
+                  style: {
+                    fontSize: '10px',
+                  },
+                  offsetX: offsetNumberTitle,
+                },
+                labels: {
+                  maxWidth: 60,
+                  formatter: function(val, chart) {
+                    if( val >= 1000) {
+                      val = (val / 1000).toFixed(0) + 'K'
+                    }
+                    
+                    return val + " KgCO2"
+                  }
+                },
+              },
+              {
+                opposite: false,
+                title: {
+                  text: "Car Production",
+                  style: {
+                    fontSize: '10px',
+                  },
+                  offsetX: offsetNumberTitle,
+                },
+                labels: {
+                  maxWidth: 60,
+                  formatter: function(val, chart) {
+                    if( val >= 1000) {
+                      val = (val / 1000).toFixed(0) + 'K'
+                    }
+                    
+                    return val
+                  },
+                  offsetX: offsetNumber,
+                },
+              }
+            ]
+          })
+        }
       }
     },
     xaxis: {
@@ -877,7 +938,7 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
   if (time === 'daily') {
     minimalSeries = 10
     maximalSeries = 50
-    dateTo = new Date().getTime()-(3600000*2)-1000000
+    dateTo = new Date().getTime()-(3600000*2)-1500000
     dateRange = 10
     xAxisRange = 777600000/24
     TICKINTERVAL2 = 86400000/24
