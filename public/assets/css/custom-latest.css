@@ -117,7 +117,27 @@ p.normal {
     font-size: 11px;
 }
 
+#chart6 {
+    position: relative;
+}
+
+.total-chart6-container {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 10%;
+}
+
+#totalChart6 {
+    text-align: center;
+    width: 200px;
+}
+
 @media only screen and (min-width: 3840px) {
+    .total-chart6-container {
+        display: none;
+    }
+
     body:before {
         content: "large";
         display: none;

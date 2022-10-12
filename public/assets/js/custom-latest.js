@@ -171,6 +171,8 @@ const initChart6 = (n) => {
 
   let result = CalculateData(totalEmisi, precentData);
   total = totalEmisi.toFixed(2);
+  
+  $('#totalChart6').html('Total : ' + total + ' KgCO2')
 
   var options = {
     series: [(result[0] / totalEmisi) * 100, (result[1] / totalEmisi) * 100, (result[2] / totalEmisi) * 100, (result[3] / totalEmisi) * 100],
@@ -180,6 +182,7 @@ const initChart6 = (n) => {
     colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
     plotOptions: {
       radialBar: {
+        offsetY: 0,
         dataLabels: {
           value: {
             formatter: function (val) {
@@ -215,9 +218,13 @@ const initChart6 = (n) => {
         },
         legend: {
           position: 'left'
+          
         },
         plotOptions: {
           radialBar: {
+            hollow: {
+              size: '10%',
+            },
             dataLabels: {
               name: {
                 fontSize: '11px',
@@ -233,7 +240,7 @@ const initChart6 = (n) => {
               total: {
                 color: '#fbfbfb',
                 fontSize: '13px',
-                show: true,
+                show: false,
                 label: 'Total',
                 formatter: function (w) {
                   return total + " KgCO2"
@@ -594,8 +601,6 @@ var yaxisChart1Normal = [
       text: "Emission"
     },
     labels: {
-      minWidth: 140,
-      maxWidth: 140,
       formatter: function(val, chart) {
         if( val >= 1000) {
           val = (val / 1000).toFixed(0) + 'K'
@@ -604,16 +609,13 @@ var yaxisChart1Normal = [
         return val + " KgCO2"
       }
     },
-    tickAmount: 4,
   },
   {
-    opposite: true,
+    opposite: false,
     title: {
       text: "Car Production"
     },
     labels: {
-      minWidth: 30,
-      maxWidth: 30,
       formatter: function(val, chart) {
         if( val >= 1000) {
           val = (val / 1000).toFixed(0) + 'K'
@@ -622,7 +624,6 @@ var yaxisChart1Normal = [
         return val
       }
     },
-    tickAmount: 4,
   }
 ]
 
@@ -637,8 +638,8 @@ var yaxisChart1Large = [
     },
     labels: {
       fontSize: '30px',
-      minWidth: 275,
-      maxWidth: 275,
+      minWidth: 165,
+      maxWidth: 165,
       formatter: function(val, chart) {
         if( val >= 1000) {
           val = (val / 1000).toFixed(0) + 'K'
@@ -649,7 +650,7 @@ var yaxisChart1Large = [
     }
   },
   {
-    opposite: true,
+    opposite: false,
     title: {
       text: "Car Production",
       style: {
@@ -658,8 +659,8 @@ var yaxisChart1Large = [
     },
     labels: {
       fontSize: '30px',
-      minWidth: 60,
-      maxWidth: 60,
+      minWidth: 150,
+      maxWidth: 150,
       formatter: function(val, chart) {
         if( val >= 1000) {
           val = (val / 1000).toFixed(0) + 'K'
@@ -743,7 +744,7 @@ function chart1(time='daily') {
     },
     xaxis: {
       type: 'datetime',
-      range: xAxisRange
+      range: xAxisRange,
     },
     yaxis: yaxisConfig,
     tooltip: {

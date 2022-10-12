@@ -19,6 +19,9 @@
                             </div>
                         </div>
                         <div id="chart6"></div>
+                        <div class="total-chart6-container">
+                            <p id="totalChart6" class=""></p>
+                        </div>
                     </div>
                 </div>
             </div>
