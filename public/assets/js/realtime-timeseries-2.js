@@ -16,7 +16,7 @@ function generateMinuteWiseTimeSeries(baseval, count, yrange) {
     var x = baseval;
     var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
 
-    series.push([x, y]);
+    series.push([x,y]);
     lastDate2 = baseval
     baseval += TICKINTERVAL2;
     i++;

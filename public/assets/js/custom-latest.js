@@ -859,7 +859,6 @@ var usedInterval2
 // filter data function
 function filterDataForChart2(plant='karawang1', time='daily', area='all') {
   $('#chart2').html('')
-
   var minimalSeries
   var maximalSeries
   var dateTo
@@ -870,7 +869,7 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
   if (time === 'daily') {
     minimalSeries = 10
     maximalSeries = 50
-    dateTo = new Date().getTime()-(3600000*2)
+    dateTo = new Date().getTime()-(3600000*2)-1000000
     dateRange = 10
     xAxisRange = 777600000/24
     TICKINTERVAL2 = 86400000/24
@@ -894,7 +893,14 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
   }  
 
   var options = {
-    series: [{
+    series: [
+    {
+      name: '',
+      data: generateMinuteWiseTimeSeries(dateTo, dateRange, {
+        min: 0,
+        max: 0
+      })
+    },{
       name: 'Manufacturing',
       data: generateMinuteWiseTimeSeries(dateTo, dateRange, {
         min: minimalSeries,
@@ -930,7 +936,7 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
         show: false,
       },
     },
-    colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
+    colors: ['#4CAF50','#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
     legend: {
       position: 'top'
     },
@@ -986,6 +992,8 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
     chart2.showSeries('Utility')
     chart2.showSeries('Manufacturing')
   }
+
+  $('#chart2 .apexcharts-legend-series[seriesname=""]').css('display','none')
 
   clearInterval(interval2)
   // Set New Interval
