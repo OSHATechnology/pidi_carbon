@@ -1,15 +1,19 @@
 @extends('layouts-latest.index')
 @section('content')
     <div class="container-fluid">
-        <div class="row my-3">
+        <div class="row modification my-2">
             <div class="col-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center card-title-container">
-                            <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
-                                data-bs-title="Menampilkan total emisi untuk setiap area">
-                                Emission Accumulation <i class="bi bi-info-circle text-white"></i>
-                            </h5>
+                            <div class="d-flex flex-column">
+                                <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
+                                    data-bs-title="Menampilkan total emisi untuk setiap area">
+                                    Emission Accumulation <i class="bi bi-info-circle text-white"></i>
+                                </h5>
+                                <p id="chart6Time" class="small-date"></p>
+                            </div>
+
                             <div>
                                 <select name="" id="select-chart6" class="form-select bg-dark form-select-sm">
                                     <option value="daily">Daily</option>
@@ -29,9 +33,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center card-title-container">
-                            <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
-                                data-bs-title="Menampilkan nilai emisi setiap plant berdasarkan detail nilai emisi maing-masing area">
-                                Top Emmissions by Area <i class="bi bi-info-circle text-white"></i></h5>
+                            <div class="d-flex flex-column">
+                                <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
+                                    data-bs-title="Menampilkan nilai emisi setiap plant berdasarkan detail nilai emisi maing-masing area">
+                                    Top Emmissions by Area <i class="bi bi-info-circle text-white"></i></h5>
+                                <p id="chart3Time" class="small-date"></p>
+                            </div>
                             <div>
                                 <select name="" id="select-chart3" class="form-select bg-dark form-select-sm">
                                     <option value="karawang1">Karawang1</option>
@@ -50,9 +57,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center card-title-container">
-                            <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
-                                data-bs-title="Menampilkan total emisi berbanding dengan target emisi yang sudah ditentukan">
-                                Total Emission/Offset <i class="bi bi-info-circle text-white"></i></h5>
+                            <div class="d-flex flex-column">
+                                <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
+                                    data-bs-title="Menampilkan total emisi berbanding dengan target emisi yang sudah ditentukan">
+                                    Total Emission/Offset <i class="bi bi-info-circle text-white"></i></h5>
+                                <p id="chart5Time" class="small-date"></p>
+                            </div>
                             <div>
                                 <select name="" id="select-chart5" class="form-select bg-dark form-select-sm">
                                     {{-- <option value="karawang1">Karawang1</option>
@@ -70,9 +80,9 @@
         </div>
 
         {{-- Row 2 --}}
-        <div class="row my-3">
+        <div class="row modification my-1">
             <div class="col-6">
-                <div class="row row-cols-1 gap-3">
+                <div class="row row-cols-1 gap-2">
                     <div class="col h-50">
                         <div class="card smaller">
                             <div class="card-body">

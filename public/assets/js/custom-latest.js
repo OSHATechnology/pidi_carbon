@@ -51,7 +51,13 @@ function chartTime(time, timeChartId) {
   $('#'+timeChartId).html('<small>'+dateTime+'</small>');
 }
 
+chartTime('daily', 'chart5Time')
+chartTime('daily', 'chart3Time')
+
 // Select Chart 6
+var selectChart6 = $('#select-chart6').val()
+chartTime(selectChart6, 'chart6Time')
+
 $('#select-chart6').on('change', function () {
   var selectValue = $('#select-chart6').val()
   if (selectValue == 'monthly') {
@@ -64,6 +70,7 @@ $('#select-chart6').on('change', function () {
   // let dataRandom = callRandomData();
   $('#chart6').html('');
   initChart6(n);
+  chartTime(selectValue, 'chart6Time')
 })
 
 // Select Chart 5
@@ -172,11 +179,12 @@ const initChart6 = (n) => {
   let result = CalculateData(totalEmisi, precentData);
   total = totalEmisi.toFixed(2);
   
-  $('#totalChart6').html('Total : ' + total + ' KgCO2')
+  $('#totalChart6').html('<b>Total : ' + total + ' KgCO2</b>')
 
   var options = {
     series: [(result[0] / totalEmisi) * 100, (result[1] / totalEmisi) * 100, (result[2] / totalEmisi) * 100, (result[3] / totalEmisi) * 100],
     chart: {
+      height: '80%',
       type: 'radialBar',
     },
     colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
@@ -214,7 +222,7 @@ const initChart6 = (n) => {
       breakpoint: 3840,
       options: {
         chart: {
-          height: '80%'
+          height: '75%'
         },
         legend: {
           position: 'left'
@@ -223,7 +231,7 @@ const initChart6 = (n) => {
         plotOptions: {
           radialBar: {
             hollow: {
-              size: '10%',
+              size: '5%',
             },
             dataLabels: {
               name: {
@@ -1117,6 +1125,9 @@ function filterDataForChart3(filter) {
       responsive: [{
         breakpoint: 3840,
         options: {
+          chart: {
+            height: '75%'
+          },
           legend:{
             position: 'left'
           }
