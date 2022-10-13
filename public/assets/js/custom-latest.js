@@ -968,31 +968,29 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
 
   var options = {
     series: [
+    {name: '',data: generateMinuteWiseTimeSeries(dateTo, dateRange, {min: 0,max: 0})},
     {
-      name: '',
-      data: generateMinuteWiseTimeSeries(dateTo, dateRange, {
-        min: 0,
-        max: 0
-      })
-    },{
       name: 'Manufacturing',
       data: generateMinuteWiseTimeSeries(dateTo, dateRange, {
         min: minimalSeries,
         max: maximalSeries
       })
-    }, {
+    }, 
+    {
       name: 'Building',
       data:  generateMinuteWiseTimeSeries(dateTo, dateRange, {
         min: minimalSeries,
         max: maximalSeries
       })
-    }, {
+    }, 
+    {
       name: 'Utility',
       data:  generateMinuteWiseTimeSeries(dateTo, dateRange, {
         min: minimalSeries,
         max: maximalSeries
       })
-    }, {
+    }, 
+    {
       name: 'Digital',
       data:  generateMinuteWiseTimeSeries(dateTo, dateRange, {
         min: minimalSeries,
@@ -1009,10 +1007,22 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
       toolbar: {
         show: false,
       },
+      events: {
+        legendClick: function(chartContext, seriesIndex, config) {
+          chartContext.resetSeries()
+        }
+      }
     },
     colors: ['#4CAF50','#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
     legend: {
-      position: 'top'
+      showForNullSeries: false,
+      position: 'top',
+      onItemClick: {
+        toggleDataSeries: false
+      },
+      onItemHover: {
+          highlightDataSeries: true
+      },
     },
     xaxis: {
       type: 'datetime',
@@ -1041,22 +1051,18 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
   chart2.render();
 
   if (area === 'manufacturing') {
-    chart2.showSeries('Manufacturing')
     chart2.hideSeries('Building')
     chart2.hideSeries('Utility')
     chart2.hideSeries('Digital')
   } else if (area === 'building') {
-    chart2.showSeries('Building')
     chart2.hideSeries('Manufacturing')
     chart2.hideSeries('Utility')
     chart2.hideSeries('Digital')
   } else if (area === 'utility') {
-    chart2.showSeries('Utility')
     chart2.hideSeries('Building')
     chart2.hideSeries('Manufacturing')
     chart2.hideSeries('Digital')
   } else if (area === 'digital') {
-    chart2.showSeries('Digital')
     chart2.hideSeries('Building')
     chart2.hideSeries('Utility')
     chart2.hideSeries('Manufacturing')
@@ -1066,8 +1072,6 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
     chart2.showSeries('Utility')
     chart2.showSeries('Manufacturing')
   }
-
-  $('#chart2 .apexcharts-legend-series[seriesname=""]').css('display','none')
 
   clearInterval(interval2)
   // Set New Interval

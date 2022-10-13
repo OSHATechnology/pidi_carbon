@@ -134,6 +134,10 @@ p.normal {
     font-size: 13px;
 }
 
+#chart2 .apexcharts-legend-series[seriesname=""] {
+    display: none !important;
+}
+
 @media only screen and (min-width: 3840px) {
     .total-chart6-container {
         display: none;
