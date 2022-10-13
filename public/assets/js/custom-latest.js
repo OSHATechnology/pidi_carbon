@@ -1007,11 +1007,6 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
       toolbar: {
         show: false,
       },
-      events: {
-        legendClick: function(chartContext, seriesIndex, config) {
-          chartContext.resetSeries()
-        }
-      }
     },
     colors: ['#4CAF50','#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
     legend: {
