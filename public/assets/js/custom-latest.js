@@ -1315,7 +1315,7 @@ var options = {
     breakpoint: 3840,
     options: {
       chart: {
-        height: '85%'
+        height: '90%'
       }
     },
   }]
