@@ -10,3 +10,4 @@ WORKDIR /app
 COPY . .
 RUN composer install
 RUN composer update
+RUN php artisan key:generate
