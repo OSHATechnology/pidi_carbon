@@ -9,4 +9,3 @@ services:
             - .:/app
         ports:
             - 7000:8000
-        image: 11405/pidi_carbon
