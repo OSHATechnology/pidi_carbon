@@ -11,4 +11,4 @@ COPY . .
 RUN composer install
 RUN composer update
 RUN php artisan key:generate
-RUN sudo chmod -R 777 /app/vendor/
+RUN composer dump-autoload
