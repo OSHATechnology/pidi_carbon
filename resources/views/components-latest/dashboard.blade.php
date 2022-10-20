@@ -44,7 +44,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center card-title-container">
-                            <div class="d-flex flex-column w-75">
+                            <div class="d-flex flex-column w-75 w-75-responsive">
                                 <h5 class="card-title">
                                     Emission By Plant</h5>
                                 <p class="small-description">Menampilkan emisi yang dihasilkan setiap area berdasarkan

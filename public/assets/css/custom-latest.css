@@ -231,7 +231,7 @@ p.normal {
     }
 
     .small-description {
-        font-size: 35px;
+        font-size: 30px;
     }
 
     .form-select {
@@ -255,5 +255,9 @@ p.normal {
         max-width: 900px;
         font-size: 45px;
         padding: 20px;
+    }
+
+    .w-75.w-75-responsive {
+        width: inherit !important
     }
 }   

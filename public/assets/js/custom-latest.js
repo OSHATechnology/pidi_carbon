@@ -438,7 +438,7 @@ function chart5(data = 0) {
     series: [totalEmission, totalOffset],
     chart: {
       type: 'pie',
-      height: '75%',
+      height: '70%',
     },
     colors: ['#FFC107', '#FF9900'],
     legend: {
@@ -1209,7 +1209,7 @@ function filterDataForChart3(filter) {
       chart: {
         id: 'my-donut',
         type: 'donut',
-        height: '75%',
+        height: '70%',
       },
       colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
       legend: {
