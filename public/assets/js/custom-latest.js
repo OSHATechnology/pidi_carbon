@@ -14,7 +14,7 @@ var targetGasDaily = 1600 * 24
 var targetFuelDaily = 4000 * 24
 var JenisEnergi = ['Electricity', 'LPG', 'Diesel Oil', 'Natural Gas']
 var area = ['manufacturing', 'building', 'utility', 'digital']
-var plant = ['Karawang1', 'Karawang2', 'Karawang3', 'Sunter1', 'Sunter2']
+var plant = ['Plant1', 'Plant2', 'Plant3']
 var productionYearly = [7709, 6975, 7709, 7203, 7546, 7788, 8158, 8485, 8516, 9196, 6048, 7659]
 var dataDigital = [];
 var dataUtility = [];
@@ -49,6 +49,7 @@ function chartTime(time, timeChartId) {
   : ''
 
   $('#'+timeChartId).html('<small>'+dateTime+'</small>');
+  $('#headerDate').html('<i class="bi bi-calendar me-1"></i> '+dateTime)
 }
 
 chartTime('daily', 'chart5Time')
@@ -184,7 +185,7 @@ const initChart6 = (n) => {
   var options = {
     series: [(result[0] / totalEmisi) * 100, (result[1] / totalEmisi) * 100, (result[2] / totalEmisi) * 100, (result[3] / totalEmisi) * 100],
     chart: {
-      height: '80%',
+      height: '75%',
       type: 'radialBar',
     },
     colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
@@ -209,14 +210,20 @@ const initChart6 = (n) => {
         }
       }
     },
-    labels: ['manufacturing', 'building', 'utility', 'digital'],
+    labels: ['Manufacturing', 'Building', 'Utility', 'Digital'],
     legend: {
       show: true,
-      position: 'bottom',
+      position: 'left',
       formatter: function(label, opts) {
         let data = (opts.w.globals.series[opts.seriesIndex] / 100) * total;
         return label + " : " + data.toFixed(2) + " KgCO2"
-      }
+      },
+      offsetY: 20,
+      offsetX: 30,
+      itemMargin: {
+        horizontal: 5,
+        vertical: 30
+      },
     },
     responsive: [{
       breakpoint: 3840,
@@ -225,8 +232,13 @@ const initChart6 = (n) => {
           height: '75%'
         },
         legend: {
-          position: 'left'
-          
+          position: 'left',
+          offsetY: 0,
+          offsetX: 0,
+          itemMargin: {
+            horizontal: 0,
+            vertical: 3
+          },
         },
         plotOptions: {
           radialBar: {
@@ -426,18 +438,42 @@ function chart5(data = 0) {
     series: [totalEmission, totalOffset],
     chart: {
       type: 'pie',
+      height: '75%',
     },
     colors: ['#FFC107', '#FF9900'],
     legend: {
-      position: 'bottom',
+      position: 'left',
       formatter: function(label, opts) {
         return label + ' : ' + opts.w.globals.series[opts.seriesIndex] + ' KgCO2'
-      }
+      },
+      offsetY: 20,
+      offsetX: 30,
+      itemMargin: {
+        horizontal: 5,
+        vertical: 30
+      },
     },
     labels: ['Total Emission', 'Offset'],
     dataLabels: {
       enabled: false,
     },
+    responsive: [{
+      breakpoint: 3840,
+      options: {
+        chart: {
+          height: '75%'
+        },
+        legend: {
+          position: 'left',
+          offsetY: 0,
+          offsetX: 0,
+          itemMargin: {
+            horizontal: 0,
+            vertical: 0
+          },
+        }
+      }
+    }]
   };
   var chart = new ApexCharts(document.querySelector("#chart5"), options);
   chart.render();
@@ -743,14 +779,14 @@ function chart1(time='daily') {
 
   var options = {
     series: [{
-      name: 'emission',
+      name: 'Emission',
       data: generateSecondWiseTimeSeries(dateTo, dateRange, {
         min: minimalSeries,
         max: maximalSeries
       }),
     },
     {
-      name: 'car production',
+      name: 'Car Production',
       data: generateSecondWiseTimeSeries(dateTo, dateRange, {
         min: minimalSeries,
         max: maximalSeries
@@ -931,7 +967,7 @@ var interval2
 var usedInterval2
 
 // filter data function
-function filterDataForChart2(plant='karawang1', time='daily', area='all') {
+function filterDataForChart2(plant='plant1', time='daily', area='all') {
   $('#chart2').html('')
   var minimalSeries
   var maximalSeries
@@ -943,7 +979,7 @@ function filterDataForChart2(plant='karawang1', time='daily', area='all') {
   if (time === 'daily') {
     minimalSeries = 10
     maximalSeries = 50
-    dateTo = new Date().getTime()-(3600000*2)-500000
+    dateTo = new Date().getTime()-(3600000*2)/*-1350000*/
     dateRange = 10
     xAxisRange = 777600000/24
     TICKINTERVAL2 = 86400000/24
@@ -1167,17 +1203,24 @@ function filterDataForChart3(filter) {
   var chart3 = new ApexCharts(document.querySelector("#chart3"),
     {
       series: filteredDataChart,
-      labels: ['manufacturing', 'building', 'utility', 'digital'],
+      labels: ['Manufacturing', 'Building', 'Utility', 'Digital'],
       chart: {
         id: 'my-donut',
         type: 'donut',
+        height: '75%',
       },
       colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
       legend: {
-        position: 'bottom',
+        position: 'left',
         formatter: function(label, opts) {
           return label + " : " + opts.w.globals.series[opts.seriesIndex] + " KgCO2"
-        }
+        },
+        offsetY: 20,
+        offsetX: 30,
+        itemMargin: {
+          horizontal: 5,
+          vertical: 30
+        },
       },
       dataLabels: {
         enabled: false,
@@ -1193,8 +1236,14 @@ function filterDataForChart3(filter) {
           chart: {
             height: '75%'
           },
-          legend:{
-            position: 'left'
+          legend: {
+            position: 'left',
+            offsetY: 0,
+            offsetX: 0,
+            itemMargin: {
+              horizontal: 0,
+              vertical: 3
+            },
           }
         }
       }]
@@ -1224,7 +1273,7 @@ var options = {
   chart: {
     id: 'realtime',
     type: 'area',
-    height: '90%',
+    height: '85%',
     animations: {
       enabled: true,
       easing: 'linear',
@@ -1262,6 +1311,14 @@ var options = {
   legend: {
     show: false
   },
+  responsive: [{
+    breakpoint: 3840,
+    options: {
+      chart: {
+        height: '90%'
+      }
+    },
+  }]
 };
 
 var chart4 = new ApexCharts(document.querySelector("#chart4"), options);

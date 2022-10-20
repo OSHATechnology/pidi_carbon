@@ -41,7 +41,7 @@ var normalScreenConfig = {
 var largeScreenConfig = {
   // Chart
   chart: {
-    height: '80%',
+    height: '70%',
     foreColor: '#fbfbfb'
   },
 
