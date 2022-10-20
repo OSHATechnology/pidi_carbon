@@ -6,8 +6,8 @@
                 <img src="/assets/img/logopidi.png" class="logo" width="210" />
                 <p class="title text-center"><b>Carbon Footprint Dashboard</b></p>
             </div>
-            <div class="d-flex flex-column w-50">
-                <div class="datetime">
+            <div class="d-flex w-50">
+                <div class="datetime w-100">
                     <div id="date" class="date text-end" onload="showTime()"></div>
                     <div id="time" class="time text-end" onload="showTime()"></div>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center card-title-container">
-                            <div class="d-flex flex-column w-75">
+                            <div class="d-flex flex-column w-75 w-75-responsive">
                                 <h5 class="card-title">
                                     Total Emission/Offset </h5>
                                 <p class="small-description">Menampilkan total emisi yang dihasilkan berbanding batas emisi
@@ -237,9 +237,8 @@
                 month: 'long'
             })
 
-            document.getElementById("date").innerHTML = dateTime;
-            document.getElementById("time").innerText =
-                time;
+            document.getElementById("date").innerHTML = dateTime + '&nbsp;';
+            document.getElementById("time").innerText = time;
             document.getElementById("time").textContent = time;
 
             setTimeout(showTime, 1000);
