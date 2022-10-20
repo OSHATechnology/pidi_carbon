@@ -29,9 +29,9 @@ let datass = callRandomData();
 
 // Interval Variable
 var today = new Date()
-var yesterday = new Date().getTime()-(3600000*2)
-var lastMonth = new Date().getTime()-(3600000*2)-(86400000*30)
-var lastYear = new Date().getTime()-(3600000*2)-(86400000*300)
+var yesterday = new Date().getTime()-(3600000*3)
+var lastMonth = new Date().getTime()-(3600000*3)-(86400000*30)
+var lastYear = new Date().getTime()-(3600000*3)-(86400000*300)
 var intervalHour = 3600000
 var intervalDay = 86400000
 var intervalMonth = Math.pow(2,31)-1
@@ -749,8 +749,8 @@ function chart1(time='daily') {
   if (time === 'daily') {
     minimalSeries = 10
     maximalSeries = 50
-    var datePerHour = (new Date().getTime()-3600000) % 3600000
-    dateTo = new Date().getTime()-3600000-datePerHour
+    // var datePerHour = (new Date().getTime()-3600000) % 3600000
+    dateTo = new Date().getTime()-(3600000*2)
     dateRange = 10
     xAxisRange = 777600000/24
     TICKINTERVAL3 = 86400000/24
@@ -1333,13 +1333,13 @@ function chart4Filter(time) {
     TICKINTERVAL = 86400000/24
     XAXISRANGE = 777600000/24
     
-    var datePerHour = (yesterday) % 3600000
-    var dateTo = (yesterday)-datePerHour
+    // var datePerHour = (yesterday) % 3600000
+    // var dateTo = (yesterday)-datePerHour
 
     minimalSeries = 10
     maximalSeries = 90
 
-    getDayWiseTimeSeries(dateTo, 10, {
+    getDayWiseTimeSeries(yesterday, 10, {
       min: minimalSeries,
       max: maximalSeries
     })
