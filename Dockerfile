@@ -9,6 +9,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY . .
 RUN composer install
+RUN composer dump-autoload
+RUN artisan optimize
 RUN composer update
 RUN php artisan key:generate
-RUN composer dump-autoload
