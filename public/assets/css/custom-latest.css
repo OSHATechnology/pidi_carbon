@@ -80,6 +80,7 @@ p {
 
 .card-body {
     height: 100px;
+    padding-top: 8px;
 }
 
 .card-title-container.with-date {
@@ -94,6 +95,7 @@ p {
 
 .small-description {
     font-size: 13px;
+    line-height: 1.3;
 }
 
 p.large {

@@ -29,9 +29,9 @@ let datass = callRandomData();
 
 // Interval Variable
 var today = new Date()
-var yesterday = new Date().getTime()-10800000
-var lastMonth = new Date().getTime()-10800000-(86400000*30)
-var lastYear = new Date().getTime()-10800000-(86400000*300)
+var yesterday = new Date().getTime()-(3600000*2)
+var lastMonth = new Date().getTime()-(3600000*2)-(86400000*30)
+var lastYear = new Date().getTime()-(3600000*2)-(86400000*300)
 var intervalHour = 3600000
 var intervalDay = 86400000
 var intervalMonth = Math.pow(2,31)-1
@@ -749,7 +749,8 @@ function chart1(time='daily') {
   if (time === 'daily') {
     minimalSeries = 10
     maximalSeries = 50
-    dateTo = new Date().getTime()-(3600000*2)
+    var datePerHour = (new Date().getTime()-3600000) % 3600000
+    dateTo = new Date().getTime()-3600000-datePerHour
     dateRange = 10
     xAxisRange = 777600000/24
     TICKINTERVAL3 = 86400000/24
@@ -979,7 +980,8 @@ function filterDataForChart2(plant='plant1', time='daily', area='all') {
   if (time === 'daily') {
     minimalSeries = 10
     maximalSeries = 50
-    dateTo = new Date().getTime()-(3600000*2)/*-1350000*/
+    var datePerHour = (new Date().getTime()-(3600000*2)) % 3600000
+    dateTo = new Date().getTime()-(3600000*2)-datePerHour
     dateRange = 10
     xAxisRange = 777600000/24
     TICKINTERVAL2 = 86400000/24
@@ -1330,19 +1332,20 @@ function chart4Filter(time) {
   if (time === 'daily') {
     TICKINTERVAL = 86400000/24
     XAXISRANGE = 777600000/24
-    usedInterval = 1000
+    
+    var datePerHour = (yesterday) % 3600000
+    var dateTo = (yesterday)-datePerHour
 
     minimalSeries = 10
     maximalSeries = 90
 
-    getDayWiseTimeSeries(yesterday, 10, {
+    getDayWiseTimeSeries(dateTo, 10, {
       min: minimalSeries,
       max: maximalSeries
     })
   } else if (time === 'monthly') {
     TICKINTERVAL = 86400000
     XAXISRANGE = 777600000
-    usedInterval = 10000
 
     minimalSeries = 100
     maximalSeries = 500
@@ -1354,7 +1357,6 @@ function chart4Filter(time) {
   } else if (time === 'yearly') {
     TICKINTERVAL = 86400000*30
     XAXISRANGE = 777600000*30
-    usedInterval = 30000
 
     minimalSeries = 3000
     maximalSeries = 9000
