@@ -6,7 +6,8 @@ function generateRandomInRange(min, max, n) {
   max = Math.floor(max);
 
   for (i=1;i<=n;i++) {
-    data.push(Math.floor((Math.random() * (max - min + 1)) + min))
+    var dataToPush = ((Math.random() * (max - min + 1)) + min).toFixed(2)
+    data.push(parseFloat(dataToPush))
   }
 
   return data
@@ -209,19 +210,19 @@ var dataChart3 = [
     "carbon":[
       {
         "type": "manufacturing",
-        "value": parseInt(generateRandomInRange(1000,3000,1))
+        "value": parseFloat(generateRandomInRange(1000.30,3000.30,1))
       },
       {
         "type": "building",
-        "value": parseInt(generateRandomInRange(1000,3000,1))
+        "value": parseFloat(generateRandomInRange(1000.30,3000.30,1))
       },
       {
         "type": "utility",
-        "value": parseInt(generateRandomInRange(1000,3000,1))
+        "value": parseFloat(generateRandomInRange(1000.30,3000.30,1))
       },
       {
         "type": "digital",
-        "value": parseInt(generateRandomInRange(1000,3000,1))
+        "value": parseFloat(generateRandomInRange(1000.30,3000.30,1))
       },
     ]
   },
