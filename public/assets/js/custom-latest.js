@@ -460,7 +460,7 @@ function chart5(data = 0) {
     tooltip: {
       y: {
         formatter: function(value){
-          return value.toFixed(2);
+          return value.toFixed(2) + ' KgCO2';
         },
         title: {
             formatter: (seriesName) => seriesName,
@@ -1267,7 +1267,7 @@ function filterDataForChart3(filter) {
       tooltip: {
         y: {
           formatter: function(value){
-            return value.toFixed(2);
+            return value.toFixed(2) + ' KgCO2';
           },
           title: {
               formatter: (seriesName) => seriesName,
