@@ -784,7 +784,8 @@ function chart1(time='daily') {
   } else if (time === 'yearly') {
     minimalSeries = 1000
     maximalSeries = 3000
-    dateTo =  new Date().getTime()-(3600000*2)-(86400000*300)
+    var datePerYear =  (new Date().getTime()-(3600000*2)-(86400000*300)) % (86400000*30) 
+    dateTo =  (new Date().getTime()-(3600000*2)-(86400000*300)) - datePerYear
     dateRange = 11
     xAxisRange = 777600000*30
     TICKINTERVAL3 = 86400000*30
@@ -1019,7 +1020,8 @@ function filterDataForChart2(plant='plant1', time='daily', area='all') {
   } else if (time === 'yearly') {
     minimalSeries = 1000
     maximalSeries = 3000
-    dateTo =  new Date().getTime()-(3600000*2)-(86400000*300)
+    var datePerYear =  (new Date().getTime()-(3600000*2)-(86400000*300)) % (86400000*30)
+    dateTo = (new Date().getTime()-(3600000*2)-(86400000*300))-datePerYear
     dateRange = 11
     xAxisRange = 777600000*30
     TICKINTERVAL2 = 86400000*30
@@ -1082,6 +1084,14 @@ function filterDataForChart2(plant='plant1', time='daily', area='all') {
     xaxis: {
       type: 'datetime',
       range: xAxisRange,
+      axisTicks: {
+        show: false,
+        borderType: 'solid',
+        color: '#78909C',
+        height: 6,
+        offsetX: 0,
+        offsetY: 0
+      },
     },
     fill: {
       opacity: 1
