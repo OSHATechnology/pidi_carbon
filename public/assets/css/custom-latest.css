@@ -44,12 +44,14 @@ p {
 }
 
 .header .title {
-    font-size: 13px;
+    font-size: 18px;
     margin: 0;
 }
 
 .header .datetime {
-    font-size: 10px;
+    display: flex;
+    justify-content: end;
+    font-size: 13px;
 }
 
 .row.modification {
@@ -80,6 +82,7 @@ p {
 
 .card-body {
     height: 100px;
+    padding-top: 8px;
 }
 
 .card-title-container.with-date {
@@ -88,12 +91,14 @@ p {
 }
 
 .card-title {
+    font-size: 16px;
     font-weight: bold;
     margin-bottom: 0 !important;
 }
 
 .small-description {
-    font-size: 13px;
+    font-size: 11px;
+    line-height: 1.3;
 }
 
 p.large {
@@ -198,11 +203,13 @@ p.normal {
     }
     
     .header .title {
-        font-size: 50px;
+        font-size: 70px;
         margin: 0;
+        margin-bottom: 5px;
     }
 
     .header .datetime {
+        flex-direction: column;
         font-size: 45px;
     }
 
@@ -229,7 +236,7 @@ p.normal {
     }
 
     .small-description {
-        font-size: 35px;
+        font-size: 30px;
     }
 
     .form-select {
@@ -253,5 +260,9 @@ p.normal {
         max-width: 900px;
         font-size: 45px;
         padding: 20px;
+    }
+
+    .w-75.w-75-responsive {
+        width: inherit !important
     }
 }   

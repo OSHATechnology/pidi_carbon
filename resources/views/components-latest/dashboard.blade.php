@@ -6,8 +6,8 @@
                 <img src="/assets/img/logopidi.png" class="logo" width="210" />
                 <p class="title text-center"><b>Carbon Footprint Dashboard</b></p>
             </div>
-            <div class="d-flex flex-column w-50">
-                <div class="datetime">
+            <div class="d-flex w-50">
+                <div class="datetime w-100">
                     <div id="date" class="date text-end" onload="showTime()"></div>
                     <div id="time" class="time text-end" onload="showTime()"></div>
                 </div>
@@ -22,7 +22,7 @@
                                 <h5 class="card-title">
                                     Total Emission By Area
                                 </h5>
-                                <p class="small-description">Total emisi untuk setiap area</p>
+                                <p class="small-description">Menampilkan total emisi yang dihasilkan setiap area</p>
                             </div>
 
                             <div>
@@ -44,10 +44,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center card-title-container">
-                            <div class="d-flex flex-column">
+                            <div class="d-flex flex-column w-75 w-75-responsive">
                                 <h5 class="card-title">
-                                    Emission By Plant </h5>
-                                <p class="small-description">Emisi dari masing-masing plant</p>
+                                    Emission By Plant</h5>
+                                <p class="small-description">Menampilkan emisi yang dihasilkan setiap area berdasarkan
+                                    plantnya
+                                </p>
                             </div>
                             <div>
                                 <select name="" id="select-chart3" class="form-select bg-dark form-select-sm">
@@ -65,10 +67,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center card-title-container">
-                            <div class="d-flex flex-column">
+                            <div class="d-flex flex-column w-75 w-75-responsive">
                                 <h5 class="card-title">
                                     Total Emission/Offset </h5>
-                                <p class="small-description">Total emisi berbanding target</p>
+                                <p class="small-description">Menampilkan total emisi yang dihasilkan berbanding batas emisi
+                                </p>
                             </div>
                             <div>
                                 <select name="" id="select-chart5" class="form-select bg-dark form-select-sm">
@@ -93,11 +96,12 @@
                             <div class="card-body">
                                 <div
                                     class="d-flex justify-content-between align-items-center card-title-container with-date">
-                                    <div class="d-flex flex-column">
+                                    <div class="d-flex flex-column w-50">
                                         <h5 class="card-title" data-bs-toggle="tooltip"
                                             data-bs-custom-class="custom-tooltip" data-bs-placement="right">
                                             Carbon Footprint </h5>
-                                        <p class="small-description">Total emisi berdasarkan plant dan waktu</p>
+                                        <p class="small-description">Menampilkan emisi yang dihasilkan dari setiap plant
+                                        </p>
                                     </div>
                                     <div class="d-flex gap-1">
                                         <select name="" id="select-plant-chart2"
@@ -134,7 +138,9 @@
                                     <div class="d-flex flex-column">
                                         <h5 class="card-title">
                                             Total Emission </h5>
-                                        <p class="small-description">Total emisi berbanding jumlah produksi</p>
+                                        <p class="small-description">Menampilkan total emisi yang dihasilkan berbanding
+                                            dengan jumlah produksi mobil
+                                        </p>
                                     </div>
                                     <div>
                                         <select name="" id="select-chart1"
@@ -157,8 +163,9 @@
                         <div class="d-flex justify-content-between align-items-center card-title-container with-date">
                             <div class="d-flex flex-column">
                                 <h5 class="card-title">
-                                    Realtime Emission </h5>
-                                <p class="small-description">Data realtime total emisi</p>
+                                    Real-time Emission </h5>
+                                <p class="small-description">Menampilkan data Real-Time emisi yang dihasilkan setiap plant
+                                </p>
                             </div>
                             <div class="d-flex gap-1">
                                 <select name="" id="select-plant-chart4"
@@ -230,9 +237,8 @@
                 month: 'long'
             })
 
-            document.getElementById("date").innerHTML = dateTime;
-            document.getElementById("time").innerText =
-                time;
+            document.getElementById("date").innerHTML = dateTime + '&nbsp;';
+            document.getElementById("time").innerText = time;
             document.getElementById("time").textContent = time;
 
             setTimeout(showTime, 1000);

@@ -17,11 +17,13 @@ var normalScreenConfig = {
       },
       offsetX: 0,
       offsetY: 0,
-      minWidth: 60,
-      maxWidth: 60,
+      minWidth: 80,
+      maxWidth: 80,
       formatter: function(val, chart) {
         if( val >= 1000) {
-          val = (val / 1000).toFixed(0) + 'K'
+          val = (val / 1000).toFixed(2) + 'K'
+        } else {
+          val = val.toFixed(2)
         }
         
         return val + " KgCO2"
@@ -84,15 +86,17 @@ var largeScreenConfig = {
       },
       offsetX: 0,
       offsetY: 10,
-      minWidth: 200,
-      maxWidth: 200,
+      minWidth: 250,
+      maxWidth: 250,
       formatter: function(val, chart) {
         if( val >= 1000) {
-          val = (val / 1000).toFixed(0) + 'K'
+          val = (val / 1000).toFixed(2) + 'K'
+        } else {
+          val = val.toFixed(2)
         }
         
         return val + " KgCO2"
-      },
+      }
     }
   },
 
@@ -114,7 +118,7 @@ var largeScreenConfig = {
           fontSize: '40px',
           formatter: function(val){
               let label = (val/100)*total;
-            return label.toFixed(2) +" KgCO2"
+            return label +" KgCO2"
           }
         },
         total: {

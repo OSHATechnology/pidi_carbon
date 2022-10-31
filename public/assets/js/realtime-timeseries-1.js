@@ -16,7 +16,7 @@ function getDayWiseTimeSeries(baseval, count, yrange) {
   var i = 0;
   while (i < count) {
     var x = baseval;
-    var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+    var y = parseFloat((Math.random() * (yrange.max - yrange.min + 1) + yrange.min).toFixed(2));
 
     data.push({
       x, y

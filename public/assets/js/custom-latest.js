@@ -29,9 +29,9 @@ let datass = callRandomData();
 
 // Interval Variable
 var today = new Date()
-var yesterday = new Date().getTime()-10800000
-var lastMonth = new Date().getTime()-10800000-(86400000*30)
-var lastYear = new Date().getTime()-10800000-(86400000*300)
+var yesterday = new Date().getTime()-(3600000*3)
+var lastMonth = new Date().getTime()-(3600000*3)-(86400000*30)
+var lastYear = new Date().getTime()-(3600000*3)-(86400000*300)
 var intervalHour = 3600000
 var intervalDay = 86400000
 var intervalMonth = Math.pow(2,31)-1
@@ -109,16 +109,16 @@ function dataEmissionsPerPlant(plants) {
   let data = [];
   let total_emissions, offset, target = 0;
   plants.forEach((item, index) => {
-    total_emissions = Math.random() * emisiYearly.reduce((a, b) => parseFloat(a) + parseFloat(b), 0);
-    target = total_emissions * 0.9;
-    offset = total_emissions - target;
+    total_emissions = (Math.random() * emisiYearly.reduce((a, b) => parseFloat(a) + parseFloat(b), 0)).toFixed(2);
+    target = (total_emissions * 0.85).toFixed(2);
+    offset = (total_emissions - target).toFixed(2);
     data.push({
       id: index,
       name: item,
       data: {
-        total_emissions: Math.floor(total_emissions),
-        offset: Math.floor(offset),
-        target: Math.floor(target)
+        total_emissions: parseFloat(total_emissions),
+        offset: parseFloat(offset),
+        target: parseFloat(target)
       }
     })
   })
@@ -131,7 +131,7 @@ function randomData(n = 30) {
   let maxValue = Math.max(...productionYearly);
   let minValue = Math.min(...productionYearly);
   let dataRandom = [];
-  average = average.toFixed(2)
+  average = average
 
   for (let i = 0; i < n; i++) {
     dataRandom[i] = Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
@@ -160,10 +160,10 @@ const initChart6 = (n) => {
   let precentData = presentase();
 
   const CalculateData = (data, precentData) => {
-    sumDigital = Math.round(data * precentData[0] / 100);
-    sumUtility = Math.round(data * precentData[1] / 100);
-    sumBuilding = Math.round(data * precentData[2] / 100);
-    sumManufacturing = Math.round(data * precentData[3] / 100);
+    sumDigital = data * precentData[0] / 100
+    sumUtility = data * precentData[1] / 100
+    sumBuilding = data * precentData[2] / 100
+    sumManufacturing = data * precentData[3] / 100
     return [sumDigital, sumUtility, sumBuilding, sumManufacturing];
   }
 
@@ -178,9 +178,9 @@ const initChart6 = (n) => {
   }
 
   let result = CalculateData(totalEmisi, precentData);
-  total = totalEmisi.toFixed(2);
+  total = totalEmisi;
   
-  $('#totalChart6').html('<b>Total : ' + total + ' KgCO2</b>')
+  $('#totalChart6').html('<b>Total : ' + total.toFixed(2) + ' KgCO2</b>')
 
   var options = {
     series: [(result[0] / totalEmisi) * 100, (result[1] / totalEmisi) * 100, (result[2] / totalEmisi) * 100, (result[3] / totalEmisi) * 100],
@@ -204,7 +204,7 @@ const initChart6 = (n) => {
             show: true,
             label: 'Total',
             formatter: function (w) {
-              return total + " KgCO2"
+              return total.toFixed(2) + " KgCO2"
             }
           }
         }
@@ -263,7 +263,7 @@ const initChart6 = (n) => {
                 show: false,
                 label: 'Total',
                 formatter: function (w) {
-                  return total + " KgCO2"
+                  return total.toFixed(2) + " KgCO2"
                 }
               },
             }
@@ -294,7 +294,7 @@ initChart6(n)
 
 //     //Chart 6
 //     var options = {
-//     series: [persentaeManufacturing.toFixed(2), persentaeBuilding.toFixed(2), persentaeUtility.toFixed(2), persentaeDigital.toFixed(2)],
+//     series: [persentaeManufacturing, persentaeBuilding, persentaeUtility, persentaeDigital],
 //     chart: {
 //       type: 'radialBar',
 //     },
@@ -309,7 +309,7 @@ initChart6(n)
 //             // fontSize: '16px',
 //             formatter: function(val){
 //                 let label = (val/100)*total;
-//               return label.toFixed(2) +" KgCO2"
+//               return label +" KgCO2"
 //             }
 //           },
 //           total: {
@@ -338,7 +338,7 @@ initChart6(n)
 //                 fontSize: '13px',
 //                 formatter: function(val){
 //                     let label = (val/100)*total;
-//                   return label.toFixed(2) +" KgCO2"
+//                   return label +" KgCO2"
 //                 }
 //               },
 //               total: {
@@ -438,7 +438,7 @@ function chart5(data = 0) {
     series: [totalEmission, totalOffset],
     chart: {
       type: 'pie',
-      height: '75%',
+      height: '70%',
     },
     colors: ['#FFC107', '#FF9900'],
     legend: {
@@ -456,6 +456,16 @@ function chart5(data = 0) {
     labels: ['Total Emission', 'Offset'],
     dataLabels: {
       enabled: false,
+    },
+    tooltip: {
+      y: {
+        formatter: function(value){
+          return value.toFixed(2) + ' KgCO2';
+        },
+        title: {
+            formatter: (seriesName) => seriesName,
+        },
+      }
     },
     responsive: [{
       breakpoint: 3840,
@@ -587,8 +597,8 @@ function generateDataChart1Car () {
     }
   })
   
-  productionMonthlyYear[9][0][productionMonthlyYear[9][0].length - 1] = Number(productionMonthlyYear[9][0][productionMonthlyYear[9][0].length - 1].toFixed(2)) 
-  productionDailyYear[9][0][productionDailyYear[9][0].length - 1] = Number(productionDailyYear[9][0][productionDailyYear[9][0].length - 1].toFixed(2)) 
+  productionMonthlyYear[9][0][productionMonthlyYear[9][0].length - 1] = Number(productionMonthlyYear[9][0][productionMonthlyYear[9][0].length - 1]) 
+  productionDailyYear[9][0][productionDailyYear[9][0].length - 1] = Number(productionDailyYear[9][0][productionDailyYear[9][0].length - 1]) 
 
   productionMonthly = productionMonthlyYear[9][0]
   productionDaily = productionDailyYear[9][0]
@@ -649,10 +659,12 @@ var yaxisChart1Normal = [
       offsetX: 10,
     },
     labels: {
-      maxWidth: 60,
+      maxWidth: 80,
       formatter: function(val, chart) {
         if( val >= 1000) {
-          val = (val / 1000).toFixed(0) + 'K'
+          val = (val / 1000).toFixed(2) + 'K'
+        } else {
+          val = val.toFixed(2)
         }
         
         return val + " KgCO2"
@@ -673,7 +685,9 @@ var yaxisChart1Normal = [
       maxWidth: 60,
       formatter: function(val, chart) {
         if( val >= 1000) {
-          val = (val / 1000).toFixed(0) + 'K'
+          val = (val / 1000) + 'K'
+        } else {
+          val = val
         }
         
         return val
@@ -695,11 +709,13 @@ var yaxisChart1Large = [
     },
     labels: {
       fontSize: '30px',
-      minWidth: 165,
-      maxWidth: 165,
+      minWidth: 235,
+      maxWidth: 235,
       formatter: function(val, chart) {
         if( val >= 1000) {
-          val = (val / 1000).toFixed(0) + 'K'
+          val = (val / 1000).toFixed(2) + 'K'
+        } else {
+          val = val.toFixed(2)
         }
         
         return val + " KgCO2"
@@ -716,11 +732,13 @@ var yaxisChart1Large = [
     },
     labels: {
       fontSize: '30px',
-      minWidth: 150,
-      maxWidth: 150,
+      minWidth: 200,
+      maxWidth: 200,
       formatter: function(val, chart) {
         if( val >= 1000) {
-          val = (val / 1000).toFixed(0) + 'K'
+          val = (val / 1000) + 'K'
+        } else {
+          val = val
         }
         
         return val
@@ -749,6 +767,7 @@ function chart1(time='daily') {
   if (time === 'daily') {
     minimalSeries = 10
     maximalSeries = 50
+    // var datePerHour = (new Date().getTime()-3600000) % 3600000
     dateTo = new Date().getTime()-(3600000*2)
     dateRange = 10
     xAxisRange = 777600000/24
@@ -765,7 +784,8 @@ function chart1(time='daily') {
   } else if (time === 'yearly') {
     minimalSeries = 1000
     maximalSeries = 3000
-    dateTo =  new Date().getTime()-(3600000*2)-(86400000*300)
+    var datePerYear =  (new Date().getTime()-(3600000*2)-(86400000*300)) % (86400000*30) 
+    dateTo =  (new Date().getTime()-(3600000*2)-(86400000*300)) - datePerYear
     dateRange = 11
     xAxisRange = 777600000*30
     TICKINTERVAL3 = 86400000*30
@@ -819,7 +839,7 @@ function chart1(time='daily') {
       y: [{
         formatter: function (y) {
           if(typeof y !== "undefined") {
-            return  y.toFixed(2) + " KgCO2";
+            return  y + " KgCO2";
           }
           return y;
           
@@ -874,7 +894,9 @@ function chart1(time='daily') {
                       maxWidth: 60,
                       formatter: function(val, chart) {
                         if( val >= 1000) {
-                          val = (val / 1000).toFixed(0) + 'K'
+                          val = (val / 1000) + 'K'
+                        } else {
+                          val = val
                         }
                         
                         return val + " KgCO2"
@@ -895,10 +917,12 @@ function chart1(time='daily') {
                       maxWidth: 60,
                       formatter: function(val, chart) {
                         if( val >= 1000) {
-                          val = (val / 1000).toFixed(0) + 'K'
+                          val = (val / 1000) + 'K'
+                        } else {
+                          val = val
                         }
                         
-                        return val
+                        return val + " KgCO2"
                       },
                       offsetX: offsetNumber,
                     },
@@ -979,7 +1003,8 @@ function filterDataForChart2(plant='plant1', time='daily', area='all') {
   if (time === 'daily') {
     minimalSeries = 10
     maximalSeries = 50
-    dateTo = new Date().getTime()-(3600000*2)/*-1350000*/
+    var datePerHour = (new Date().getTime()-(3600000*2)) % 3600000
+    dateTo = new Date().getTime()-(3600000*2)-datePerHour
     dateRange = 10
     xAxisRange = 777600000/24
     TICKINTERVAL2 = 86400000/24
@@ -995,7 +1020,8 @@ function filterDataForChart2(plant='plant1', time='daily', area='all') {
   } else if (time === 'yearly') {
     minimalSeries = 1000
     maximalSeries = 3000
-    dateTo =  new Date().getTime()-(3600000*2)-(86400000*300)
+    var datePerYear =  (new Date().getTime()-(3600000*2)-(86400000*300)) % (86400000*30)
+    dateTo = (new Date().getTime()-(3600000*2)-(86400000*300))-datePerYear
     dateRange = 11
     xAxisRange = 777600000*30
     TICKINTERVAL2 = 86400000*30
@@ -1058,6 +1084,14 @@ function filterDataForChart2(plant='plant1', time='daily', area='all') {
     xaxis: {
       type: 'datetime',
       range: xAxisRange,
+      axisTicks: {
+        show: false,
+        borderType: 'solid',
+        color: '#78909C',
+        height: 6,
+        offsetX: 0,
+        offsetY: 0
+      },
     },
     fill: {
       opacity: 1
@@ -1207,7 +1241,7 @@ function filterDataForChart3(filter) {
       chart: {
         id: 'my-donut',
         type: 'donut',
-        height: '75%',
+        height: '70%',
       },
       colors: ['#FFC107', '#3B99FF', '#FF9900', '#4CAF50'],
       legend: {
@@ -1230,6 +1264,16 @@ function filterDataForChart3(filter) {
           rotate: 0
         }
       }, 
+      tooltip: {
+        y: {
+          formatter: function(value){
+            return value.toFixed(2) + ' KgCO2';
+          },
+          title: {
+              formatter: (seriesName) => seriesName,
+          },
+        }
+      },
       responsive: [{
         breakpoint: 3840,
         options: {
@@ -1330,7 +1374,9 @@ function chart4Filter(time) {
   if (time === 'daily') {
     TICKINTERVAL = 86400000/24
     XAXISRANGE = 777600000/24
-    usedInterval = 1000
+    
+    // var datePerHour = (yesterday) % 3600000
+    // var dateTo = (yesterday)-datePerHour
 
     minimalSeries = 10
     maximalSeries = 90
@@ -1342,7 +1388,6 @@ function chart4Filter(time) {
   } else if (time === 'monthly') {
     TICKINTERVAL = 86400000
     XAXISRANGE = 777600000
-    usedInterval = 10000
 
     minimalSeries = 100
     maximalSeries = 500
@@ -1354,7 +1399,6 @@ function chart4Filter(time) {
   } else if (time === 'yearly') {
     TICKINTERVAL = 86400000*30
     XAXISRANGE = 777600000*30
-    usedInterval = 30000
 
     minimalSeries = 3000
     maximalSeries = 9000

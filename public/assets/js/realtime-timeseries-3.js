@@ -6,7 +6,7 @@ function generateSecondWiseTimeSeries(baseval, count, yrange) {
   var series = []
   while (i < count) {
     var x = baseval;
-    var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+    var y = parseFloat((Math.random() * (yrange.max - yrange.min + 1) + yrange.min).toFixed(2));
 
     series.push([x, y]);
     lastDate3 = baseval
