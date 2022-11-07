@@ -8,7 +8,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 COPY . .
-#RUN composer install
+RUN composer install
 #RUN composer dump-au#actoload
 #RUN artisan optimize
 RUN composer update
